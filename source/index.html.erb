@@ -8,7 +8,7 @@ title: Piotr Usewicz - Ruby and Erlang programmer
 </header>
 <nav>
   <ul>
-    <li><a href="http://tumble.layer22.com" class="writing">Blog</a></li>
+    <li><a href="/2013/" class="writing">Blog</a></li>
     <li><a href="http://twitter.com/pusewicz" class="tweets">Twitter</a></li>
     <li><a href="http://flickr.com/usewicz" class="photos">Flickr</a></li>
     <li><a href="http://www.linkedin.com/in/piotrusewicz" class="linkedin">LinkedIn</a></li>
@@ -18,14 +18,6 @@ title: Piotr Usewicz - Ruby and Erlang programmer
     <li class="last"><a href="http://about.me/piotr.usewicz" class="aboutme">About.me</a></li>
   </ul>
 </nav>
-<section class="articles">
-  <% page_articles.each_with_index do |article, i| %>
-  <h2><%= link_to article.title, article %> <span><%= article.date.strftime('%b %e') %></span></h2>
-  <!-- use article.summary(250) if you have Nokogiri available to show just
-       the first 250 characters -->
-  <%= article.summary(250) %>
-  <% end %>
-</section>
 <section class="watchsumo">
   <p>PS. Have a look at <a href="http://www.watchsumo.com/">WatchSumo</a> and <a href="http://www.homestay.com/">Homestay.com</a>.</p>
 </section>
