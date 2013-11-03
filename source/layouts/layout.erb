@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="verify-v1" content="JjdOlxZo3cBrBYJiQ6Zdkr4vY2DUQAfTvbFMAdXch8Q=">
+    <meta name="google-site-verification" content="CHhKMKbOqPlnAWNKhrQXx5_yRKQ6IGdLuKq6ZebfIOM" />
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="author" content="Piotr Usewicz">
+    <meta name="description" content="layer|twenty|two is the home page of Piotr Usewicz, a Ruby and Erlang programmer.">
+    <meta name="keywords" content="ruby, rails, erlang, javascript, coffeescript, riak, redis, mysql, nosql, sql, software engineer, programmer, developer">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:200,700' rel='stylesheet' type='text/css'>
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>layer|twenty|two &middot; <%= current_page.data.title || "Welcome" %></title>
+
+    <%= stylesheet_link_tag "normalize", "all" %>
+    <%= javascript_include_tag  "all" %>
+    <script>
+      var _gaq=[['_setAccount','UA-9186590-1'],['_trackPageview']];
+      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+      g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+      s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>
+    <script type="text/javascript">
+      (function() {
+        var t = document.createElement('script');
+        t.type = 'text/javascript'; t.async = true;
+        t.id = 'gauges-tracker';
+        t.setAttribute('data-site-id',
+                       '4d6e45c886d56d27c1000039');
+        t.src = 'http://track.gaug.es/track.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(t, s);
+      })();
+    </script>
+  </head>
+
+  <body class="<%= page_classes %>">
+    <%= yield %>
+  </body>
+</html>
