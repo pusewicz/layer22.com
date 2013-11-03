@@ -74,7 +74,7 @@ activate :blog do |blog|
   # blog.permalink = ":year/:month/:day/:title.html"
   # blog.sources = ":year-:month-:day-:title.html"
   # blog.taglink = "tags/:tag.html"
-  # blog.layout = "layout"
+  blog.layout = "article_layout"
   # blog.summary_separator = /(READMORE)/
   # blog.summary_length = 250
   # blog.year_link = ":year.html"
@@ -90,6 +90,19 @@ activate :blog do |blog|
   # blog.page_link = "page/:num"
 end
 
+activate :deploy do |deploy|
+  deploy.method = :git
+  # Optional Settings
+  # deploy.remote = "custom-remote" # remote name or git url, default: origin
+  # deploy.branch = "custom-branch" # default: gh-pages
+end
+
 page "/feed.xml", :layout => false
+page "/sitemap.xml", :layout => false
 
 activate :directory_indexes
+
+set :markdown_engine, :redcarpet
+set :markdown, :fenced_code_blocks => true, :smartypants => true
+
+activate :syntax

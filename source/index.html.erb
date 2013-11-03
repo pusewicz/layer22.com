@@ -18,6 +18,14 @@ title: Piotr Usewicz - Ruby and Erlang programmer
     <li class="last"><a href="http://about.me/piotr.usewicz" class="aboutme">About.me</a></li>
   </ul>
 </nav>
+<section class="articles">
+  <% page_articles.each_with_index do |article, i| %>
+  <h2><%= link_to article.title, article %> <span><%= article.date.strftime('%b %e') %></span></h2>
+  <!-- use article.summary(250) if you have Nokogiri available to show just
+       the first 250 characters -->
+  <%= article.summary(250) %>
+  <% end %>
+</section>
 <section class="watchsumo">
   <p>PS. Have a look at <a href="http://www.watchsumo.com/">WatchSumo</a> and <a href="http://www.homestay.com/">Homestay.com</a>.</p>
 </section>

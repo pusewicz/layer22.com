@@ -1,5 +1,17 @@
 @charset "utf-8";
 
+@import 'normalize';
+@import 'github';
+
+pre {
+  padding: 0;
+  line-height: 23px;
+  white-space: pre;
+  overflow-x: auto;
+  word-break: inherit;
+  word-wrap: inherit;
+}
+
 body {
   font-family: 'Source Sans Pro', Helvetica;
   font-weight: 200;
@@ -95,4 +107,17 @@ section.watchsumo {
   bottom: 0;
   right: 0;
   padding: 8px 32px;
+}
+
+article.post {
+  h1 {
+    margin-top: 0;
+  }
+  a {
+    color: black;
+  }
+
+  p {
+    font-weight: 400;
+  }
 }
