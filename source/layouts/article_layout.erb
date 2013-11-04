@@ -1,7 +1,7 @@
 <% wrap_layout :layout do %>
-  <article class="post">
-    <h1><%= current_page.data.title %></h1>
-    <span class="author">By <a href="https://plus.google.com/109868740099034969013?rel=author" rel="author">Piotr Usewicz</a></span>
+  <article class="post" itemscope=true itemtype="http://schema.org/BlogPosting">
+    <h1 itemprop="name"><%= current_page.data.title %></h1>
+    <span class="author">By <a href="https://plus.google.com/109868740099034969013?rel=author" rel="author" itemprop="author">Piotr Usewicz</a></span>
     <%= yield %>
   </article>
 <% end %>
