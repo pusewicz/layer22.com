@@ -97,10 +97,11 @@ activate :deploy do |deploy|
   deploy.branch = "master" # default: gh-pages
 end
 
+activate :directory_indexes
+
 page "/feed.xml", :layout => false
 page "/sitemap.xml", :layout => false
-
-activate :directory_indexes
+page "/CNAME", :directory_index => false
 
 set :markdown_engine, :redcarpet
 set :markdown, :fenced_code_blocks => true, :smartypants => true
