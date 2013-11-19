@@ -20,7 +20,9 @@ class Article < ActiveRecord::Base
 end
 ```
 
-Additionally, we add a new decorater which will allow us to render the body as Markdown.
+## Adding new article decorator
+
+Additionally, we add a new decorator which will allow us to render the body as Markdown.
 
 ```ruby
 class ArticleDecorator < Draper::Decorator
