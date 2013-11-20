@@ -1,6 +1,20 @@
 = wrap_layout :layout do
-  article class="post" itemscope=true itemtype="http://schema.org/BlogPosting"
-    h1 itemprop="name" = current_page.data.title
-    span class="author"
-      | By <a href="https://plus.google.com/109868740099034969013?rel=author" rel="author" itemprop="author">Piotr Usewicz</a></span>
-    = yield
+    article class="post border-bottom" itemscope=true itemtype="http://schema.org/BlogPosting"
+      h1.border-bottom.post-title itemprop="name" = current_page.data.title
+      .post-info
+        span class="author"
+          | By <a href="https://plus.google.com/109868740099034969013?rel=author" rel="author" itemprop="author">Piotr Usewicz</a></span>
+      = yield
+
+    footer
+      p Share this post
+      ul.social
+        li
+          a href=share_on_twitter_url(current_page) title="Share this post on Twitter" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;"
+            i.fa.fa-twitter
+        li
+          a href=share_on_facebook_url(current_page) title="Share this post on Facebook" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;"
+            i.fa.fa-facebook
+        li
+          a href=share_on_google_plus_url(current_page) title="Share this post on Google+" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;"
+            i.fa.fa-google-plus

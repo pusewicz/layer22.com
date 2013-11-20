@@ -1,14 +1,14 @@
 // Typography
 ///////////////////////////////////////////////////////////////////////////////
-$sans-serif: $helvetica;
-$serif: $georgia;
+$sans-serif: 'Source Sans Pro', $helvetica;
+$serif: 'Merriweather', $georgia;
 
-$base-font-family: $sans-serif;
-$header-font-family: $base-font-family;
+$base-font-family: $serif;
+$header-font-family: $sans-serif;
 
 // Sizes
 ///////////////////////////////////////////////////////////////////////////////
-$base-font-size: 1em;
+$base-font-size: 1.15em;
 $base-line-height: $base-font-size * 1.5;
 $base-border-radius: em(3);
 

@@ -45,6 +45,28 @@ activate :livereload
 #     "Helping"
 #   end
 # end
+helpers do
+  def share_on_twitter_url(post)
+    url = CGI.escape(absolute_url(post.url))
+    title = CGI.escape(post.title)
+    "http://twitter.com/share?text=#{title}&url=#{url}"
+  end
+
+  def share_on_facebook_url(post)
+    url = CGI.escape(absolute_url(post.url))
+    "https://www.facebook.com/sharer/sharer.php?u=#{url}"
+  end
+
+  def share_on_google_plus_url(post)
+    url = CGI.escape(absolute_url(post.url))
+    title = CGI.escape(post.title)
+    "https://plus.google.com/share?url=#{url}"
+  end
+
+  def absolute_url(path)
+    URI.join("http://www.layer22.com", path).to_s
+  end
+end
 
 set :css_dir, 'stylesheets'
 

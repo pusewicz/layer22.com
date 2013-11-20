@@ -6,6 +6,8 @@
 @import "bitters/bitters";
 @import 'github';
 
+@import 'fonts';
+
 pre {
   padding: 0;
   line-height: 23px;
@@ -16,10 +18,11 @@ pre {
 }
 
 body {
-  font-family: 'Source Sans Pro', Helvetica;
   font-weight: 200;
   padding-top: 100px;
   padding-bottom: 100px;
+  color: #1e1e1f;
+  -webkit-font-smoothing: antialiased;
 }
 
 div.container {
@@ -30,17 +33,91 @@ div.content {
   @include span-columns(12);
 }
 
-h1, h2 {
-  letter-spacing: -2px;
+h1 {
   color: #1D1801;
   font-weight: 200;
-  font-family: 'Source Sans Pro', Helvetica;
+}
+
+.border-bottom {
+  position: relative;
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 1px;
+    width: 80px;
+    left: 50%;
+    margin-left: -40px;
+    background-color: #cbc9cf;
+  }
+}
+
+article {
+  p {
+    font-weight: 400;
+    line-height: 2em;
+  }
+}
+
+.avatar {
+  width: 120px;
+  border-radius: 60px;
+  position: absolute;
+  margin-top: 20px;
+}
+
+.post-title {
+  text-align: center;
+  color: #807f83;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+}
+
+.post-info {
+  margin-bottom: 24px;
+  line-height: 0.55em;
+  color: #67666a;
+  font-size: 0.55em;
+  display: block;
+  text-align: center;
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+footer {
+  margin-top: 50px;
+  text-align: center;
+
+  p {
+    font-size: 0.55em;
+  }
+  ul.social {
+    li {
+      display: inline;
+      a {
+        padding: 20px;
+        color: #807f83;
+        &:hover {
+          color: darken(#807f83, 20%);
+        }
+      }
+    }
+  }
 }
 
 nav {
   display: block;
   line-height: 32px;
   color: #c0c0c0;
+}
+
+header {
+  position: relative;
+}
+
+header h1 {
+  margin-left: 140px;
 }
 
 header a {
@@ -62,13 +139,12 @@ nav ul {
 
 nav li {
   display: inline;
+  font-size: $base-font-size * 0.6;
 }
 
 nav li:after {
   content: "·";
-  font-size: 10px;
   text-transform: uppercase;
-  font-family: 'Source Sans Pro', Georgia, sans-serif;
   font-weight: 700;
 }
 
@@ -80,9 +156,7 @@ nav a {
   color: #839496;
   text-decoration: none;
   letter-spacing: 3px;
-  font-family: 'Source Sans Pro', Georgia, sans-serif;
   font-weight: 700;
-  font-size: 10px;
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -101,31 +175,29 @@ nav a:hover {
 .businesscard { color: #2aa198; }
 .aboutme { color: #859900; }
 
-section a {
-  color: #268bd2;
-  text-decoration: none;
-}
-
-section a:hover {
-  text-decoration: underline;
-}
-
-section.watchsumo {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  padding: 8px 32px;
-}
-
-article.post {
+section.posts {
+  margin-top: 160px;
+  .post {
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+  }
   h1 {
-    margin-top: 0;
+    font-size: $base-font-size * 2;
+    a {
+      color: #67666a;
+      &:hover {
+        color: darken(#67666a, 20%);
+      }
+    }
   }
-  a {
-    color: black;
-  }
-
-  p {
-    font-weight: 400;
+  .more {
+    display: inline-block;
+    margin-top: 20px;
+    color: #67666a;
+    margin-bottom: 60px;
+    border-bottom: 1px dotted #67666a;
+    &:hover {
+      color: darken(#67666a, 20%);
+    }
   }
 }

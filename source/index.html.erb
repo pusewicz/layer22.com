@@ -4,6 +4,7 @@ title: Piotr Usewicz - Ruby and Erlang programmer
 
 <a href="http://github.com/pusewicz"><img style="position: absolute; top: 0; right: 0; border: 0;" src="images/fork_me.png" alt="Fork me on GitHub"></a>
 <header>
+  <img src="images/piotr-usewicz.jpg" alt="Piotr Usewicz" class="avatar">
   <h1>Hi, I'm <a href="http://www.facebook.com/pusewicz">Piotr Usewicz</a>.<br/>I write software.</h1>
 </header>
 <nav>
@@ -18,6 +19,17 @@ title: Piotr Usewicz - Ruby and Erlang programmer
     <li class="last"><a href="http://about.me/piotr.usewicz" class="aboutme">About.me</a></li>
   </ul>
 </nav>
-<section class="watchsumo">
-  <p>PS. Have a look at <a href="http://www.watchsumo.com/">WatchSumo</a> and <a href="http://www.homestay.com/">Homestay.com</a>.</p>
+<section class="posts">
+  <% blog.articles[0...5].each do |article| %>
+    <div class="post border-bottom">
+      <h1 class="border-bottom post-title">
+        <a href="<%= article.url %>"><%= article.title %></a>
+      </h1>
+      <time class="post-info"><%= article.date.strftime('%b %e %Y') %></time>
+
+      <%= article.summary %>
+
+      <a href="<%= article.url %>" class="more">Read more</a>
+    </div>
+  <% end %>
 </section>
