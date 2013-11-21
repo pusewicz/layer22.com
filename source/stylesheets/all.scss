@@ -196,8 +196,15 @@ section.posts {
     color: #67666a;
     margin-bottom: 60px;
     border-bottom: 1px dotted #67666a;
+    line-height: 1em;
     &:hover {
       color: darken(#67666a, 20%);
     }
   }
+}
+
+.archive-date {
+  padding-left: 0.5em;
+  font-size: 0.8em;
+  color: #67666a;
 }

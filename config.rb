@@ -66,6 +66,17 @@ helpers do
   def absolute_url(path)
     URI.join("http://www.layer22.com", path).to_s
   end
+
+  def format_calendar_date(page_type, year, month, day)
+    case page_type
+    when 'day'
+     Date.new(year, month, day).strftime('%b %e %Y')
+    when 'month'
+      Date.new(year, month, 1).strftime('%b %Y')
+    when 'year'
+      year
+    end
+  end
 end
 
 set :css_dir, 'stylesheets'
