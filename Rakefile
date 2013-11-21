@@ -1,4 +1,4 @@
-
+desc "Ping all search engines with the new sitemap"
 task :ping do
   require 'uri'
   require 'net/http'
@@ -19,4 +19,10 @@ task :ping do
       puts "Error pinging #{type}! (response code: #{response.code})- #{Time.now}"
     end
   end
+end
+
+desc "Builds and deploys to GitHub"
+task :deploy do
+  sh "bundle exec middleman build"
+  sh "bundle exec middleman deploy"
 end
