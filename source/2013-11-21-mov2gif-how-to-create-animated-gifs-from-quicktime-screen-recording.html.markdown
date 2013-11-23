@@ -2,7 +2,7 @@
 title: mov2gif&mdash;How to create animated gifs from QuickTime screen recording
 date: 2013-11-21 22:01 UTC
 tags: ruby
-meta_keywrods: how to, gif, animated gif, animated gifs, github, mov2gif, quicktime, screencast, screen recording
+meta_keywords: how to, gif, animated gif, animated gifs, github, mov2gif, quicktime, screencast, screen recording
 ---
 
 Everybody loves animated GIFs. But what's even better is the ability to turn your screencast into one. I'm pretty sure that when working with GitHub, you use pull-requests very often. The ability to quickly attach an image when showing what's included is very useful. But what if you could also include a short video showing how it works in action?
