@@ -21,8 +21,12 @@ task :ping do
   end
 end
 
-desc "Builds and deploys to GitHub"
-task :deploy do
-  sh "bundle exec middleman build"
+desc "Deploys to GitHub"
+task :deploy => :build do
   sh "bundle exec middleman deploy"
+end
+
+desc "Builds the website"
+task :build do
+  sh "bundle exec middleman build"
 end
