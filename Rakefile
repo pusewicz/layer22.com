@@ -34,4 +34,4 @@ end
 desc 'Builds, depoys and pings search engines withnew sitemap'
 task :publish => [:build, :deploy, :ping]
 
-rake default: :publish
+task default: :publish
