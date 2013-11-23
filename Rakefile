@@ -1,3 +1,8 @@
+desc 'Serve content'
+task :server do
+  sh 'bundle exec middleman server'
+end
+
 desc 'Ping all search engines with the new sitemap'
 task :ping do
   require 'uri'

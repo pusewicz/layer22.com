@@ -5,8 +5,10 @@
 @import "neat/neat";
 @import "bitters/bitters";
 @import 'github';
-
 @import 'fonts';
+
+$tablet: new-breakpoint(max-width 768px 8);
+$mobile: new-breakpoint(max-width 480px 4);
 
 pre {
   padding: 0;
@@ -23,6 +25,13 @@ body {
   padding-bottom: 100px;
   color: #1e1e1f;
   -webkit-font-smoothing: antialiased;
+  @include media($mobile) {
+    padding: 10px;
+  }
+
+  @include media($tablet) {
+    padding: 10px;
+  }
 }
 
 div.container {
@@ -36,6 +45,9 @@ div.content {
 h1 {
   color: #1D1801;
   font-weight: 200;
+  @include media($mobile) {
+    font-size: 1.8em;
+  }
 }
 
 .border-bottom {
@@ -64,6 +76,12 @@ article {
   border-radius: 60px;
   position: absolute;
   margin-top: 20px;
+
+  @include media($mobile) {
+    display: block;
+    position: relative;
+    margin: 0px auto;
+  }
 }
 
 .post-title {
@@ -118,6 +136,9 @@ header {
 
 header h1 {
   margin-left: 140px;
+  @include media($mobile) {
+    margin-left: 0;
+  }
 }
 
 header a {
@@ -177,12 +198,26 @@ nav a:hover {
 
 section.posts {
   margin-top: 160px;
+  @include media($mobile) {
+  margin-top: 60px;
+  }
   .post {
     margin-bottom: 60px;
     padding-bottom: 40px;
+    @include media($mobile) {
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+    }
   }
   h1 {
     font-size: $base-font-size * 2;
+    @include media($mobile) {
+      font-size: 1.25em;
+    }
+
+    @include media($tablet) {
+      font-size: 1.25em;
+    }
     a {
       color: #67666a;
       &:hover {
@@ -199,6 +234,9 @@ section.posts {
     line-height: 1em;
     &:hover {
       color: darken(#67666a, 20%);
+    }
+    @include media($mobile) {
+    margin-bottom: 40px;
     }
   }
 }
