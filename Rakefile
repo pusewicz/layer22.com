@@ -1,12 +1,12 @@
-desc "Ping all search engines with the new sitemap"
+desc 'Ping all search engines with the new sitemap'
 task :ping do
   require 'uri'
   require 'net/http'
-  sitemap_url = URI.escape("http://www.layer22.com/sitemap.xml")
+  sitemap_url = URI.escape('http://www.layer22.com/sitemap.xml')
   {
-    :google         => "http://www.google.com/webmasters/tools/ping?sitemap=%s",
-    :bing           => "http://www.bing.com/webmaster/ping.aspx?siteMap=%s",
-    :sitemap_writer => "http://www.sitemapwriter.com/notify.php?crawler=all&url=%s"
+    :google         => 'http://www.google.com/webmasters/tools/ping?sitemap=%s',
+    :bing           => 'http://www.bing.com/webmaster/ping.aspx?siteMap=%s',
+    :sitemap_writer => 'http://www.sitemapwriter.com/notify.php?crawler=all&url=%s'
   }.each do |type, site_url|
     puts "Pinging #{type}..."
     uri     = URI.parse(site_url % sitemap_url)
@@ -21,12 +21,17 @@ task :ping do
   end
 end
 
-desc "Deploys to GitHub"
+desc 'Deploys to GitHub'
 task :deploy => :build do
-  sh "bundle exec middleman deploy"
+  sh 'bundle exec middleman deploy'
 end
 
-desc "Builds the website"
+desc 'Builds the website'
 task :build do
-  sh "bundle exec middleman build"
+  sh 'bundle exec middleman build'
 end
+
+desc 'Builds, depoys and pings search engines withnew sitemap'
+task :publish => [:build, :deploy, :ping]
+
+rake default: :publish
