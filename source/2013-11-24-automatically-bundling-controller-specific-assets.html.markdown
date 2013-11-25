@@ -1,5 +1,5 @@
 ---
-title: Automatically bundling controller specific assets
+title: Automatically bundle controller-specific assets
 date: 2013-11-24 21:32 UTC
 tags: rails
 ---
