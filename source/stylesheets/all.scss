@@ -45,6 +45,7 @@ div.content {
 h1 {
   color: #1D1801;
   font-weight: 200;
+  text-transform: capitalize;
   @include media($mobile) {
     font-size: 1.8em;
   }
@@ -135,6 +136,7 @@ header {
 }
 
 header h1 {
+  text-transform: capitalize;
   margin-left: 140px;
   @include media($mobile) {
     margin-left: 0;
@@ -210,6 +212,7 @@ section.posts {
     }
   }
   h1 {
+    text-transform: capitalize;
     font-size: $base-font-size * 2;
     @include media($mobile) {
       font-size: 1.25em;
