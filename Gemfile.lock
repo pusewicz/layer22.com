@@ -52,6 +52,7 @@ GEM
     hitimes (1.2.2)
     hooks (0.4.0)
       uber (~> 0.0.4)
+    htmlcompressor (0.1.2)
     http_parser.rb (0.6.0)
     i18n (0.6.11)
     image_optim (0.20.2)
@@ -115,6 +116,9 @@ GEM
       rack-livereload (~> 0.3.15)
     middleman-meta-tags (0.1.2)
       middleman-core (>= 3.0.0)
+    middleman-minify-html (3.4.0)
+      htmlcompressor (~> 0.1.0)
+      middleman-core (>= 3.2)
     middleman-sprockets (3.4.1)
       middleman-core (>= 3.3)
       sprockets (~> 2.12.1)
@@ -134,6 +138,7 @@ GEM
     net-ssh (2.9.2)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
+    oj (2.11.2)
     padrino-helpers (0.12.4)
       i18n (~> 0.6, >= 0.6.7)
       padrino-support (= 0.12.4)
@@ -193,8 +198,10 @@ DEPENDENCIES
   middleman-imageoptim
   middleman-livereload (~> 3.4.0)
   middleman-meta-tags
+  middleman-minify-html
   middleman-syntax
   neat
   nokogiri
+  oj
   redcarpet
   slim

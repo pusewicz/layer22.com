@@ -38,6 +38,7 @@ activate :automatic_image_sizes
 activate :autoprefixer
 activate :meta_tags
 activate :imageoptim
+activate :minify_html
 
 # Reload the browser automatically whenever files change
 activate :livereload
