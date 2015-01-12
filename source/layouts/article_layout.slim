@@ -1,3 +1,10 @@
+ruby:
+  set_meta_tags(
+    title: current_page.data.title,
+    keywords: current_page.data.meta_keywords,
+    description: current_page.data.meta_description
+  )
+
 = wrap_layout :layout do
     article class="post border-bottom" itemscope=true itemtype="http://schema.org/BlogPosting"
       h1.border-bottom.post-title itemprop="name" = current_page.data.title

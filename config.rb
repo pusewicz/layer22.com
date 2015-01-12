@@ -35,6 +35,8 @@ end
 
 # Automatic image dimensions on image_tag helper
 activate :automatic_image_sizes
+activate :autoprefixer
+activate :meta_tags
 
 # Reload the browser automatically whenever files change
 activate :livereload
