@@ -38,7 +38,9 @@ activate :automatic_image_sizes
 activate :autoprefixer
 activate :meta_tags
 activate :imageoptim
-activate :minify_html
+#activate :minify_html
+
+sprockets.append_path File.join root, 'bower_components'
 
 # Reload the browser automatically whenever files change
 activate :livereload
@@ -83,6 +85,10 @@ helpers do
     when 'year'
       year
     end
+  end
+
+  def pretty_date(date)
+    date.strftime('%B %d, %Y')
   end
 end
 

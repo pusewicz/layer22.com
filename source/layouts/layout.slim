@@ -1,3 +1,8 @@
+ruby:
+  set_meta_tags title: current_page.data.title if current_page.data.title
+  set_meta_tags keywords: current_page.data.meta_keywords if current_page.data.meta_keywords
+  set_meta_tags description: current_page.data.meta_description if current_page.data.meta_description
+
 doctype html
 html
   head
@@ -35,5 +40,7 @@ html
           s.parentNode.insertBefore(t, s);
         })();
   body class=page_classes
-    .container
-      .content= yield
+    = yield
+    footer
+      .row
+        .small-10.small-centered.columns= partial 'layouts/footer'
