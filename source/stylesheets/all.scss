@@ -12,10 +12,8 @@ header.row {
 }
 
 .logo {
-  max-width: 200px;
-  .index & {
-    max-width: 300px;
-  }
+  width: 256px;
+  max-width: 100%;
 }
 
 .index {
