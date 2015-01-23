@@ -1,17 +1,24 @@
 ---
 pageable: true
 ---
-h2 Archive for #{format_calendar_date(page_type, year, defined?(month) ? month : nil, defined?(day) ? day : nil)}
-- if paginate && num_pages > 1
-  p
-    | Page #{page_number} of #{num_pages}
-  - if prev_page
-    p= link_to 'Previous page', prev_page
-ul
-  - page_articles.each_with_index do |article, i|
-    li
-      = link_to article.title, article
-      span.archive-date= article.date.strftime('%b %e')
-- if paginate
-  - if next_page
-    p= link_to 'Next page', next_page
+
+header.row
+  .small-10.small-centered.columns= partial 'layouts/header'
+
+.row.posts
+  .small-10.small-centered.columns
+
+    h2 Archive for #{format_calendar_date(page_type, year, defined?(month) ? month : nil, defined?(day) ? day : nil)}
+    - if paginate && num_pages > 1
+      p
+        | Page #{page_number} of #{num_pages}
+      - if prev_page
+        p= link_to 'Previous page', prev_page
+    ul
+      - page_articles.each_with_index do |article, i|
+        li
+          = link_to article.title, article
+          span.date= pretty_date(article.date)
+    - if paginate
+      - if next_page
+        p= link_to 'Next page', next_page

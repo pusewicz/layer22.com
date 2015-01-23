@@ -11,7 +11,7 @@ header.row
 .row.posts
   .small-10.small-centered.columns
     ul
-      - blog.articles[0...5].each do |article|
+      - blog.articles.select { |a| !a.data[:private] }[0...5].each do |article|
         li
           h5= link_to article.title, article.path
           span.byline

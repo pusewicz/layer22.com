@@ -1,5 +1,12 @@
-h2 Archive
+header.row
+  .small-10.small-centered.columns= partial 'layouts/header'
 
-ul
-  - blog.articles.each do |post|
-    li= link_to post.title, post
+.row.posts
+  .small-10.small-centered.columns
+    h2 Archive
+
+    ul
+      - blog.articles.each do |post|
+        li
+          = link_to post.title, post
+          span.date= pretty_date(post.date)
