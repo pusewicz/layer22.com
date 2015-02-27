@@ -1,4 +1,5 @@
 require 'slim'
+require_relative 'lib/middleman/syntax/syntax_extension'
 ###
 # Compass
 ###
@@ -38,7 +39,7 @@ activate :automatic_image_sizes
 activate :autoprefixer
 activate :meta_tags
 activate :imageoptim
-#activate :minify_html
+activate :minify_html
 
 sprockets.append_path File.join root, 'bower_components'
 
@@ -52,6 +53,16 @@ activate :livereload
 #   end
 # end
 helpers do
+  # Calculate the years for a copyright
+  def copyright_years(start_year)
+    end_year = Date.today.year
+    if start_year == end_year
+      start_year.to_s
+    else
+      start_year.to_s + '-' + end_year.to_s
+    end
+  end
+
   def share_on_twitter_url(post)
     url = escape_url(absolute_url(post.url))
     title = URI.escape(post.title)

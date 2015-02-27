@@ -4,7 +4,7 @@
 @import 'partials/settings';
 @import 'foundation/scss/normalize';
 @import 'foundation/scss/foundation';
-@import 'github';
+@import 'highlight/solarized_light';
 
 header.row {
   margin-top: 64px;
@@ -111,12 +111,9 @@ header.row {
   margin-bottom: 2em;
 }
 
-.highlight {
+.hljs {
+  font-size: 0.8rem;
   margin-bottom: 1.25rem;
-  code {
-    background: none;
-    border-color: transparent;
-  }
 }
 
 footer {
