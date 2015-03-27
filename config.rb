@@ -21,9 +21,6 @@ activate :automatic_image_sizes
 activate :meta_tags
 activate :minify_html
 
-# Reload the browser automatically whenever files change
-activate :livereload
-
 activate :blog do |blog|
   blog.layout = "article_layout"
   blog.tag_template = "tag.html"
@@ -62,6 +59,11 @@ helpers do
   def pretty_date(date)
     date.strftime('%B %d, %Y')
   end
+end
+
+configure :development do
+  # Reload the browser automatically whenever files change
+  activate :livereload
 end
 
 # Build-specific configuration
