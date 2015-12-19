@@ -36,15 +36,15 @@ activate :directory_indexes
 activate :syntax
 
 helpers do
-  def gravatar_for(email)
+  def gravatar_for(email, size = 120)
     if email
       # Make md5 hash for email address
       hash = Digest::MD5.hexdigest(email.chomp.downcase)
       # Return url for Gravatar image
-      "https://www.gravatar.com/avatar/#{hash}.jpg"
+      "https://www.gravatar.com/avatar/#{hash}.jpg?s=#{size}"
     else
       # Return default image
-      "https://www.gravatar.com/avatar/?d=mm"
+      "https://www.gravatar.com/avatar/?d=mm&size=#{size}"
     end
   end
 
