@@ -1,0 +1,74 @@
+==================================================================
+https://keybase.io/pusewicz
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://www.layer22.com
+  * I am pusewicz (https://keybase.io/pusewicz) on keybase.
+  * I have a public key with fingerprint A821 1305 AB59 6B5D 6DFF  6D32 3A54 81B5 BF59 6D05
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "0101e2da133f2c174aa7622854e4ae288daa6f43b7dbc56c4d264eafe1772bd7ddab0a",
+            "fingerprint": "a8211305ab596b5d6dff6d323a5481b5bf596d05",
+            "host": "keybase.io",
+            "key_id": "3a5481b5bf596d05",
+            "kid": "0101e2da133f2c174aa7622854e4ae288daa6f43b7dbc56c4d264eafe1772bd7ddab0a",
+            "uid": "1068c227f58df6f143541da645e83019",
+            "username": "pusewicz"
+        },
+        "service": {
+            "hostname": "www.layer22.com",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1479467602,
+    "expire_in": 157680000,
+    "prev": "158f4b8641d1a06058e485161d81d6af8bef601a2c0591e558c4f90862442700",
+    "seqno": 12,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.58
+Comment: https://keybase.io/crypto
+
+yMNJAnicrVJtUFRVGN5dgwRJEIMCq9FL0kC43nP3fu2CTik/mDIh3EEQcTn33nOX
+2y571927uwKziVizIgY5EWAqGGhNISkwwmQzIeA4TXxEiSDjiEE1mJpiYzU0KN1l
+7F8/O3/Oed/zPM/7Pu+8F59aognXmsz7zvXkFYdoB3qPejS5+unsMoyThRLMVIbZ
+0OKF7AJyKxabJGAmDAc4QIQAgcEgEjxgSAgZmiBYikQkRATLChDSImngGIHjKZon
+BYImERQRYBiCExhBgBwOsRRMlBxW5HK6JIeiykKWAMCAU5CjjDRHCbQgirRgIAyQ
+IlnAUZyo5gWcUolFsjvIUJvjoBvpJVnNqYFlsb3/wP/PfXsW5QBOszxBMCLFCiIt
+AtJAkUCANEkh1oADYxDoRi4HLEYq2qm+fRJfivlTMDXrlXgUHGzQyWOEz+fT22EJ
+chGEnpeLVbrTJSsyL9vVzyJFcbpNQbJS4lxEI87yWMfCSQ5BHaXK8CKXW5IdmAmo
+SF6RgsKAZIwkzdA4kYKhPU7JhSxSEEExNIurJ1gHeYOGKFYkOZZWXQCI0zjFIpKl
+AA0EFgg0FFkOiTQOIMHjlBEgimJ5UjTiLE2QJMHgOBZ0ttshq9pqKQVaVU23ZHVA
+xeNCmL+vd+cTGm24JjREF9wxTXhY1L+bt7EzStMEX0xr/di5LDswaMzzT29y1Mbs
+MGdvOHMt7MJu/ec6/uyjKs1Hk1kdhVJBbPX8ye+TTjZ+90rX9LuRK+OO1N+xVZWk
+Xcg8XYgvmQnkJX4Qu7V2375fuqJ/zRlvcnN7mtoCzWOlkaeuPnMjZyy69fgNbX+r
+sYF3tp0Y/PnwQ6sxw7lilVDtPXbbWr7L1ti3cvMD3uP769bWlH5DxUthL9SfeDZU
+1PdEjP4+sL8yvv71mXtT5ab4sYstcXMtNaloPrf7jaW/wbe3zQ7mfxFb3ByhP9uV
+ceo1OdoydN077BuV+nMHU8TzUq7vQCBuMof8svbYp83Lun+4ad/5TUvluk+cSiBz
+NWXWfWUPjQ1LIn7qHY5JnT49Pm4enc1qgOeXz2cfGoST/vcO3VrQWsdvHhkpfGcu
+s+7eSPKu1jOdymbb7VQw3ivr1m8IJY76ZxIOpv+ZkZZY0XElontNf3xR/nHz3YyJ
+ictFlz5cSA+vHrZfvp6lvSPO5Rz4ut2zeiytwnP1rjmssyB96XbinOFh90Q0aH7S
+qls1lHzl+Xz+Qc7aLe3X9je2NNyvq7//ZtN6+o/K5QmbnquktkUWHA58NlURZ1sb
+/WPTTPtAQ0XCt0n5I2XyQtTk07kd77ftratN2Du1sa/0rVer/CE9NeW+xL+929et
+mNmRPP1IV7PG/nLnUH5P59ClmC3Js8o/2ea9+A==
+=xyRH
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/pusewicz
+
+==================================================================
