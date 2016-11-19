@@ -5,6 +5,10 @@ compass_config do |config|
   config.output_style = :compact
 end
 
+config.ignored_sitemap_matchers[:source_dotfiles] = proc { |file|
+  file =~ %r{/\.} && file !~ %r{/\.(well-known|htaccess|htpasswd|nojekyll)}
+}
+
 sprockets.append_path File.join root, 'bower_components'
 
 set :markdown_engine, :redcarpet
