@@ -1,0 +1,101 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+#
+# If you need help with YAML syntax, here are some quick references for you:
+# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
+# https://learnxinyminutes.com/docs/yaml/
+#
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+
+title: layer|twenty|two
+email: piotr@layer22.com
+description: >- # this means to ignore newlines until "baseurl:"
+  Functional Web Applications
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://www.layer22.com" # the base hostname & protocol for your site, e.g. http://example.com
+github_username:  pusewicz
+
+author:
+  name: Piotr Usewicz
+
+# Build settings
+plugins:
+  - jekyll-feed
+  - jekyll-archives
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jemoji
+
+collections:
+  - posts
+
+jekyll-archives:
+  enabled:
+    - year
+    - month
+    - day
+    - tags
+  layout: archive
+  layouts:
+    year: archive_year
+    month: archive_month
+    day: archive_day
+    tag: archive_tags
+  permalinks:
+    year: '/:year/'
+    month: '/:year/:month/'
+    day: '/:year/:month/:day/'
+    tag: '/tags/:name/'
+
+permalink: "/:year/:month/:day/:title/"
+
+social:
+  name: Piotr Usewicz
+  links:
+    - https://twitter.com/pusewicz
+    - https://www.facebook.com/pusewicz
+    - https://www.linkedin.com/in/PiotrUsewicz
+    - https://github.com/pusewicz
+    - https://keybase.io/pusewicz84
+
+logo: /images/logo.png
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+sass:
+  style: compressed
+# Exclude from processing.
+# The following items will not be processed, by default.
+# Any item listed under the `exclude:` key here will be automatically added to
+# the internal "default list".
+#
+# Excluded items can be processed by explicitly listing the directories or
+# their entries' file path in the `include:` list.
+#
+# exclude:
+#   - .sass-cache/
+#   - .jekyll-cache/
+#   - gemfiles/
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules/
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/

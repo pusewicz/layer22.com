@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ site.title }} | {{ page.title }}</title>
+    <link rel="stylesheet" href="{{ "assets/css/main.css" | relative_url }}" />
+    {% seo %}
+  </head>
+  <body>
+    <main class="container">{{ content }}</main>
+    <footer class="container">
+      <small>© 2004-{{ "now" | date: "%Y" }} Piotr Usewicz · Benicarló, Spain · <a href="/contact/">Contact</a> · <a href="/feed.xml"><abbr title="Really Simple Syndication">RSS</abbr>&nbsp;Feed</></small>
+    </footer>
+  </body>
+</html>

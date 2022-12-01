@@ -1,0 +1,14 @@
+---
+layout: default
+---
+
+<link rel="stylesheet" href="{{ "assets/css/syntax.css" | relative_url }}" />
+
+{% include nav.html %}
+
+<article class="post">
+    <hgroup>
+        <h1>{{ page.title }}<small>{{ page.date | date: "%B %d, %Y" }}</small></h1>
+    </hgroup>
+    {{ content }}
+</article>

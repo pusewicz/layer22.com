@@ -1,0 +1,29 @@
+---
+layout: default
+---
+
+<header class="container">
+  <hgroup>
+    <div class="logo">
+      <div class="logo-type">&#x1f78b;</div>
+      <div class="logo-text"><span>layer|twenty|two</span><small>funcional web applications</small></div>
+    </div>
+  </hgroup>
+</header>
+
+<div class="container hi">
+  <img alt="Piotr Usewicz" class="avatar" src="https://www.gravatar.com/avatar/dcbf676f860477e44b275cae5d6318a4.jpg?s=240">
+  <h3>Hi, I'm <a href="https://github.com/pusewicz/">Piotr Usewicz</a>.<br>I write software.</h3>
+</div>
+
+<article>
+  <ul class="post-index">
+  {% for post in site.posts limit:3 %}
+    <li>
+      <h2><a href="{{ post.url }}">{{ post.title }}</a><small>{{ post.date | date: "%B %d, %Y" }}</small></h2>
+    </li>
+  {% endfor %}
+  </ul>
+
+  <a href="/archive">View All Posts&rarr;</a>
+</article>

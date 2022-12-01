@@ -1,5 +1,0 @@
-Sitemap: http://www.layer22.com/sitemap.xml
-
-User-agent: *
-Allow: /
-
