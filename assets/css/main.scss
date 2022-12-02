@@ -19,22 +19,18 @@ body {
   font-family: var(--font-sans);
   background-color: var(--bg-color);
   color: var(--accent-color);
-  font-size: 18px;
-  padding: 48px;
+  font-size: 100%;
+  padding: 4rem;
 }
 
 a {
   color: var(--accent-color);
-
-  &:hover {
-    opacity: 0.6;
-  }
 }
 
 .logo {
   display: inline-block;
   font-family: var(--font-sans);
-  height: 64px;
+  height: 2rem;
   width: auto;
 
   .logo-type {
@@ -42,8 +38,8 @@ a {
     height: 64px;
     color: var(--accent-color);
     content: "\1f78b";
-    font-size: 64px;
-    line-height: 64px;
+    font-size: 2rem;
+    line-height: 2rem;
     float: left;
     text-align: left;
     margin-left: -10px;
@@ -53,8 +49,8 @@ a {
     span {
       color: var(--accent-color);
       display: block;
-      font-size: 24px;
-      line-height: 24px;
+      font-size: 1.5rem;
+      line-height: 1.5rem;
       margin-left: 50px;
       padding-top: 13px;
       text-align: center;
@@ -62,8 +58,8 @@ a {
     small {
       color: var(--alt-color);
       display: block;
-      font-size: 15px;
-      line-height: 15px;
+      font-size: 1rem;
+      line-height: 1rem;
       margin-left: 50px;
       margin-top: 2px;
       text-align: center;
@@ -75,8 +71,8 @@ a {
 
 main header {
   text-align: center;
-  margin-bottom: 64px;
-  margin-top: 32px;
+  margin-bottom: 3rem;
+  margin-top: 2rem;
 }
 
 main div.container {
@@ -84,18 +80,18 @@ main div.container {
 }
 
 .container.hi {
-  margin-top: 48px;
-  margin-bottom: 64px;
+  margin-top: 3rem;
+  margin-bottom: 4rem;
 }
 
 .avatar {
   border-radius: 100%;
-  width: 120px;
+  width: 6rem;
 }
 
 main, footer {
-  width: 72ch;
-  margin: 0px auto;
+  width: 40rem;
+  margin: 0 auto;
 }
 
 nav {
@@ -116,24 +112,31 @@ nav {
 }
 
 footer {
-  margin-top: 64px;
+  margin-top: 4rem;
 }
 
 article {
-  margin-top: 36px;
-  margin-bottom: 36px;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+
+  img {
+    max-width: 100%;
+  }
 
   p {
     line-height: 1.6;
   }
 
   h1, h2 {
-    font-size: 36px;
+    font-size: 3rem;
     font-family: var(--font-serif);
+
     small {
       font-family: var(--font-sans);
-      font-size: 24px;
+      font-size: 1.4rem;
       opacity: 0.4;
+      font-weight: normal;
+
       &:before {
         content: "\00a0 \2014 \00a0";
       }
@@ -142,26 +145,33 @@ article {
 }
 
 div.highlighter-rouge {
-  margin: 2em -2em;
+  margin: 2rem -2rem;
 
   div.highlight {
-    padding: 1em 2em;
+    padding: 1rem 2rem;
     border-radius: 6px;
+    overflow-x: auto;
   }
 
 }
 
-article.page {
-  h1 {
-    font-size: 36px;
-    margin-bottom: 2em;
-  }
-}
-
+article.page,
 article.post {
   h1 {
-    font-size: 36px;
-    margin-bottom: 2em;
+    font-size: 3rem;
+    margin-bottom: 3rem;
+    margin-top: 4rem;
+  }
+
+  p {
+    color: #515151;
+  }
+}
+
+article.home {
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
   }
 }
 
@@ -174,10 +184,23 @@ ul.post-index {
   }
 
   li {
-    margin-bottom: 4em;
+    margin-bottom: 4rem;
   }
 }
 
 code {
   font-family: var(--font-mono);
+}
+
+@media only screen and (max-width: 768px) {
+  body {
+    font-size: 10px;
+    padding: 1rem;
+  }
+
+  article.post {
+    h1, h2 {
+      font-size: 2rem;
+    }
+  }
 }
