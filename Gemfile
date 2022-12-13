@@ -19,6 +19,7 @@ group :jekyll_plugins do
   gem 'jekyll-archives'
   gem 'jekyll-loading-lazy'
   gem 'jekyll-image-size'
+  gem 'jekyll-webp'
 end
 
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem
