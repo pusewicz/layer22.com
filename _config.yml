@@ -31,12 +31,13 @@ author:
 
 # Build settings
 plugins:
-  - jekyll-feed
   - jekyll-archives
+  - jekyll-feed
+  - jekyll-image-size
+  - jekyll-loading-lazy
   - jekyll-seo-tag
   - jekyll-sitemap
   - jemoji
-  - jekyll-loading-lazy
 
 collections:
   - posts

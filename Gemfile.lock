@@ -14,6 +14,7 @@ GEM
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0)
     eventmachine (1.2.7)
+    fastimage (2.2.6)
     ffi (1.15.5)
     forwardable-extended (2.6.0)
     gemoji (4.0.1)
@@ -43,6 +44,9 @@ GEM
       jekyll (>= 3.6, < 5.0)
     jekyll-feed (0.17.0)
       jekyll (>= 3.7, < 5.0)
+    jekyll-image-size (1.2.1)
+      fastimage (>= 1.8)
+      jekyll (>= 3.7)
     jekyll-loading-lazy (0.1.1)
       jekyll (>= 3.0, < 5.0)
       nokogiri (>= 1.10, < 2.0)
@@ -102,6 +106,7 @@ DEPENDENCIES
   jekyll (~> 4.3.1)
   jekyll-archives
   jekyll-feed (~> 0.12)
+  jekyll-image-size
   jekyll-loading-lazy
   jekyll-sitemap (~> 1.4)
   jemoji (~> 0.13.0)
