@@ -2,6 +2,7 @@
 title: Standardising coding style across the team with RuboCop
 date: 2015-02-24 21:45 UTC
 tags: ruby
+redirect_from: /2015/02/24/standardising-coding-style-across-the-team-with-rubocop/
 ---
 
 As some of you realise, there are times when you open an old file containing code and you think "WTF". It's also very likely that it is a file that you have created months or even years ago, and completely forgot about it.

@@ -2,6 +2,7 @@
 title: "TIL: Use Rails travel functions instead of timecop or time-warp"
 date: 2015-03-09 10:21 UTC
 tags: til rails
+redirect_from: /2015/03/09/til-use-rails-travel-functions-instead-of-timecop-or-time-warp/
 ---
 
 If you were using [`timecop`](https://github.com/travisjeffery/timecop) or [`time-warp`](https://github.com/harvesthq/time-warp) gems like me before, you will be happy to hear that Ruby on Rails provides its own [`travel`](http://api.rubyonrails.org/classes/ActiveSupport/Testing/TimeHelpers.html#method-i-travel) and [`travel_to`](http://api.rubyonrails.org/classes/ActiveSupport/Testing/TimeHelpers.html#method-i-travel_to) methods that allow you move in time and test time sensitive methods.

@@ -2,6 +2,7 @@
 title: How to create a website spider
 date: 2015-01-27 23:51 UTC
 tags: ruby
+redirect_from: /2015/01/28/how-to-create-a-website-spider/
 ---
 
 Creating a spider that generates a list of URLs for a given domain is very easy to do.

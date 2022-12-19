@@ -2,6 +2,7 @@
 title: Perfect decorators with Draper
 date: 2013-11-03
 tags: rails
+redirect_from: /2013/11/03/perfect-decorators-with-draper/
 ---
 
 Draper gives you a great way to decorate your `ActiveRecord` objects. But what is even better is that it allows you to do that transparently.

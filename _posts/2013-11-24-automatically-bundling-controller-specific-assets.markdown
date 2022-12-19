@@ -2,6 +2,7 @@
 title: Automatically bundle controller-specific assets
 date: 2013-11-24 21:32 UTC
 tags: rails
+redirect_from: /2013/11/24/automatically-bundling-controller-specific-assets/
 ---
 
 It's very convenient to be able to automatically bundle some of the assets in a separate file eg. when you have a lot of controller/resource specific CSS or JavaScript.

@@ -3,6 +3,7 @@ layout: post
 title: Fish abbreviations–what are they and how to configure them?
 date: 2022-12-16 05:27 +0100
 tags: fish
+redirect_from: /2022/12/16/fish-abbreviations/
 ---
 
 Fish [abbreviations](https://fishshell.com/docs/current/cmds/abbr.html) are a fantastic way to configure what is commonly known as aliases for your day-to-day use.

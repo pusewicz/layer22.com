@@ -2,6 +2,7 @@
 title: Spring-load your Rails development environment to speed it up
 date: 2013-12-05 11:15 UTC
 tags: rails
+redirect_from: /2013/12/05/spring-load-your-rails-development-environment-to-speed-it-up/
 ---
 
 There is a wide selection of tools that allow you to pre-load your Rails development environment to make it faster. We have [Zeus](https://github.com/burke/zeus), [Spork](https://github.com/sporkrb/spork) or [Spin](https://github.com/jstorimer/spin).

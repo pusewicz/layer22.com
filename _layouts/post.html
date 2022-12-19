@@ -9,7 +9,9 @@ layout: default
 
 <article class="post">
     <hgroup>
-        <h1>{{ page.title }}<small>{{ page.date | date: "%B %d, %Y" }}</small></h1>
+      <h1>{{ page.title }}<small>{{ page.date | date: "%B %d, %Y" }}</small></h1>
     </hgroup>
     {{ content }}
+
+    <p><small>Last modified: {% last_modified_at %}<small></p>
 </article>
