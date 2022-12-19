@@ -1,4 +1,4 @@
 ---
 title: Sonia
-redirect_to: http://pusewicz.github.io/sonia/
+redirect_to: https://pusewicz.github.io/sonia/
 ---
