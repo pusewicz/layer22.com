@@ -15,3 +15,5 @@ gem 'jekyll-sitemap', '~> 1.4'
 gem 'jekyll-last-modified-at'
 gem 'jekyll-webp'
 gem 'jemoji', '~> 0.13.0'
+
+gem "jekyll-mastodon_webfinger", "~> 1.0"

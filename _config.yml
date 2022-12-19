@@ -45,6 +45,7 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-webp
+  - jekyll/mastodon_webfinger
   - jemoji
 
 collections:
@@ -73,6 +74,10 @@ permalink: "/:slug"
 twitter:
   username: pusewicz
   card: summary_large_image
+
+mastodon:
+  username: pusewicz
+  instance: hellowelcome.club
 
 social:
   name: Piotr Usewicz
