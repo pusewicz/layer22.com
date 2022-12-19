@@ -35,6 +35,7 @@ plugins:
   - jekyll-feed
   - jekyll-image-size
   - jekyll-loading-lazy
+  - jekyll-redirect-from
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-webp
