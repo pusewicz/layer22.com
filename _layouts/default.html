@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="{{ page.lang | default: site.lang | default: 'en-US' }}">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ site.title }} | {{ page.title }}</title>
     <link rel="preload" href="{{ "assets/css/main.css" | relative_url }}" as="style" />
     <link rel="stylesheet" href="{{ "assets/css/main.css" | relative_url }}" />
+    <link rel="alternate" type="application/atom+xml" title="{{ site.title | escape }}" href="{{ site.feed.path | default: 'feed.xml' | relative_url }}">
     {% seo %}
   </head>
-  <body>
+  <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %} {{ page.title | slugify }}">
     <main class="container">{{ content }}</main>
     <footer class="container">
       <small>© 2004-{{ "now" | date: "%Y" }} Piotr Usewicz · Benicarló, Spain · <a href="/contact/">Contact</a> · <a href="/feed.xml"><abbr title="Really Simple Syndication">RSS</abbr>&nbsp;Feed</a></small>
