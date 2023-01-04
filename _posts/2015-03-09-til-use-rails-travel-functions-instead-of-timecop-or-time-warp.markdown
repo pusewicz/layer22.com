@@ -1,7 +1,7 @@
 ---
 title: "TIL: Use Rails travel functions instead of timecop or time-warp"
 date: 2015-03-09 10:21 UTC
-tags: til, rails
+tags: [til, rails]
 redirect_from: /2015/03/09/til-use-rails-travel-functions-instead-of-timecop-or-time-warp/
 ---
 

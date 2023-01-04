@@ -1,7 +1,7 @@
 ---
 title: Keep your Heroku Ruby version and .ruby-version synchronised
 date: 2015-12-19 10:32 UTC
-tags: ruby, heroku
+tags: [ruby, heroku]
 redirect_from: /2015/12/19/keep-your-heroku-ruby-version-and-ruby-version-synchronised/
 ---
 
