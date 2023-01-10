@@ -1,0 +1,11 @@
+---
+layout: post
+title: Brand New Year 2005
+date: 2005-01-06 18:00 +0100
+---
+
+It's is quite interesting (and normal I think) how the new year is being received since I became older. New Year's Eve was just like a normal day this year. Of course there was a party, but I think I become too dead earnest. I remember the eve of 1999/2000. I felt so excited about new millenium, and computer date bug. I can clearly recall that I pressed power button of my Celeron 400MHz just to whether it will boot or not. Such excitement.
+
+Anyway, just wanted to wish you all the best in 2005. When we sum digits, it will give us 7. As we know 7 is meant to be a lucky number. Hope 2005 will be better than 2004.
+
+Ah... What is more, I've updated the site. Most things work. Gallery is one more to be recoded.with some bugs to make it crossbrowser compliant. With tables I would do this in 1 day. No... 1 hour.
