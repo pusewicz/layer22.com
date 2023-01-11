@@ -1,0 +1,17 @@
+---
+layout: page
+type: archives
+title: Blog posts by category
+permalink: /categories
+---
+
+<h1>Archive of posts by category</h1>
+
+<nav class="menu archives text-center" aria-label="browse archives">
+  <strong aria-hidden="true">Browse archives by:</strong>
+  <a href="/archive">year</a>
+  <a href="/categories" class="active" aria-current="page">category</a>
+  <a href="/tags">tag</a>
+</nav>
+
+{% include archives/by-taxonomy.html taxonomy="Categories" items=site.categories %}

@@ -1,0 +1,5 @@
+{% for category in post.categories %}
+<span aria-hidden="true">&middot;</span>
+{% if forloop.first %} Filed under: {% endif %}
+<a href="/categories#{{ category | slugify }}" class="post-category">{{ category }}</a>
+{% endfor %}
