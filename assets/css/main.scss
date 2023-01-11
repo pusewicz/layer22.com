@@ -4,16 +4,16 @@ sitemap: false
 
 @charset "utf-8";
 
-@import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css');
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono&family=DM+Sans&family=DM+Serif+Display&display=swap');
+@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css");
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono&family=DM+Sans&family=DM+Serif+Display&display=swap");
 
 :root {
   --accent-color: #c00000;
   --bg-color: #fffffe;
   --alt-color: #626988;
-  --font-mono: 'DM Mono', monospace;
-  --font-sans: 'DM Sans', sans-serif;
-  --font-serif: 'DM Serif Display', serif;
+  --font-mono: "DM Mono", monospace;
+  --font-sans: "DM Sans", sans-serif;
+  --font-serif: "DM Serif Display", serif;
 }
 
 body {
@@ -55,7 +55,7 @@ main div.container {
   height: auto;
 }
 
-nav {
+main > nav {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -70,6 +70,39 @@ nav {
       text-decoration: underline;
     }
   }
+}
+
+nav.menu {
+  margin: 0.5rem 0;
+  padding: 0.8rem 0.5rem;
+  border: 5px solid;
+  border-color: var(--accent-color);
+  background: var(--bg-gray);
+  text-align: center;
+  margin: 0;
+  a {
+    margin: 0 0.5rem;
+    line-height: 1em;
+    font-size: 22px;
+    list-style: none;
+    padding: 0;
+    display: inline-block;
+    text-decoration: none;
+  }
+}
+
+nav.archives {
+  border-bottom: 0;
+  padding-bottom: 0;
+
+  .active {
+    text-decoration: underline;
+  }
+}
+
+nav.browse {
+  border-top: 0;
+  padding-top: 0;
 }
 
 footer {
@@ -88,7 +121,8 @@ article {
     line-height: 1.6;
   }
 
-  h1, h2 {
+  h1,
+  h2 {
     font-size: 3rem;
     font-family: var(--font-serif);
 
@@ -141,11 +175,12 @@ article.home {
 }
 
 ul.post-index {
-  &, & li {
-   margin:0;
-   padding: 0;
-   text-indent: 0;
-   list-style-type: none;
+  &,
+  & li {
+    margin: 0;
+    padding: 0;
+    text-indent: 0;
+    list-style-type: none;
   }
 
   li {
@@ -167,7 +202,8 @@ code {
     padding: 1rem;
   }
 
-  main, footer {
+  main,
+  footer {
     max-width: 100%;
     font-size: 1rem;
   }
@@ -185,7 +221,8 @@ code {
       font-size: 1rem;
     }
 
-    h1, h2 {
+    h1,
+    h2 {
       font-size: 2rem;
     }
 
@@ -209,7 +246,8 @@ code {
     padding: 2rem;
   }
 
-  main, footer {
+  main,
+  footer {
     margin: 0px auto;
   }
 }
@@ -220,7 +258,8 @@ code {
     font-size: 16px;
   }
 
-  main, footer {
+  main,
+  footer {
     max-width: 40rem;
     width: 40rem;
     margin: 0px auto;
@@ -243,7 +282,8 @@ code {
     font-size: 24px;
   }
 
-  main, footer {
+  main,
+  footer {
     margin: 0;
   }
 
