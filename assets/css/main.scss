@@ -23,6 +23,13 @@ body {
   font-size: 100%;
 }
 
+body.about {
+  article.page img {
+    float: right;
+    height: 300px;
+  }
+}
+
 a {
   color: var(--accent-color);
 }

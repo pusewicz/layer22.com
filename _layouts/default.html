@@ -3,15 +3,22 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {% if page.title == "Home" %}
+        {{ site.title }}{% if site.tagline %} &middot; {{ site.tagline }}{% endif %}
+      {% else %}
+        {{ page.title }} &middot; {{ site.title }}
+      {% endif %}
+    </title>
     <link rel="preload" href="{{ "assets/css/main.css" | relative_url }}" as="style" />
     <link rel="stylesheet" href="{{ "assets/css/main.css" | relative_url }}" />
     {% feed_meta %}
-    {% seo %}
+    {% seo title=false %}
   </head>
   <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %} {{ page.title | slugify }}">
     <main class="container">{{ content }}</main>
     <footer class="container">
-      <small>© 2004-{{ "now" | date: "%Y" }} <a rel="me" href="/about">Piotr Usewicz</a> · Benicarló, Spain · <a href="/contact">Contact</a> · <a href="/feed.xml"><abbr title="Really Simple Syndication">RSS</abbr>&nbsp;Feed</a></small>
+      <small>© 2004-{{ "now" | date: "%Y" }} <a rel="me" href="{{ 'about' | relative_url }}">Piotr Usewicz</a> · Benicarló, Spain · <a href="{{ 'contact' | relative_url }}">Contact</a> · <a href="{{ 'feed.xml' | relative_url }}"><abbr title="Really Simple Syndication">RSS</abbr>&nbsp;Feed</a></small>
     </footer>
   </body>
 </html>
