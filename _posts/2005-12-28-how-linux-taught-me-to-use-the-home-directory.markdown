@@ -1,6 +1,6 @@
 ---
 layout: post
-title: A month after switching from PHP to Ruby on Rails
+title: How Linux taught me how to use the home directory
 date: 2005-12-23 18:00 +0100
 tags: [windows]
 redirect_from: /2005/12/28/how-linux-taught-me-how-to-use-home-directory/
