@@ -1,12 +1,12 @@
 ---
 layout: post
-title: Fish abbreviations–what are they and how to configure them?
+title: Fish Shell abbreviations–what are they and how to configure them?
 date: 2022-12-16 05:27 +0100
 tags: fish
 redirect_from: /2022/12/16/fish-abbreviations/
 ---
 
-Fish [abbreviations](https://fishshell.com/docs/current/cmds/abbr.html) are a fantastic way to configure what is commonly known as aliases for your day-to-day use.
+Fish Shell [abbreviations](https://fishshell.com/docs/current/cmds/abbr.html) are a fantastic way to configure what is commonly known as aliases for your day-to-day use.
 
 The difference between an alias and an abbreviation is that it expands to the entire command whenever the abbreviation gets triggered. Traditionally, aliases are shown as they are typed in the shell’s history.
 
