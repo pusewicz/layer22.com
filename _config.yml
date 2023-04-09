@@ -95,9 +95,12 @@ defaults:
       type: "posts"
     values:
       layout: "post"
+      custom_css:
+        - syntax.css
 
 sass:
   style: compressed
+  sourcemap: development
 
 webp:
   enabled: true

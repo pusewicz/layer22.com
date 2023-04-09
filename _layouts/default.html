@@ -12,6 +12,12 @@
     </title>
     <link rel="preload" href="{{ "assets/css/main.css" | relative_url }}" as="style" />
     <link rel="stylesheet" href="{{ "assets/css/main.css" | relative_url }}" />
+    {% if page.custom_css %}
+      {% for css_file in page.custom_css %}
+        <link rel="preload" href="{{ "assets/css/" | append: css_file | relative_url }}" as="style" />
+        <link rel="stylesheet" href="{{ "assets/css/" | append: css_file | relative_url }}" />
+      {% endfor %}
+    {% endif %}
     {% feed_meta %}
     {% seo title=false %}
   </head>
