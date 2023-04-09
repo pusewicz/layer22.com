@@ -19,6 +19,7 @@ GEM
     forwardable-extended (2.6.0)
     gemoji (4.0.1)
     google-protobuf (3.21.12)
+    google-protobuf (3.21.12-x86_64-linux)
     html-pipeline (2.14.3)
       activesupport (>= 2)
       nokogiri (>= 1.4)
@@ -87,6 +88,12 @@ GEM
     nokogiri (1.13.10)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
+    nokogiri (1.13.10-aarch64-linux)
+      racc (~> 1.4)
+    nokogiri (1.13.10-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.13.10-x86_64-linux)
+      racc (~> 1.4)
     pathutil (0.16.2)
       forwardable-extended (~> 2.6)
     posix-spawn (0.3.15)
@@ -110,7 +117,10 @@ GEM
     webrick (1.7.0)
 
 PLATFORMS
+  aarch64-linux
+  arm64-darwin
   ruby
+  x86_64-linux
 
 DEPENDENCIES
   jekyll (~> 4.3.2)
