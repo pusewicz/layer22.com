@@ -14,3 +14,14 @@ layout: default
 
     <p><small>Last modified: {% last_modified_at %}<small></p>
 </article>
+
+<script>
+  const headings = document.querySelectorAll('article.post > h2[id], h3[id]');
+  for (const heading of headings) {
+    const linkIcon = document.createElement('a');
+    linkIcon.setAttribute('href', `#${heading.id}`);
+    linkIcon.setAttribute('class', `header-link`);
+    linkIcon.setAttribute('title', `Link to the "${heading.innerText}" heading`);
+    heading.appendChild(linkIcon);
+  }
+</script>
