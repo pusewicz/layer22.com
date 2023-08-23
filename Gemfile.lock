@@ -144,6 +144,7 @@ DEPENDENCIES
   jekyll-sitemap (~> 1.4)
   jekyll-webp
   jemoji (~> 0.13.0)
+  rake (~> 13.0)
 
 BUNDLED WITH
    2.4.14

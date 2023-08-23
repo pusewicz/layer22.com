@@ -17,3 +17,5 @@ gem 'jekyll-webp'
 gem 'jemoji', '~> 0.13.0'
 
 gem "jekyll-mastodon_webfinger", "~> 1.0"
+
+gem "rake", "~> 13.0"
