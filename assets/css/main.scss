@@ -10,9 +10,11 @@ sitemap: false
   --accent-color: #c00000;
   --bg-color: #fffffe;
   --alt-color: #626988;
-  --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-  --font-sans: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;
-  --font-serif: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas,
+    "DejaVu Sans Mono", monospace;
+  --font-sans: Seravek, "Gill Sans Nova", Ubuntu, Calibri, "DejaVu Sans",
+    source-sans-pro, sans-serif;
+  --font-serif: Charter, "Bitstream Charter", "Sitka Text", Cambria, serif;
 }
 
 body {
@@ -168,7 +170,8 @@ article.post {
     margin-top: 2rem;
   }
 
-  h2, h3 {
+  h2,
+  h3 {
     a.header-link {
       display: inline-block;
       text-decoration: none;
@@ -193,7 +196,6 @@ article.post {
   p {
     color: #515151;
   }
-
 }
 
 article.home {
