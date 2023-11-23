@@ -150,6 +150,12 @@ include:
 exclude:
   - _functions
   - .github
+  - README.md
+  - Rakefile
+  - renovate.json
+  - package.json
+  - package-lock.json
+  - TODO
 #   - .sass-cache/
 #   - .jekyll-cache/
 #   - gemfiles/
