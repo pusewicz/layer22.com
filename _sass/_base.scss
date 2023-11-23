@@ -1,0 +1,23 @@
+@import "https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css";
+
+:root {
+  --accent-color: #c00000;
+  --bg-color: #fffffe;
+  --alt-color: #626988;
+  --font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", menlo, consolas,
+    "DejaVu Sans Mono", monospace;
+  --font-sans: seravek, "Gill Sans Nova", ubuntu, calibri, "DejaVu Sans",
+    source-sans-pro, sans-serif;
+  --font-serif: charter, "Bitstream Charter", "Sitka Text", cambria, serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-color);
+  color: var(--accent-color);
+  font-size: 100%;
+}
+
+a {
+  color: var(--accent-color);
+}
