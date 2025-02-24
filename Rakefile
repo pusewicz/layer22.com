@@ -28,5 +28,6 @@ task :til, [:title] do |t, args|
   TEMPLATE
   dest = "_til/#{date.year}/#{date.strftime("%m")}/#{date.strftime("%Y-%m-%d")}-#{title.downcase.gsub(/\s+/, "-")}.md"
   mkdir_p File.dirname(dest)
+  puts "Creating new TIL post at #{dest}"
   File.write(dest, template)
 end
