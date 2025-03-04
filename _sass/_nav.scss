@@ -4,12 +4,36 @@ main > nav {
   justify-content: space-between;
   align-items: normal;
   align-content: normal;
+  padding: 0.5em 1em;
+  border-top: 5px solid var(--accent-color);
 
   a {
     text-decoration: none;
 
     &:hover {
       text-decoration: underline;
+    }
+  }
+}
+
+#brand {
+  font-size: 1.5em;
+  font-family: var(--font-serif);
+  color: var(--nav-brand-color);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25em;
+  color: var(--nav-brand-text-color);
+  svg {
+    stroke: var(--nav-brand-color);
+  }
+
+  span {
+    display: inline-flex;
+    flex-direction: column;
+    small {
+      font-size: 0.625em;
+      color: var(--nav-brand-text-color-alt);
     }
   }
 }

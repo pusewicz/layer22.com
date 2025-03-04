@@ -1,3 +1,5 @@
+@use "icons";
+
 main div.container {
   text-align: center;
 }
@@ -7,6 +9,11 @@ main div.container {
   font-size: 1.5rem;
   font-family: var(--font-serif);
   padding: 1rem;
+  margin-bottom: 3rem;
+
+  a {
+    color: var(--accent-color);
+  }
 }
 
 .avatar {
@@ -16,12 +23,23 @@ main div.container {
 }
 
 footer {
-  margin-top: 4rem;
+  padding: 2rem;
+  margin-top: 3rem;
+  background: var(--footer-bg-color);
+
+  small {
+    display: block;
+    max-width: 36em;
+    margin: 0 auto;
+    color: var(--bg-color);
+  }
 }
 
 article {
   margin-top: 3rem;
   margin-bottom: 3rem;
+  max-width: 36em;
+  margin: 0 auto;
 
   img {
     max-width: 100%;
@@ -29,6 +47,18 @@ article {
 
   p {
     line-height: 1.6;
+  }
+
+  .last-modified,
+  .post-meta {
+    font-size: 0.8em;
+    color: var(--text-color-light);
+  }
+
+  &.post .post-meta {
+    display: block;
+    text-align: center;
+    margin-bottom: 3em;
   }
 
   h1,
@@ -39,14 +69,26 @@ article {
 
     small {
       font-family: var(--font-sans);
-      font-size: 1.4rem;
       font-weight: normal;
-      color: var(--alt-color);
 
       &::before {
         content: "\00a0\2014\00a0";
       }
     }
+  }
+}
+
+article.home {
+  width: 100%;
+  padding: 2rem;
+  padding-bottom: 3rem;
+  background-color: var(--home-bg-color);
+
+  a.archive {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.75rem;
+    float: right;
   }
 }
 
@@ -56,13 +98,6 @@ div.highlighter-rouge {
   div.highlight {
     padding: 1rem 2rem;
     overflow-x: auto;
-  }
-}
-
-article.home {
-  h2 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
   }
 }
 
@@ -92,7 +127,7 @@ article.post {
       visibility: hidden;
       width: 1em;
       height: 1em;
-      background-image: url('data:image/svg+xml,<svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg"><path d="m429.7 621.3c-13 0-26.1-5-36-14.9-93.3-93.3-93.3-245 0-338.2l188.1-188.3c45.2-45.1 105.3-70 169.1-70 63.9 0 123.9 24.9 169.1 70.1 93.3 93.3 93.3 245 0 338.2l-86 86c-19.9 19.9-52.2 19.9-72.1 0s-19.9-52.2 0-72.1l86-86c53.5-53.5 53.5-140.6 0-194.1-25.9-25.9-60.4-40.2-97-40.2-36.7 0-71.1 14.3-97 40.2l-188.2 188.2c-53.5 53.5-53.5 140.6 0 194.1 19.9 19.9 19.9 52.2 0 72.1-10 9.9-23 14.9-36 14.9z"/><path d="m249.1 990.1c-63.9 0-123.9-24.9-169.1-70.1-93.3-93.3-93.3-245 0-338.2l86-86c19.9-19.9 52.2-19.9 72.1 0s19.9 52.2 0 72.1l-86 86c-53.5 53.5-53.5 140.6 0 194.1 25.9 25.9 60.4 40.2 97 40.2s71.1-14.3 97-40.2l188.2-188.2c53.5-53.5 53.5-140.6 0-194.1-19.9-19.9-19.9-52.2 0-72.1s52.2-19.9 72.1 0c93.3 93.3 93.3 245 0 338.2l-188.2 188.3c-45.2 45.1-105.3 70-169.1 70z"/></svg>');
+      background-image: url("#{icons.$header-icon}");
       background-repeat: no-repeat;
     }
 
@@ -102,13 +137,12 @@ article.post {
       }
     }
   }
-
-  p {
-    color: var(--text-color);
-  }
 }
 
 ul.post-index {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+
   &,
   & li {
     margin: 0;
@@ -118,7 +152,12 @@ ul.post-index {
   }
 
   li {
-    margin-bottom: 4rem;
+    margin-bottom: 1.4rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
   }
 }
 
@@ -130,10 +169,6 @@ code {
 @media screen and (width <= 480px) {
   html {
     font-size: 14px;
-  }
-
-  body {
-    padding: 1rem;
   }
 
   main,
@@ -176,27 +211,12 @@ code {
 
 // Tablet
 @media screen and (width >= 480px) {
-  body {
-    padding: 2rem;
-  }
-
-  main,
-  footer {
-    margin: 0 auto;
-  }
 }
 
 // Small screens
 @media screen and (width >= 768px) {
   html {
     font-size: 16px;
-  }
-
-  main,
-  footer {
-    max-width: 40rem;
-    width: 40rem;
-    margin: 0 auto;
   }
 
   div.highlighter-rouge {
@@ -210,11 +230,6 @@ code {
 @media screen and (width >= 1200px) {
   html {
     font-size: 24px;
-  }
-
-  main,
-  footer {
-    margin: 0;
   }
 
   div.highlighter-rouge {

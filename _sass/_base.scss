@@ -1,41 +1,121 @@
 @import "https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css";
 
 // Brand
-$brand-shade: oklch(50.73% 0.2081 29.24);
+$brand-900: oklch(10% 0.035 29.24);
+$brand-775: oklch(21.5% 0.086 29.24);
+$brand-675: oklch(33% 0.135 29.24);
+$brand-550: oklch(44.5% 0.183 29.24);
+$brand-450: oklch(50.73% 0.2081 29.24);
+$brand-325: oklch(67% 0.247 29.24);
+$brand-225: oklch(78.5% 0.142 29.24);
+$brand-100: oklch(90% 0.053 29.24);
 
 // Background
-$background-shade: oklch(99.97% 0.0013 106.43);
+$background-900: oklch(10% 0.024 106.43);
+$background-775: oklch(21.5% 0.026 106.43);
+$background-675: oklch(33% 0.046 106.43);
+$background-550: oklch(44.5% 0.077 106.43);
+$background-450: oklch(55.5% 0.096 106.43);
+$background-325: oklch(67% 0.094 106.43);
+$background-225: oklch(78.5% 0.099 106.43);
+$background-100: oklch(99.97% 0.0013 106.43);
 
 // Link
-$link-shade: oklch(52.68% 0.0496 274.68);
+$link-900: oklch(10% 0.01 274.68);
+$link-775: oklch(21.5% 0.023 274.68);
+$link-675: oklch(33% 0.036 274.68);
+$link-550: oklch(44.5% 0.049 274.68);
+$link-450: oklch(52.68% 0.0496 274.68);
+$link-325: oklch(67% 0.033 274.68);
+$link-225: oklch(78.5% 0.02 274.68);
+$link-100: oklch(90% 0.008 274.68);
 
 // Neutral
-$neutral-shade: oklch(12.92% 0.0026 286.04);
+$neutral-900: oklch(12.92% 0.0026 286.04);
+$neutral-775: oklch(21.5% 0.002 286.04);
+$neutral-675: oklch(33% 0.004 286.04);
+$neutral-550: oklch(44.5% 0.006 286.04);
+$neutral-450: oklch(55.5% 0.006 286.04);
+$neutral-325: oklch(67% 0.004 286.04);
+$neutral-225: oklch(78.5% 0.002 286.04);
+$neutral-100: oklch(90% 0.001 286.04);
 
 // Success
-$success-shade: oklch(89.28% 0.1611 134.63);
+$success-900: oklch(10% 0.018 134.63);
+$success-775: oklch(21.5% 0.044 134.63);
+$success-675: oklch(33% 0.068 134.63);
+$success-550: oklch(44.5% 0.093 134.63);
+$success-450: oklch(55.5% 0.116 134.63);
+$success-325: oklch(67% 0.14 134.63);
+$success-225: oklch(78.5% 0.161 134.63);
+$success-100: oklch(89.28% 0.1611 134.63);
 
 // Caution
-$caution-shade: oklch(95.68% 0.0271 78.2);
+$caution-900: oklch(10% 0.023 78.2);
+$caution-775: oklch(21.5% 0.017 78.2);
+$caution-675: oklch(33% 0.03 78.2);
+$caution-550: oklch(44.5% 0.05 78.2);
+$caution-450: oklch(55.5% 0.063 78.2);
+$caution-325: oklch(67% 0.061 78.2);
+$caution-225: oklch(78.5% 0.065 78.2);
+$caution-100: oklch(95.68% 0.0271 78.2);
 
 // Danger
-$danger-shade: oklch(89.84% 0.0468 32.8);
+$danger-900: oklch(10% 0.028 32.8);
+$danger-775: oklch(21.5% 0.069 32.8);
+$danger-675: oklch(33% 0.107 32.8);
+$danger-550: oklch(44.5% 0.145 32.8);
+$danger-450: oklch(55.5% 0.181 32.8);
+$danger-325: oklch(67% 0.217 32.8);
+$danger-225: oklch(78.5% 0.124 32.8);
+$danger-100: oklch(89.84% 0.0468 32.8);
 
 // Info
-$info-shade: oklch(49.39% 0.1742 259.69);
+$info-900: oklch(10% 0.03 259.69);
+$info-775: oklch(21.5% 0.075 259.69);
+$info-675: oklch(33% 0.116 259.69);
+$info-550: oklch(49.39% 0.1742 259.69);
+$info-450: oklch(55.5% 0.184 259.69);
+$info-325: oklch(67% 0.132 259.69);
+$info-225: oklch(78.5% 0.081 259.69);
+$info-100: oklch(90% 0.032 259.69);
 
 // Primary
-$primary-shade: oklch(63.63% 0.0734 260);
+$primary-900: oklch(10% 0.015 260);
+$primary-775: oklch(21.5% 0.038 260);
+$primary-675: oklch(33% 0.059 260);
+$primary-550: oklch(44.5% 0.08 260);
+$primary-450: oklch(55.5% 0.092 260);
+$primary-325: oklch(63.63% 0.0734 260);
+$primary-225: oklch(78.5% 0.041 260);
+$primary-100: oklch(90% 0.016 260);
 
 // Caper
-$caper-shade: oklch(92.67% 0.0772 119.7);
+$caper-900: oklch(10% 0.009 119.7);
+$caper-775: oklch(21.5% 0.021 119.7);
+$caper-675: oklch(33% 0.033 119.7);
+$caper-550: oklch(44.5% 0.045 119.7);
+$caper-450: oklch(55.5% 0.056 119.7);
+$caper-325: oklch(67% 0.068 119.7);
+$caper-225: oklch(78.5% 0.078 119.7);
+$caper-100: oklch(92.67% 0.0772 119.7);
 
 :root {
-  --accent-color: #{$brand-shade};
-  --bg-color: #{$background-shade};
-  --alt-color: #{$link-shade};
-  --link-color: #{$link-shade};
-  --text-color: #{$neutral-shade};
+  --accent-color: #{$brand-450};
+  --bg-color: #{$background-100};
+  --alt-color: #{$caper-100};
+  --link-color: #{$link-450};
+  --link-color-hover: #{$link-675};
+  --text-color: #{$neutral-900};
+  --text-color-light: #{$neutral-225};
+  --primary-color: #{$primary-325};
+  --footer-bg-color: #{$primary-675};
+  --footer-link-color: #{$primary-325};
+  --footer-link-color-hover: #{$primary-225};
+  --nav-brand-color: #{$brand-450};
+  --nav-brand-text-color: #{$primary-675};
+  --nav-brand-text-color-alt: #{$link-325};
+  --home-bg-color: #{$primary-100};
   --font-mono:
     ui-monospace, "Cascadia Code", "Source Code Pro", menlo, consolas,
     "DejaVu Sans Mono", monospace;
@@ -53,4 +133,8 @@ body {
 
 a {
   color: var(--link-color);
+
+  &:hover {
+    color: var(--link-color-hover);
+  }
 }

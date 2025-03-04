@@ -4,17 +4,24 @@ layout: default
 
 <header class="container">
   <hgroup>
-    {% imagesize /images/logo.png:img class="logo" alt="layer|twenty|two logo" %}
+    <div id="brand">
+      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+      <span>
+        <span>{{ site.title }}</span>
+        <small>{{ site.description }}</small>
+      </span>
+    </div>
   </hgroup>
 </header>
 
 <div class="container hi">
   {% assign avatar = "https://www.gravatar.com/avatar/dcbf676f860477e44b275cae5d6318a4.jpg?s=288" %}
   {% imagesize avatar:img alt="Piotr Usewicz" class="avatar" %}
-  <h3>Hi, I'm <a href="/about">Piotr Usewicz</a>.<br>I write software.</h3>
+  <h3>Hi, I'm Piotr Usewicz.<br>I write software.</h3>
 </div>
 
 <article class="home">
+  <h4>Recent Writing</h4>
   <ul class="post-index">
   {% for post in site.posts limit:3 %}
     <li>
@@ -23,5 +30,5 @@ layout: default
   {% endfor %}
   </ul>
 
-  <a href="/archive">View All Posts&rarr;</a>
+  <a href="/archive" class="archive">View All Posts&rarr;</a>
 </article>
