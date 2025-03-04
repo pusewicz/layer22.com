@@ -1,23 +1,56 @@
 @import "https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css";
 
+// Brand
+$brand-shade: oklch(50.73% 0.2081 29.24);
+
+// Background
+$background-shade: oklch(99.97% 0.0013 106.43);
+
+// Link
+$link-shade: oklch(52.68% 0.0496 274.68);
+
+// Neutral
+$neutral-shade: oklch(12.92% 0.0026 286.04);
+
+// Success
+$success-shade: oklch(89.28% 0.1611 134.63);
+
+// Caution
+$caution-shade: oklch(95.68% 0.0271 78.2);
+
+// Danger
+$danger-shade: oklch(89.84% 0.0468 32.8);
+
+// Info
+$info-shade: oklch(49.39% 0.1742 259.69);
+
+// Primary
+$primary-shade: oklch(63.63% 0.0734 260);
+
+// Caper
+$caper-shade: oklch(92.67% 0.0772 119.7);
+
 :root {
-  --accent-color: #c00000;
-  --bg-color: #fffffe;
-  --alt-color: #626988;
-  --font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", menlo, consolas,
+  --accent-color: #{$brand-shade};
+  --bg-color: #{$background-shade};
+  --alt-color: #{$link-shade};
+  --link-color: #{$link-shade};
+  --text-color: #{$neutral-shade};
+  --font-mono:
+    ui-monospace, "Cascadia Code", "Source Code Pro", menlo, consolas,
     "DejaVu Sans Mono", monospace;
-  --font-sans: seravek, "Gill Sans Nova", ubuntu, calibri, "DejaVu Sans",
-    source-sans-pro, sans-serif;
+  --font-sans:
+    seravek, "Gill Sans Nova", ubuntu, calibri, "DejaVu Sans", source-sans-pro,
+    sans-serif;
   --font-serif: charter, "Bitstream Charter", "Sitka Text", cambria, serif;
 }
 
 body {
   font-family: var(--font-sans);
   background-color: var(--bg-color);
-  color: var(--accent-color);
-  font-size: 100%;
+  color: var(--text-color);
 }
 
 a {
-  color: var(--accent-color);
+  color: var(--link-color);
 }

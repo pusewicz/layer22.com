@@ -33,6 +33,7 @@ article {
 
   h1,
   h2 {
+    color: var(--accent-color);
     font-size: 3rem;
     font-family: var(--font-serif);
 
@@ -103,7 +104,7 @@ article.post {
   }
 
   p {
-    color: #515151;
+    color: var(--text-color);
   }
 }
 

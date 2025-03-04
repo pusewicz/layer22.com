@@ -1,48 +1,31 @@
-<!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: 'en-US' }}">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>
-      TIL: {{ page.title }} &middot; {{ site.title }}
-    </title>
-    <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" media="screen" />
-    <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura-dark.css" media="screen and (prefers-color-scheme: dark)" />
-    {% feed_meta %}
-    {% seo title=false %}
-  </head>
-  <body data-instant-intensity="viewport" class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %} {{ page.title | slugify }}">
-    <header><a href="/">← Back to layer22.com</a></header>
-    <main class="container">
-      <article class="til">
-        <hgroup>
-          <h1>TIL: {{ page.title }}</h1>
-          {% assign post = page %}
-        </hgroup>
-        <section>{{ content }}</section>
-        <nav style="display: flex; justify-content: space-between;">
-          {% assign tils = site[page.collection] | reverse  %}
-          {% if tils.size > 1 %}
-            {% assign prevurl = tils.last.url | remove: ".html" %}
-            {% assign nexturl = tils.first.url | remove: ".html" %}
-            {% assign currurl = page.url | remove: ".html" %}
-            <div>
-            {% if prevurl != currurl %}
-              <a href="{{ prevurl }}" rel="prev">← TIL: {{ tils.last.title }}</a>
-            {% endif %}
-            </div>
-            <div>
-            {% if nexturl != currurl %}
-              <a href="{{ nexturl }}" rel="next">TIL: {{ tils.first.title }} →</a>
-            {% endif %}
-            </div>
-          {% endif %}
-        </nav>
-      </article>
-    </main>
-    <footer class="container">
-      <small>© 2004-<time datetime="{{ site.time | date_to_xmlschema }}">{{ site.time | date: '%Y' }}</time> <a rel="me" href="{{ 'about' | relative_url }}">Piotr Usewicz</a> · Benicarló, Spain · <a href="{{ 'contact' | relative_url }}">Contact</a> · <a href="{{ 'feed.xml' | relative_url }}"><abbr title="Really Simple Syndication">RSS</abbr>&nbsp;Feed</a></small>
-    </footer>
-    {% include scripts.html %}
-  </body>
-</html>
+---
+layout: default
+---
+
+{% include nav.html %}
+
+<article class="til">
+  <hgroup>
+    <h1>TIL: {{ page.title }}</h1>
+    {% assign post = page %}
+  </hgroup>
+  <section>{{ content }}</section>
+  <nav style="display: flex; justify-content: space-between;">
+    {% assign tils = site[page.collection] | reverse  %}
+    {% if tils.size > 1 %}
+      {% assign prevurl = tils.last.url | remove: ".html" %}
+      {% assign nexturl = tils.first.url | remove: ".html" %}
+      {% assign currurl = page.url | remove: ".html" %}
+      <div>
+      {% if prevurl != currurl %}
+        <a href="{{ prevurl }}" rel="prev">← TIL: {{ tils.last.title }}</a>
+      {% endif %}
+      </div>
+      <div>
+      {% if nexturl != currurl %}
+        <a href="{{ nexturl }}" rel="next">TIL: {{ tils.first.title }} →</a>
+      {% endif %}
+      </div>
+    {% endif %}
+  </nav>
+</article>
