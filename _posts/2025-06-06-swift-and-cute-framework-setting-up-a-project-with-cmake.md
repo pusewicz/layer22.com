@@ -158,7 +158,7 @@ This should launch your Cute Framework application, displaying a window with a s
 
 ![MyCuteGame](/images/posts/cute/girl.gif)
 
-And voila! You have successfully set up a Cute Framework project using CMake and Swift. You can now start building your game logic in Swift while leveraging the performance of C/C++ for rendering and other tasks.
+And voilà! You have successfully set up a Cute Framework project using CMake and Swift. You can now start building your game logic in Swift while leveraging the performance of C/C++ for rendering and other tasks.
 
 I encourage you to explore the documentation, and especially the [Getting Started](https://randygaul.github.io/cute_framework/#/getting_started) guide.
 
