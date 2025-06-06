@@ -46,7 +46,21 @@ article {
   }
 
   p {
-    line-height: 1.6;
+    line-height: 1.7;
+    color: var(--text-color);
+  }
+
+  ul {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+    list-style-type: disc;
+    color: var(--text-color);
+
+    li {
+      margin-block-start: 0.3rem;
+      margin-block-end: 0.3rem;
+      line-height: 1.6;
+    }
   }
 
   .last-modified,
@@ -107,6 +121,8 @@ article.post {
     font-size: 3rem;
     margin-bottom: 3rem;
     margin-top: 4rem;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
   }
 
   h2 {

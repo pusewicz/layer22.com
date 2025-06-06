@@ -106,7 +106,7 @@ $caper-100: oklch(92.67% 0.0772 119.7);
   --alt-color: #{$caper-100};
   --link-color: #{$link-450};
   --link-color-hover: #{$link-675};
-  --text-color: #{$neutral-900};
+  --text-color: #{$neutral-550};
   --text-color-light: #{$neutral-225};
   --primary-color: #{$primary-325};
   --footer-bg-color: #{$primary-675};
@@ -127,6 +127,7 @@ $caper-100: oklch(92.67% 0.0772 119.7);
 
 body {
   font-family: var(--font-sans);
+  font-size: 1rem;
   background-color: var(--bg-color);
   color: var(--text-color);
 }
