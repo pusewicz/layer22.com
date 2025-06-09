@@ -107,6 +107,11 @@ article.home {
   }
 }
 
+p > img {
+  margin: 1rem -1rem;
+  max-width: calc(100% + 2rem);
+}
+
 div.highlighter-rouge {
   margin: 1rem -1rem;
 
@@ -242,23 +247,11 @@ code {
   html {
     font-size: 16px;
   }
-
-  div.highlighter-rouge {
-    div.highlight {
-      border-radius: 6px;
-    }
-  }
 }
 
 // Large screens
 @media screen and (width >= 1200px) {
   html {
     font-size: 24px;
-  }
-
-  div.highlighter-rouge {
-    div.highlight {
-      border-radius: 0 12px 12px 0;
-    }
   }
 }
