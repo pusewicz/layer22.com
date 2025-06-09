@@ -24,7 +24,6 @@ main div.container {
 
 footer {
   padding: 2rem;
-  margin-top: 3rem;
   background: var(--footer-bg-color);
 
   small {
@@ -32,6 +31,10 @@ footer {
     max-width: 36em;
     margin: 0 auto;
     color: var(--bg-color);
+  }
+
+  a:hover {
+    color: var(--accent-color);
   }
 }
 
@@ -93,10 +96,8 @@ article {
 }
 
 article.home {
-  width: 100%;
   padding: 2rem;
   padding-bottom: 3rem;
-  background-color: var(--home-bg-color);
 
   a.archive {
     display: block;
@@ -107,16 +108,23 @@ article.home {
 }
 
 div.highlighter-rouge {
-  margin: 2rem -2rem;
+  margin: 1rem -1rem;
 
   div.highlight {
-    padding: 1rem 2rem;
+    padding: 1rem 1rem;
     overflow-x: auto;
   }
 }
 
 article.page,
 article.post {
+  padding: {
+    top: 2rem;
+    bottom: 2rem;
+    left: 1rem;
+    right: 1rem;
+  }
+
   h1 {
     font-size: 3rem;
     margin-bottom: 3rem;
