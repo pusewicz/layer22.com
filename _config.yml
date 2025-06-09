@@ -27,6 +27,10 @@ tagline: Piotr Usewicz—Web Application Developer
 url: "https://layer22.com" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: pusewicz
 
+github:
+  repository_url: https://github.com/pusewicz/www.layer22.com
+  branch: main
+
 author:
   name: Piotr Usewicz
   image: https://www.gravatar.com/avatar/dcbf676f860477e44b275cae5d6318a4.jpg?s=288
