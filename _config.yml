@@ -28,7 +28,7 @@ url: "https://layer22.com" # the base hostname & protocol for your site, e.g. ht
 github_username: pusewicz
 
 github:
-  repository_url: https://github.com/pusewicz/www.layer22.com
+  repository_url: https://github.com/pusewicz/layer22.com
   branch: main
 
 author:
