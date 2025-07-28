@@ -24,7 +24,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   Functional Web Applications
 baseurl: "" # the subpath of your site, e.g. /blog
 tagline: Piotr Usewicz—Web Application Developer
-url: "https://www.layer22.com" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://layer22.com" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: pusewicz
 
 github:
