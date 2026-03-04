@@ -1,0 +1,7 @@
+{
+  "name": "layer22-com",
+  "private": true,
+  "devDependencies": {
+    "tailwindcss": "^3.4"
+  }
+}

@@ -1,5 +1,15 @@
 desc "Build the site for Cloudflare"
-task build: [:jekyll, :redirects]
+task build: [:tailwind, :jekyll, :redirects]
+
+desc "Install JS dependencies"
+task :bun_install do
+  sh "bun install"
+end
+
+desc "Build Tailwind CSS"
+task tailwind: [:bun_install] do
+  sh "bunx tailwindcss -i ./tailwind.input.css -o ./assets/css/tailwind.css --minify"
+end
 
 desc "Build site with Jekyll"
 task :jekyll do

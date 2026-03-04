@@ -27,21 +27,7 @@
     {% seo title=false %}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        corePlugins: {
-          preflight: false,
-        },
-        theme: {
-          extend: {
-            fontFamily: {
-              display: ['"Barlow Condensed"', 'Impact', 'sans-serif'],
-            },
-          },
-        },
-      }
-    </script>
+    <link rel="stylesheet" href="{{ "assets/css/tailwind.css" | relative_url }}" />
   </head>
   <body data-instant-intensity="viewport" class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %} {{ page.title | slugify }}">
     {% include nav.html %}
