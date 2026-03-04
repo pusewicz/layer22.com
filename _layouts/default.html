@@ -25,11 +25,35 @@
     {% endif %}
     {% feed_meta %}
     {% seo title=false %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              display: ['"Barlow Condensed"', 'Impact', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
   </head>
   <body data-instant-intensity="viewport" class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %} {{ page.title | slugify }}">
+    {% include nav.html %}
     <main class="container">{{ content }}</main>
-    <footer class="container">
-      <small>© 2004-<time datetime="{{ site.time | date_to_xmlschema }}">{{ site.time | date: '%Y' }}</time> <a rel="me" href="{{ 'about' | relative_url }}">Piotr Usewicz</a> · Benicarló, Spain · <a href="{{ 'contact' | relative_url }}">Contact</a> · <a href="{{ 'feed.xml' | relative_url }}"><abbr title="Really Simple Syndication">RSS</abbr>&nbsp;Feed</a></small>
+    <footer class="bg-white border-t border-gray-100 py-8 px-6">
+      <div class="max-w-5xl mx-auto">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold tracking-[0.2em] uppercase text-gray-900">LAYER|TWENTY|TWO</span>
+          <div class="flex gap-6">
+            <a href="https://github.com/{{ site.github_username }}" class="text-xs font-semibold tracking-[0.15em] uppercase text-gray-500 hover:text-gray-900 no-underline">GitHub</a>
+            <a rel="me" href="https://{{ site.mastodon.instance }}/@{{ site.mastodon.username }}" class="text-xs font-semibold tracking-[0.15em] uppercase text-gray-500 hover:text-gray-900 no-underline">Mastodon</a>
+          </div>
+        </div>
+        <p class="text-xs text-gray-400">© 2004–<time datetime="{{ site.time | date_to_xmlschema }}">{{ site.time | date: '%Y' }}</time> <a href="{{ 'about' | relative_url }}" class="hover:underline">Piotr Usewicz</a> · Benicarlò, Spain</p>
+      </div>
     </footer>
     {% include scripts.html %}
   </body>
