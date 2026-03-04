@@ -164,6 +164,10 @@ exclude:
   - renovate.json
   - package.json
   - package-lock.json
+  - bun.lock
+  - bun.lockb
+  - tailwind.config.js
+  - tailwind.input.css
   - TODO
 #   - .sass-cache/
 #   - .jekyll-cache/

@@ -5,4 +5,5 @@ _site
 /.playwright-mcp/
 vendor
 node_modules/
+assets/css/tailwind.css
 /screenshot-*.png
