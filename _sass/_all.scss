@@ -1,5 +1,14 @@
 @use "icons";
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: currentColor;
+}
+
 main div.container {
   text-align: center;
 }

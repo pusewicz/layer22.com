@@ -30,6 +30,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
+        corePlugins: {
+          preflight: false,
+        },
         theme: {
           extend: {
             fontFamily: {
@@ -42,7 +45,7 @@
   </head>
   <body data-instant-intensity="viewport" class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %} {{ page.title | slugify }}">
     {% include nav.html %}
-    <main class="container">{{ content }}</main>
+    <main>{{ content }}</main>
     <footer class="bg-white border-t border-gray-100 py-8 px-6">
       <div class="max-w-5xl mx-auto">
         <div class="flex items-center justify-between mb-3">
