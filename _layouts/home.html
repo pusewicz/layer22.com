@@ -33,3 +33,49 @@ layout: default
     </div>
   </div>
 </section>
+
+{{- /* Two Decades of Code */ -}}
+<section class="w-full bg-white py-24 px-6">
+  <div class="max-w-5xl mx-auto">
+    <p class="text-xs font-semibold tracking-[0.2em] uppercase text-gray-400 mb-4">About</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+      <div>
+        <h2 class="font-display font-bold text-5xl uppercase text-gray-900 mb-8 leading-tight">Two Decades<br>of Code</h2>
+        <p class="text-sm text-gray-600 leading-relaxed mb-4">I've been writing software professionally since 2005 — first in PHP, then Rails from the very early days. Over the years I've built SaaS products, internal tooling, developer APIs, and consumer applications, usually as the person who owns the whole stack.</p>
+        <p class="text-sm text-gray-600 leading-relaxed">Today I work independently — consulting, contracting, and building products of my own. I care about readable code, sensible defaults, and software that stays maintainable long after the initial excitement fades.</p>
+      </div>
+      <div class="flex justify-end">
+        {% assign avatar = "https://www.gravatar.com/avatar/dcbf676f860477e44b275cae5d6318a4.jpg?s=400" %}
+        {% imagesize avatar:img alt="Piotr Usewicz" class="w-64 h-64 object-cover grayscale" %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{{- /* From the Blog */ -}}
+<section class="w-full bg-[#e8e5df] py-24 px-6">
+  <div class="max-w-5xl mx-auto">
+    <p class="text-xs font-semibold tracking-[0.2em] uppercase text-gray-400 mb-4">Recent Writing</p>
+    <div class="flex items-baseline justify-between mb-12">
+      <h2 class="font-display font-bold text-5xl uppercase text-gray-900">From the Blog</h2>
+      <a href="{{ 'archive' | relative_url }}" class="text-xs font-semibold tracking-[0.15em] uppercase text-gray-400 hover:text-gray-900 no-underline">View Archive</a>
+    </div>
+    <div class="divide-y divide-gray-300">
+      {% for post in site.posts limit:3 %}
+      <div class="flex items-baseline justify-between py-5">
+        <a href="{{ post.url }}" class="text-sm font-medium text-gray-900 hover:underline">{{ post.title }}</a>
+        <span class="text-xs text-gray-400 tracking-wide ml-8 shrink-0">{{ post.date | date: "%b %Y" | upcase }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{{- /* CTA */ -}}
+<section class="w-full bg-[#f5f0e8] py-24 px-6 text-center">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="font-display font-black uppercase text-gray-900 leading-none mb-6" style="font-size: clamp(3.5rem, 9vw, 7rem)">Let's Build<br>Something</h2>
+    <p class="text-sm text-gray-500 mb-10 max-w-xs mx-auto leading-relaxed">Open to consulting engagements, contract work, and interesting conversations about hard problems.</p>
+    <a href="{{ 'contact' | relative_url }}" class="inline-block text-white text-xs font-bold tracking-[0.2em] uppercase px-8 py-4 hover:opacity-90 transition-opacity" style="background-color: var(--accent-color)">Get in Touch</a>
+  </div>
+</section>
