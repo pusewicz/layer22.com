@@ -1,8 +1,13 @@
-<nav>
-    <a href="/" class="home">&larr;&nbsp;Home</a>
-    <div id="brand">
-      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-      {{ site.title }}
+<nav class="w-full bg-white border-b border-gray-100">
+  <div class="max-w-5xl mx-auto px-6 h-20 flex items-center justify-between">
+    <a href="{{ '/' | relative_url }}" class="flex items-center gap-3 no-underline">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-700" style="color: var(--accent-color)"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+      <span class="text-xs font-bold tracking-[0.2em] uppercase text-gray-900">{{ site.title }}</span>
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="{{ 'about' | relative_url }}" class="text-xs font-semibold tracking-[0.15em] uppercase text-gray-600 hover:text-gray-900 no-underline">About</a>
+      <a href="{{ 'archive' | relative_url }}" class="text-xs font-semibold tracking-[0.15em] uppercase text-gray-600 hover:text-gray-900 no-underline">Writing</a>
+      <a href="{{ 'contact' | relative_url }}" class="text-xs font-semibold tracking-[0.15em] uppercase text-gray-600 hover:text-gray-900 no-underline">Contact</a>
     </div>
-    <a href="{{ 'archive' | relative_url }}" class="archive">Archive</a>
+  </div>
 </nav>
