@@ -2,33 +2,34 @@
 layout: default
 ---
 
-<header class="container">
-  <hgroup>
-    <div id="brand">
-      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-      <span>
-        <span>{{ site.title }}</span>
-        <small>{{ site.description }}</small>
-      </span>
+{{- /* Hero */ -}}
+<section class="w-full bg-[#f5f0e8] py-24 px-6">
+  <div class="max-w-5xl mx-auto">
+    <p class="text-xs font-semibold tracking-[0.2em] uppercase text-gray-400 mb-6">Web Application Developer</p>
+    <h1 class="font-display font-black uppercase text-gray-900 leading-none mb-6" style="font-size: clamp(5rem, 14vw, 11rem)">Piotr<br>Usewicz</h1>
+    <div class="w-20 h-1 mb-8" style="background-color: var(--accent-color)"></div>
+    <p class="text-base text-gray-600 max-w-sm leading-relaxed">Building functional web applications with Ruby, Rails, and modern JavaScript. Based in Benicarlò, Spain.</p>
+  </div>
+</section>
+
+{{- /* Craft & Capability */ -}}
+<section class="w-full bg-[#e8e5df] py-24 px-6">
+  <div class="max-w-5xl mx-auto">
+    <p class="text-xs font-semibold tracking-[0.2em] uppercase text-gray-400 mb-4">What I Do</p>
+    <h2 class="font-display font-bold text-5xl uppercase text-gray-900 mb-16">Craft &amp; Capability</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+      <div class="border-t border-gray-300 pt-6">
+        <h3 class="text-xs font-bold tracking-[0.15em] uppercase text-gray-900 mb-4">Backend</h3>
+        <p class="text-sm text-gray-600 leading-relaxed">Ruby on Rails applications built for longevity — clean architecture, fast queries, and APIs that other services can rely on. Fifteen years of production experience.</p>
+      </div>
+      <div class="border-t border-gray-300 pt-6">
+        <h3 class="text-xs font-bold tracking-[0.15em] uppercase text-gray-900 mb-4">Frontend</h3>
+        <p class="text-sm text-gray-600 leading-relaxed">Hotwire, Stimulus, and vanilla JS for reactive interfaces without the framework weight. HTML and CSS with care for performance, accessibility, and craft.</p>
+      </div>
+      <div class="border-t border-gray-300 pt-6">
+        <h3 class="text-xs font-bold tracking-[0.15em] uppercase text-gray-900 mb-4">Full Stack</h3>
+        <p class="text-sm text-gray-600 leading-relaxed">End-to-end ownership from database schema to deployed interface. Comfortable with the full lifecycle: architecture, implementation, ops, and iteration.</p>
+      </div>
     </div>
-  </hgroup>
-</header>
-
-<div class="container hi">
-  {% assign avatar = "https://www.gravatar.com/avatar/dcbf676f860477e44b275cae5d6318a4.jpg?s=288" %}
-  {% imagesize avatar:img alt="Piotr Usewicz" class="avatar" %}
-  <h3>Hi, I'm Piotr Usewicz.<br>I write software.</h3>
-</div>
-
-<article class="home">
-  <h4>Recent Writing</h4>
-  <ul class="post-index">
-  {% for post in site.posts limit:3 %}
-    <li>
-      <h2><a href="{{ post.url }}">{{ post.title }}</a><small>{{ post.date | date: "%B %d, %Y" }}</small></h2>
-    </li>
-  {% endfor %}
-  </ul>
-
-  <a href="/archive" class="archive">View All Posts&rarr;</a>
-</article>
+  </div>
+</section>
