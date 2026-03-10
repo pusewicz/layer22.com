@@ -1,0 +1,52 @@
+title: "layer|twenty|two"
+tagline: "Piotr Usewicz—Web Application Developer"
+description: "Functional Web Applications"
+url: "https://layer22.com"
+email: "piotr@layer22.com"
+
+author:
+  name: "Piotr Usewicz"
+  image: "https://www.gravatar.com/avatar/dcbf676f860477e44b275cae5d6318a4.jpg?s=288"
+  twitter: "pusewicz"
+  github: "pusewicz"
+  email: "piotr@layer22.com"
+
+github_username: "pusewicz"
+github:
+  repository_url: "https://github.com/pusewicz/layer22.com"
+  branch: "main"
+
+twitter:
+  username: "pusewicz"
+  card: "summary_large_image"
+
+mastodon:
+  username: "pusewicz"
+  instance: "hellowelcome.club"
+
+social:
+  name: "Piotr Usewicz"
+  links:
+    - "https://twitter.com/pusewicz"
+    - "https://www.facebook.com/pusewicz"
+    - "https://www.instagram.com/pusewicz/"
+    - "https://www.linkedin.com/in/PiotrUsewicz"
+    - "https://github.com/pusewicz"
+    - "https://keybase.io/pusewicz84"
+    - "https://hellowelcome.club/@pusewicz"
+
+logo: "/images/logo.png"
+timezone: "Europe/Madrid"
+words_per_minute: 180
+
+webp:
+  quality: 75
+  img_dirs:
+    - "images"
+    - "images/articles"
+    - "images/articles/mov2gif"
+  formats:
+    - ".jpeg"
+    - ".jpg"
+    - ".png"
+    - ".tiff"
