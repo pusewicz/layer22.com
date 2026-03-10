@@ -1,12 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './_layouts/**/*.html',
-    './_includes/**/*.html',
-    './_pages/**/*.{html,md}',
-    './_posts/**/*.md',
-    './_til/**/*.md',
-    './index.html',
+    './lib/**/*.rb',
+    './_posts/**/*.{md,markdown}',
+    './_til/**/*.{md,markdown}',
+    './_pages/**/*.{md,markdown,html}',
   ],
   corePlugins: {
     preflight: false,

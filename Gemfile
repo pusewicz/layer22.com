@@ -1,24 +1,15 @@
 # frozen_string_literal: true
 
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
-gem 'jekyll', '~> 4.4.1'
-
-gem 'jekyll-archives'
-gem 'jekyll-compose'
-gem 'jekyll-feed', '~> 0.12'
-gem 'jekyll-image-size'
-gem 'jekyll-loading-lazy'
-gem 'jekyll-redirect-from'
-gem 'jekyll-seo-tag'
-gem 'jekyll-sitemap', '~> 1.4'
-gem 'jekyll-last-modified-at'
-gem 'jekyll-webp'
-gem 'jemoji', '~> 0.13.0'
-
-gem "jekyll-mastodon_webfinger", "~> 1.0"
-
+gem "phlex", "~> 2.0"
+gem "commonmarker", "~> 2.0"
+gem "rouge", "~> 4.0"
+gem "nokogiri", "~> 1.16"
+gem "fastimage", "~> 2.3"
+gem "rack", "~> 3.0"
+gem "rackup", "~> 2.0"
+gem "puma", "~> 6.0"
+gem "zeitwerk", "~> 2.7"
 gem "rake", "~> 13.4"
-
-# Parses link metadata for `rake note`
-gem "nokogiri"
+gem "builder", "~> 3.3"

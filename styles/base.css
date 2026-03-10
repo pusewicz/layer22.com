@@ -1,0 +1,250 @@
+/* oklch color system */
+:root {
+  /* Brand */
+  --brand-900: oklch(10% 0.035 29.24);
+  --brand-775: oklch(21.5% 0.086 29.24);
+  --brand-675: oklch(33% 0.135 29.24);
+  --brand-550: oklch(44.5% 0.183 29.24);
+  --brand-450: oklch(50.73% 0.2081 29.24);
+  --brand-325: oklch(67% 0.247 29.24);
+  --brand-225: oklch(78.5% 0.142 29.24);
+  --brand-100: oklch(90% 0.053 29.24);
+
+  /* Background */
+  --background-900: oklch(10% 0.024 106.43);
+  --background-775: oklch(21.5% 0.026 106.43);
+  --background-675: oklch(33% 0.046 106.43);
+  --background-550: oklch(44.5% 0.077 106.43);
+  --background-450: oklch(55.5% 0.096 106.43);
+  --background-325: oklch(67% 0.094 106.43);
+  --background-225: oklch(78.5% 0.099 106.43);
+  --background-100: oklch(99.97% 0.0013 106.43);
+
+  /* Link */
+  --link-900: oklch(10% 0.01 274.68);
+  --link-675: oklch(33% 0.036 274.68);
+  --link-450: oklch(52.68% 0.0496 274.68);
+  --link-325: oklch(67% 0.033 274.68);
+
+  /* Neutral */
+  --neutral-550: oklch(44.5% 0.006 286.04);
+  --neutral-225: oklch(78.5% 0.002 286.04);
+
+  /* Primary */
+  --primary-675: oklch(33% 0.059 260);
+  --primary-325: oklch(63.63% 0.0734 260);
+  --primary-225: oklch(78.5% 0.041 260);
+  --primary-100: oklch(90% 0.016 260);
+
+  /* Caper */
+  --caper-100: oklch(92.67% 0.0772 119.7);
+
+  /* Semantic aliases */
+  --accent-color: var(--brand-450);
+  --bg-color: var(--background-100);
+  --link-color: var(--link-450);
+  --link-color-hover: var(--link-675);
+  --text-color: var(--neutral-550);
+  --text-color-light: var(--neutral-225);
+
+  --font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", menlo, consolas, "DejaVu Sans Mono", monospace;
+  --font-sans: seravek, "Gill Sans Nova", ubuntu, calibri, "DejaVu Sans", source-sans-pro, sans-serif;
+  --font-serif: charter, "Bitstream Charter", "Sitka Text", cambria, serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* Prose content styles for rendered markdown */
+.prose-content {
+  color: var(--text-color);
+  line-height: 1.7;
+  font-size: 1.125rem;
+
+  p {
+    margin-top: 1.25em;
+    margin-bottom: 1.25em;
+  }
+
+  a {
+    color: var(--link-color);
+    &:hover { color: var(--link-color-hover); }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #0F0E0D;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    color: var(--accent-color);
+    font-family: var(--font-serif);
+
+    & .header-link {
+      display: inline-block;
+      text-decoration: none;
+      font-size: 0.5em;
+      font-weight: normal;
+      margin-left: 0.5em;
+      vertical-align: middle;
+      visibility: hidden;
+      width: 1em;
+      height: 1em;
+    }
+
+    &:hover .header-link {
+      visibility: visible;
+    }
+  }
+
+  h3 {
+    font-size: 1.35rem;
+
+    & .header-link {
+      display: inline-block;
+      text-decoration: none;
+      font-size: 0.5em;
+      font-weight: normal;
+      margin-left: 0.5em;
+      vertical-align: middle;
+      visibility: hidden;
+      width: 1em;
+      height: 1em;
+    }
+
+    &:hover .header-link {
+      visibility: visible;
+    }
+  }
+
+  ul, ol {
+    margin: 1.5em 0;
+    padding-left: 2em;
+
+    li {
+      margin-block-start: 0.3em;
+      margin-block-end: 0.3em;
+      line-height: 1.6;
+    }
+  }
+
+  ul { list-style-type: disc; }
+  ol { list-style-type: decimal; }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    background: #f0ede8;
+    padding: 0.15em 0.35em;
+    border-radius: 3px;
+  }
+
+  pre {
+    margin-block: 0;
+  }
+
+  .highlight {
+    margin: 1.5em -1rem;
+
+    pre {
+      padding: 1.25em 1.5em;
+      overflow-x: auto;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      border-radius: 4px;
+
+      code {
+        background: none;
+        padding: 0;
+        font-size: 1em;
+      }
+    }
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    margin-block: 1.5em;
+  }
+
+  blockquote {
+    border-left: 4px solid var(--accent-color);
+    margin-left: 0;
+    padding-left: 1.5em;
+    color: var(--text-color-light);
+    font-style: italic;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-block: 1.5em;
+
+    th, td {
+      padding: 0.5em 0.75em;
+      border: 1px solid #C8C4BE;
+      text-align: left;
+    }
+
+    th {
+      background: #F5F3F0;
+      font-weight: 600;
+    }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #C8C4BE;
+    margin-block: 2em;
+  }
+}
+
+/* Post meta */
+.post-meta, .last-modified {
+  font-size: 0.8em;
+  color: var(--text-color-light);
+}
+
+/* Archive nav */
+nav.menu.archives {
+  padding: 0.8rem 0.5rem;
+  border: 5px solid var(--accent-color);
+  background: var(--bg-color);
+  text-align: center;
+  margin: 0 0 2rem;
+
+  a {
+    margin: 0 0.5rem;
+    line-height: 1em;
+    font-size: 1.25rem;
+    text-decoration: none;
+    display: inline-block;
+
+    &.active { text-decoration: underline; }
+  }
+}
+
+/* Mobile */
+@media screen and (width <= 480px) {
+  html { font-size: 14px; }
+}
+
+/* Large screens */
+@media screen and (width >= 1200px) {
+  html { font-size: 18px; }
+}
