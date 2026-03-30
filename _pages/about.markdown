@@ -6,15 +6,15 @@ permalink: /about
 
 # About
 
-![Piotr Usewicz](/images/piotr-usewicz.jpg) I'm Piotr Usewicz and I love programming. I'm good at Ruby.
+I'm Piotr Usewicz — I've been writing software professionally since 2005, first in PHP, then Rails from the very early days. Over the years I've built SaaS products, internal tooling, developer APIs, and consumer applications, usually as the person who owns the whole stack.
 
-## Work
+Today I work independently — consulting, contracting, and building products of my own. I care about readable code, sensible defaults, and software that stays maintainable long after the initial excitement fades.
 
-I've been learning and working with web technologies since 1999. Currently working as a software engineer at [Harvest](https://getharvest.com).
+Based in Benicàrlo, Spain.
 
-Places you can find me:
+## Find me
 
 * [GitHub](https://github.com/pusewicz/)
+* [Mastodon](https://hellowelcome.club/@pusewicz)
+* [Bluesky](https://bsky.app/profile/pusewicz.bsky.social)
 * [LinkedIn](https://www.linkedin.com/in/piotrusewicz)
-* [Flickr](https://www.flickr.com/photos/usewicz)
-* [Facebook](https://www.facebook.com/pusewicz)
