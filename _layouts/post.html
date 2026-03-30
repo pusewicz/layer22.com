@@ -2,25 +2,47 @@
 layout: default
 ---
 
-<article class="post">
-    <hgroup>
-      <h1>{{ page.title }}</h1>
+<article class="post w-full bg-[#F5F3F0]">
+  <div class="max-w-[1080px] mx-auto px-6 pt-12">
+    <a href="{{ 'archive' | relative_url }}" class="font-display text-[14px] font-medium tracking-[0.12em] uppercase text-[#C00000] no-underline hover:text-[#8A0000] mb-4 block">Writing</a>
+    <h1 class="font-display text-[40px] font-bold tracking-[-0.02em] text-[#0F0E0D] leading-[1.15] m-0 max-w-[640px]">{{ page.title }}</h1>
+    <div class="flex items-center gap-2 mt-4 flex-wrap">
       {% assign post = page %}
-      {% include post/post-meta.html categories=true tags=true %}
-    </hgroup>
-    {{ content }}
+      <span class="text-[14px] text-[#7A7774]">{{ post.date | date: "%B %-d, %Y" }}</span>
+      <span class="text-[14px] text-[#C8C4BE]">&middot;</span>
+      {%- assign words = post.content | strip_html | number_of_words -%}
+      {%- assign minutes = words | divided_by: site.words_per_minute | ceil -%}
+      <span class="text-[14px] text-[#7A7774]">{{ minutes }} min read</span>
+      {% if post.tags.size > 0 %}
+      <span class="text-[14px] text-[#C8C4BE]">&middot;</span>
+      <div class="flex gap-1.5">
+        {% for tag in post.tags %}
+        <a href="/tags/{{ tag | slugify }}" class="text-[12px] font-display font-medium tracking-[0.06em] uppercase text-[#6B6968] no-underline border border-[#D4D0CB] rounded px-2 py-0.5 hover:text-[#0F0E0D] hover:border-[#9B9895]">{{ tag }}</a>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
 
-    <p class="last-modified">
-      <small>
-        <time class="post-updated-at" datetime="{{ page.last_modified_at | date_to_xmlschema }}" aria-label="Last modified on on {{ page.last_modified_at | date: '%A, %e of %B, %Y at %H:%M' }}">Last modified on {{ post.date | date: '%A, %e of %B, %Y at %H:%M' }}</time>
-      </small>
-      &middot;
-      <small><a title="Edit current page on GitHub" href="{{ site.github.repository_url }}/edit/{{ site.github.branch }}/{{ page.relative_path }}">Edit</a></small>
-    </p>
+  <div class="max-w-[1080px] mx-auto px-6 pt-8 post-body">
+    {{ content }}
+  </div>
+
+  <div class="max-w-[1080px] mx-auto px-6 pt-8 pb-4">
+    <div class="max-w-[640px]">
+      <div class="w-full h-px bg-[#D4D0CB] mb-3"></div>
+      <div class="flex items-center justify-between">
+        <span class="text-[13px] text-[#7A7774]">
+          <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">Last modified {{ post.date | date: "%B %-d, %Y" }}</time>
+        </span>
+        <a href="{{ site.github.repository_url }}/edit/{{ site.github.branch }}/{{ page.relative_path }}" class="text-[13px] text-[#C00000] underline hover:text-[#8A0000]">Edit on GitHub</a>
+      </div>
+    </div>
+  </div>
 </article>
 
 <script>
-  const headings = document.querySelectorAll('article.post > h2[id], h3[id]');
+  const headings = document.querySelectorAll('article.post h2[id], article.post h3[id]');
   for (const heading of headings) {
     const linkIcon = document.createElement('a');
     linkIcon.setAttribute('href', `#${heading.id}`);
