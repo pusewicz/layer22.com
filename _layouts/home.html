@@ -20,11 +20,11 @@ layout: default
   <div class="max-w-[1080px] mx-auto px-6">
     <div class="flex items-baseline justify-between border-b border-[#C8C4BE] pb-3 mb-1">
       <span class="font-display text-[14px] font-medium tracking-[0.12em] uppercase text-[#6B6968]">Recent Writing</span>
-      <a href="{{ 'archive' | relative_url }}" class="text-[14px] text-[#6B6968] underline hover:text-[#0F0E0D]">View all</a>
+      <a href="{{ 'archive' | relative_url }}" class="text-[14px] text-[#C00000] underline hover:text-[#8A0000]">View all</a>
     </div>
     {% for post in site.posts limit:3 %}
     <div class="flex items-baseline justify-between py-[11px] border-b border-[#E2DFDB]">
-      <a href="{{ post.url }}" class="text-[17px] text-[#0F0E0D] no-underline hover:underline leading-6">{{ post.title }}</a>
+      <a href="{{ post.url }}" class="text-[17px] text-[#0F0E0D] no-underline hover:text-[#C00000] leading-6">{{ post.title }}</a>
       <span class="font-display text-[13px] tracking-[0.06em] uppercase text-[#9B9895] shrink-0 ml-10">{{ post.date | date: "%b %Y" }}</span>
     </div>
     {% endfor %}
