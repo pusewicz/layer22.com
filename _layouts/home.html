@@ -2,89 +2,31 @@
 layout: default
 ---
 
-
-<section class="w-full bg-[#F5F3F0] py-[120px]">
-  <div class="max-w-[1080px] mx-auto px-6 font-display">
-    <p class="text-[14px] font-medium tracking-[0.12em] uppercase text-[#6B6968] mb-6">Web Application Developer</p>
-    <h1 class="font-black uppercase text-[#0F0E0D] tracking-[-0.03em] leading-none mb-0">
-      <span class="block text-[96px]">Piotr</span>
-      <span class="block text-[96px]">Usewicz</span>
-    </h1>
-    <div class="w-[120px] h-[3px] bg-[#C00000] my-10"></div>
-    <p class="text-[28px] font-light tracking-[0.01em] leading-[140%] max-w-[640px] text-[#0F0E0D] m-0">Building functional web applications with Ruby, Rails, and modern JavaScript. Based in Benicàrlo, Spain.</p>
-  </div>
-</section>
-
-
-<section class="w-full bg-[#ECEAE6] py-[120px]">
-  <div class="max-w-[1080px] mx-auto px-6 font-display">
-    <div class="mb-16">
-      <p class="text-[14px] font-medium tracking-[0.12em] uppercase text-[#6B6968] mb-4">What I Do</p>
-      <h2 class="text-[48px] font-bold tracking-[-0.02em] uppercase text-[#0F0E0D] leading-none m-0">Craft &amp; Capability</h2>
+<section class="w-full bg-[#F5F3F0] pt-16 pb-0">
+  <div class="max-w-[1080px] mx-auto px-6">
+    <div class="flex items-center gap-5 mb-6">
+      {% assign avatar = "https://www.gravatar.com/avatar/dcbf676f860477e44b275cae5d6318a4.jpg?s=176" %}
+      {% imagesize avatar:img alt="Piotr Usewicz" class="w-[88px] h-[88px] rounded-full object-cover shrink-0" %}
+      <h1 class="font-display text-[52px] font-bold tracking-[-0.02em] text-[#0F0E0D] leading-none m-0">Piotr Usewicz</h1>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-      <div>
-        <h3 class="text-[22px] font-bold tracking-[0.06em] uppercase text-[#0F0E0D] mb-4 leading-7">Backend</h3>
-        <div class="w-full h-px bg-[#C8C4BE] mb-6"></div>
-        <p class="text-[18px] tracking-[0.01em] leading-[160%] text-[#6B6968] m-0">Ruby on Rails applications built for longevity — clean architecture, fast queries, and APIs that other services can rely on. Fifteen years of production experience.</p>
-      </div>
-      <div>
-        <h3 class="text-[22px] font-bold tracking-[0.06em] uppercase text-[#0F0E0D] mb-4 leading-7">Frontend</h3>
-        <div class="w-full h-px bg-[#C8C4BE] mb-6"></div>
-        <p class="text-[18px] tracking-[0.01em] leading-[160%] text-[#6B6968] m-0">Hotwire, Stimulus, and vanilla JS for reactive interfaces without the framework weight. HTML and CSS with care for performance, accessibility, and craft.</p>
-      </div>
-      <div>
-        <h3 class="text-[22px] font-bold tracking-[0.06em] uppercase text-[#0F0E0D] mb-4 leading-7">Full Stack</h3>
-        <div class="w-full h-px bg-[#C8C4BE] mb-6"></div>
-        <p class="text-[18px] tracking-[0.01em] leading-[160%] text-[#6B6968] m-0">End-to-end ownership from database schema to deployed interface. Comfortable with the full lifecycle: architecture, implementation, ops, and iteration.</p>
-      </div>
+    <div class="max-w-[580px]">
+      <p class="text-[18px] leading-7 tracking-[0.01em] text-[#2A2826] mt-0 mb-4">I've been writing software professionally since 2005 — first in PHP, then Rails from the very early days. I care about readable code, sensible defaults, and software that stays maintainable long after the initial excitement fades.</p>
+      <p class="text-[15px] leading-[22px] text-[#6B6968] m-0">Based in Benicàrlo, Spain</p>
     </div>
   </div>
 </section>
 
-
-<section class="w-full bg-[#F5F3F0] py-[120px]">
-  <div class="max-w-[1080px] mx-auto px-6 font-display flex gap-20 items-start">
-    <div class="grow shrink basis-0">
-      <p class="text-[14px] font-medium tracking-[0.12em] uppercase text-[#6B6968] mb-4">About</p>
-      <h2 class="text-[48px] font-bold tracking-[-0.02em] uppercase text-[#0F0E0D] leading-none mb-10">Two Decades<br>of Code</h2>
-      <p class="text-[18px] tracking-[0.01em] leading-[170%] text-[#6B6968] mt-0 mb-6 mx-0">I've been writing software professionally since 2005 — first in PHP, then Rails from the very early days. Over the years I've built SaaS products, internal tooling, developer APIs, and consumer applications, usually as the person who owns the whole stack.</p>
-      <p class="text-[18px] tracking-[0.01em] leading-[170%] text-[#6B6968] m-0">Today I work independently — consulting, contracting, and building products of my own. I care about readable code, sensible defaults, and software that stays maintainable long after the initial excitement fades.</p>
+<section class="w-full bg-[#F5F3F0] pt-12 pb-0">
+  <div class="max-w-[1080px] mx-auto px-6">
+    <div class="flex items-baseline justify-between border-b border-[#C8C4BE] pb-3 mb-1">
+      <span class="font-display text-[14px] font-medium tracking-[0.12em] uppercase text-[#6B6968]">Recent Writing</span>
+      <a href="{{ 'archive' | relative_url }}" class="text-[14px] text-[#6B6968] underline hover:text-[#0F0E0D]">View all</a>
     </div>
-    <div class="shrink-0 w-[320px]">
-      {% assign avatar = "https://www.gravatar.com/avatar/dcbf676f860477e44b275cae5d6318a4.jpg?s=640" %}
-      {% imagesize avatar:img alt="Piotr Usewicz" class="w-[320px] h-[400px] object-cover" %}
+    {% for post in site.posts limit:3 %}
+    <div class="flex items-baseline justify-between py-[11px] border-b border-[#E2DFDB]">
+      <a href="{{ post.url }}" class="text-[17px] text-[#0F0E0D] no-underline hover:underline leading-6">{{ post.title }}</a>
+      <span class="font-display text-[13px] tracking-[0.06em] uppercase text-[#9B9895] shrink-0 ml-10">{{ post.date | date: "%b %Y" }}</span>
     </div>
-  </div>
-</section>
-
-
-<section class="w-full bg-[#ECEAE6] py-[120px]">
-  <div class="max-w-[1080px] mx-auto px-6 font-display">
-    <div class="flex items-end justify-between mb-14">
-      <div>
-        <p class="text-[14px] font-medium tracking-[0.12em] uppercase text-[#6B6968] mb-4">Recent Writing</p>
-        <h2 class="text-[48px] font-bold tracking-[-0.02em] uppercase text-[#0F0E0D] leading-none m-0">From the Blog</h2>
-      </div>
-      <a href="{{ 'archive' | relative_url }}" class="font-display text-[14px] font-medium tracking-widest uppercase text-[#0F0E0D] no-underline underline decoration-1 pb-1.5 hover:text-[#6B6968]">View Archive</a>
-    </div>
-    <div>
-      {% for post in site.posts limit:3 %}
-      <div class="flex items-baseline justify-between py-7 border-t border-[#C8C4BE]">
-        <a href="{{ post.url }}" class="text-[22px] font-semibold tracking-[0.01em] text-[#0F0E0D] no-underline hover:underline leading-7">{{ post.title }}</a>
-        <span class="text-[14px] tracking-[0.06em] uppercase text-[#6B6968] shrink-0 ml-10">{{ post.date | date: "%b %Y" | upcase }}</span>
-      </div>
-      {% endfor %}
-      <div class="border-b border-[#C8C4BE]"></div>
-    </div>
-  </div>
-</section>
-
-
-<section class="w-full bg-[#F5F3F0] py-[140px] flex flex-col items-center">
-  <div class="font-display text-center px-6">
-    <h2 class="text-[72px] font-black tracking-[-0.03em] uppercase text-[#0F0E0D] leading-none mb-8">Let's Build<br>Something</h2>
-    <p class="text-[22px] font-light tracking-[0.01em] leading-[150%] max-w-[500px] text-[#6B6968] mt-0 mb-12 mx-auto">Open to consulting engagements, contract work, and interesting conversations about hard problems.</p>
-    <a href="{{ 'contact' | relative_url }}" class="inline-flex items-center justify-center py-[18px] px-12 bg-[#C00000] text-[16px] font-bold tracking-[0.12em] uppercase text-[#E8E6E3] no-underline hover:opacity-90">Get in Touch</a>
+    {% endfor %}
   </div>
 </section>

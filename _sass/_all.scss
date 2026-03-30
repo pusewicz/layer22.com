@@ -32,16 +32,6 @@ main div.container {
 }
 
 footer {
-  padding: 2rem;
-  background: var(--footer-bg-color);
-
-  small {
-    display: block;
-    max-width: 36em;
-    margin: 0 auto;
-    color: var(--bg-color);
-  }
-
   a:hover {
     color: var(--accent-color);
   }
