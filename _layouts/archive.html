@@ -1,15 +1,22 @@
 ---
-layout: page
+layout: default
 ---
 
-<h1>Archive</h1>
+<div class="w-full bg-[#F5F3F0]">
+  <div class="max-w-[1080px] mx-auto px-6 pt-12 pb-8">
+    <h1 class="font-display text-[40px] font-bold tracking-[-0.02em] text-[#0F0E0D] leading-[1.15] m-0">Writing</h1>
 
-<nav class="menu archives text-center" aria-label="browse archives">
-  <strong aria-hidden="true">Browse archives by:</strong>
-  <a href="/archive" class="active" aria-current="page">year</a>
-  <a href="/categories">category</a>
-  <a href="/tags">tag</a>
-  <a href="/til">til</a>
-</nav>
-
-{% include archives/by-year.html %}
+    {% assign postsByYear = site.posts | group_by_exp:"post", "post.date | date: '%Y'" %}
+    {% for year in postsByYear %}
+    <div class="mt-8">
+      <h2 class="font-display text-[22px] font-semibold tracking-[0.02em] text-[#9B9895] leading-none m-0 mb-2">{{ year.name }}</h2>
+      {% for post in year.items %}
+      <div class="flex items-baseline justify-between py-[10px] border-b border-[#E2DFDB]">
+        <a href="{{ post.url }}" class="text-[17px] text-[#0F0E0D] no-underline hover:text-[#C00000] leading-6">{{ post.title }}</a>
+        <span class="font-display text-[13px] tracking-[0.06em] uppercase text-[#9B9895] shrink-0 ml-10">{{ post.date | date: "%b %Y" }}</span>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
