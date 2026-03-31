@@ -12,7 +12,7 @@ I started with PHP in Warsaw, building content management systems and e-commerce
 
 From London I moved to Dublin, where I worked on Homestay Technologies' vacation rental platform. I joined [Harvest](https://getharvest.com) while still in Dublin in late 2014, and eventually moved to Spain. I spent nearly eleven years at Harvest as a senior software engineer, working on their time tracking and resource planning products.
 
-Today I work independently from Benicàrlo, a small town on the Spanish Mediterranean coast. I consult, take on contract work, and build things of my own. I care about readable code, sensible defaults, and software that stays maintainable long after the initial excitement fades.
+Today I work independently from Benicàrlo, a small town on the Spanish Mediterranean coast. I consult, take on contract work, and build things of my own. Outside of work, I tinker with game development — [layer22.games](https://layer22.games/) is where that lives. I care about readable code, sensible defaults, and software that stays maintainable long after the initial excitement fades.
 
 ## What I work with
 
