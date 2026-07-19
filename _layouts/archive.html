@@ -3,17 +3,17 @@ layout: default
 ---
 
 <div class="w-full bg-[#F5F3F0]">
-  <div class="max-w-[1080px] mx-auto px-6 pt-12 pb-8">
-    <h1 class="font-display text-[40px] font-bold tracking-[-0.02em] text-[#0F0E0D] leading-[1.15] m-0">Writing</h1>
+  <div class="h-feed max-w-[1080px] mx-auto px-6 pt-12 pb-8">
+    <h1 class="p-name font-display text-[40px] font-bold tracking-[-0.02em] text-[#0F0E0D] leading-[1.15] m-0">Writing</h1>
 
     {% assign postsByYear = site.posts | group_by_exp:"post", "post.date | date: '%Y'" %}
     {% for year in postsByYear %}
     <div class="mt-8">
       <h2 class="font-display text-[22px] font-semibold tracking-[0.02em] text-[#9B9895] leading-none m-0 mb-2">{{ year.name }}</h2>
       {% for post in year.items %}
-      <div class="flex items-baseline justify-between py-[10px] border-b border-[#E2DFDB]">
-        <a href="{{ post.url }}" class="text-[17px] text-[#0F0E0D] no-underline hover:text-[#C00000] leading-6">{{ post.title }}</a>
-        <span class="font-display text-[13px] tracking-[0.06em] uppercase text-[#9B9895] shrink-0 ml-10">{{ post.date | date: "%b %Y" }}</span>
+      <div class="h-entry flex items-baseline justify-between py-[10px] border-b border-[#E2DFDB]">
+        <a href="{{ post.url | absolute_url }}" class="p-name u-url text-[17px] text-[#0F0E0D] no-underline hover:text-[#C00000] leading-6">{{ post.title }}</a>
+        <time class="dt-published font-display text-[13px] tracking-[0.06em] uppercase text-[#9B9895] shrink-0 ml-10" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %Y" }}</time>
       </div>
       {% endfor %}
     </div>

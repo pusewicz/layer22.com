@@ -3,29 +3,32 @@ layout: default
 ---
 
 <section class="w-full bg-[#F5F3F0] pt-16 pb-0">
-  <div class="max-w-[1080px] mx-auto px-6">
+  <div class="h-card max-w-[1080px] mx-auto px-6">
     <div class="flex items-center gap-5 mb-6">
       {% assign avatar = "https://www.gravatar.com/avatar/dcbf676f860477e44b275cae5d6318a4.jpg?s=176" %}
-      {% imagesize avatar:img alt="Piotr Usewicz" class="w-[88px] h-[88px] rounded-full object-cover shrink-0" %}
-      <h1 class="font-display text-[52px] font-bold tracking-[-0.02em] text-[#0F0E0D] leading-none m-0">Piotr Usewicz</h1>
+      {% imagesize avatar:img alt="Piotr Usewicz" class="u-photo w-[88px] h-[88px] rounded-full object-cover shrink-0" %}
+      <div>
+        <h1 class="p-name font-display text-[52px] font-bold tracking-[-0.02em] text-[#0F0E0D] leading-none m-0">Piotr Usewicz</h1>
+        <a class="u-url u-uid mt-1 block text-[13px] text-[#9B9895] no-underline hover:text-[#6B6968]" rel="me" href="{{ "/" | absolute_url }}">layer22.com</a>
+      </div>
     </div>
     <div class="max-w-[580px]">
-      <p class="text-[18px] leading-7 tracking-[0.01em] text-[#2A2826] mt-0 mb-4">I've been writing software professionally since 2005 — first in PHP, then Rails from the very early days. I care about readable code, sensible defaults, and software that stays maintainable long after the initial excitement fades.</p>
-      <p class="text-[15px] leading-[22px] text-[#6B6968] m-0">Based in Benicàrlo, Spain</p>
+      <p class="p-note text-[18px] leading-7 tracking-[0.01em] text-[#2A2826] mt-0 mb-4">I've been writing software professionally since 2005 — first in PHP, then Rails from the very early days. I care about readable code, sensible defaults, and software that stays maintainable long after the initial excitement fades.</p>
+      <p class="text-[15px] leading-[22px] text-[#6B6968] m-0">Based in <span class="p-locality">Benicàrlo</span>, <span class="p-country-name">Spain</span></p>
     </div>
   </div>
 </section>
 
 <section class="w-full bg-[#F5F3F0] pt-12 pb-0">
-  <div class="max-w-[1080px] mx-auto px-6">
+  <div class="h-feed max-w-[1080px] mx-auto px-6">
     <div class="flex items-baseline justify-between border-b border-[#C8C4BE] pb-3 mb-1">
-      <span class="font-display text-[14px] font-medium tracking-[0.12em] uppercase text-[#6B6968]">Recent Writing</span>
+      <span class="p-name font-display text-[14px] font-medium tracking-[0.12em] uppercase text-[#6B6968]">Recent Writing</span>
       <a href="{{ 'archive' | relative_url }}" class="text-[14px] text-[#C00000] underline hover:text-[#8A0000]">View all</a>
     </div>
     {% for post in site.posts limit:3 %}
-    <div class="flex items-baseline justify-between py-[11px] border-b border-[#E2DFDB]">
-      <a href="{{ post.url }}" class="text-[17px] text-[#0F0E0D] no-underline hover:text-[#C00000] leading-6">{{ post.title }}</a>
-      <span class="font-display text-[13px] tracking-[0.06em] uppercase text-[#9B9895] shrink-0 ml-10">{{ post.date | date: "%b %Y" }}</span>
+    <div class="h-entry flex items-baseline justify-between py-[11px] border-b border-[#E2DFDB]">
+      <a href="{{ post.url | absolute_url }}" class="p-name u-url text-[17px] text-[#0F0E0D] no-underline hover:text-[#C00000] leading-6">{{ post.title }}</a>
+      <time class="dt-published font-display text-[13px] tracking-[0.06em] uppercase text-[#9B9895] shrink-0 ml-10" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %Y" }}</time>
     </div>
     {% endfor %}
   </div>

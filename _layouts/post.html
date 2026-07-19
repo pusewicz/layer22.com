@@ -2,13 +2,15 @@
 layout: default
 ---
 
-<article class="post w-full bg-[#F5F3F0]">
+<article class="post h-entry w-full bg-[#F5F3F0]">
   <div class="max-w-[1080px] mx-auto px-6 pt-12">
     <a href="{{ 'archive' | relative_url }}" class="font-display text-[14px] font-medium tracking-[0.12em] uppercase text-[#C00000] no-underline hover:text-[#8A0000] mb-4 block">Writing</a>
-    <h1 class="font-display text-[40px] font-bold tracking-[-0.02em] text-[#0F0E0D] leading-[1.15] m-0 max-w-[640px]">{{ page.title }}</h1>
+    <h1 class="p-name font-display text-[40px] font-bold tracking-[-0.02em] text-[#0F0E0D] leading-[1.15] m-0 max-w-[640px]">{{ page.title }}</h1>
     <div class="flex items-center gap-2 mt-4 flex-wrap">
       {% assign post = page %}
-      <span class="text-[14px] text-[#7A7774]">{{ post.date | date: "%B %-d, %Y" }}</span>
+      <a class="p-author h-card text-[14px] text-[#7A7774] no-underline hover:text-[#0F0E0D]" href="{{ "/" | absolute_url }}">Piotr Usewicz</a>
+      <span class="text-[14px] text-[#C8C4BE]">&middot;</span>
+      <a class="u-url no-underline" href="{{ page.url | absolute_url }}"><time class="dt-published text-[14px] text-[#7A7774]" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time></a>
       <span class="text-[14px] text-[#C8C4BE]">&middot;</span>
       {%- assign words = post.content | strip_html | number_of_words -%}
       {%- assign minutes = words | divided_by: site.words_per_minute | ceil -%}
@@ -24,13 +26,13 @@ layout: default
     </div>
   </div>
 
-  <div class="max-w-[1080px] mx-auto px-6 pt-8 post-body">
+  <div class="max-w-[1080px] mx-auto px-6 pt-8 post-body e-content">
     {{ content }}
   </div>
 
   <div class="max-w-[1080px] mx-auto px-6 pt-8 pb-4">
     <div class="max-w-[640px]">
-      <div class="w-full h-px bg-[#D4D0CB] mb-3"></div>
+      <div class="w-full h-[1px] bg-[#D4D0CB] mb-3"></div>
       <div class="flex items-center justify-between">
         <span class="text-[13px] text-[#7A7774]">
           <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">Last modified {{ post.date | date: "%B %-d, %Y" }}</time>
