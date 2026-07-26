@@ -159,6 +159,8 @@ include:
 exclude:
   - _functions
   - .github
+  - docs
+  - CLAUDE.md
   - README.md
   - Rakefile
   - renovate.json
