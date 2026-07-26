@@ -16,7 +16,7 @@ end
 
 namespace :resume do
   desc "Regenerate the resume PDF with headless Chrome (local only)"
-  task pdf: :build do
+  task pdf: [:tailwind, :jekyll] do
     chrome = ENV["CHROME_BIN"] || "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
     abort "Chrome not found at #{chrome} — set CHROME_BIN" unless File.exist?(chrome)
     src = File.expand_path("_site/resume-print/index.html")
