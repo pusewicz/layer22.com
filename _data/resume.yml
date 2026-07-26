@@ -1,0 +1,190 @@
+basics:
+  name: Piotr Usewicz
+  headline: Senior Software Engineer
+  location: Benicàrlo, Spain
+  availability: Remote (CET, EU/US overlap)
+  email: piotr@layer22.com
+  links:
+    - label: layer22.com
+      url: https://layer22.com
+    - label: github.com/pusewicz
+      url: https://github.com/pusewicz
+    - label: linkedin.com/in/piotrusewicz
+      url: https://www.linkedin.com/in/piotrusewicz
+
+summary: >-
+  Software engineer with 20+ years of building web products, most of them in
+  Ruby on Rails. I spent eleven years at Harvest shipping across the whole
+  stack — platform rebuilds, public APIs, integrations, zero-downtime data
+  migrations, developer tooling. Comfortable owning a product from database
+  schema to deploy pipeline; happiest on a small team that ships.
+
+experience:
+  - role: Sabbatical
+    company:
+    tagline: systems programming, games & open source
+    location:
+    start: "Oct 2025"
+    end: present
+    context: A deliberate year off after eleven years at Harvest, spent learning in public.
+    bullets:
+      - Contributed 19 merged pull requests upstream to Cute Framework, a C game framework.
+      - Built bielik2d, a 2D game engine in pure Swift 6 on SDL3's GPU API,
+        running natively and in the browser (WebAssembly/WebGPU).
+      - Shipped cf-mcp, an MCP server that gives LLM coding agents searchable
+        Cute Framework documentation (4,500+ downloads).
+      - Wrote three games in C with SDL3 and Cute Framework while learning the
+        language; made agentic coding workflows part of daily practice.
+
+  - role: Senior Software Engineer
+    company: Harvest
+    company_url: https://www.getharvest.com
+    location: Remote
+    start: "Dec 2014"
+    end: "Sep 2025"
+    context: >-
+      Time tracking and resource planning SaaS used by 70,000+ companies;
+      fully remote team across nine time zones. Promoted from
+      Software Engineer in July 2021.
+    bullets:
+      - Rebuilt Harvest's embeddable button and widget platform as a React +
+        TypeScript app and shipped it to all customers, coordinating directly
+        with Asana's engineers to keep their desktop integration unbroken.
+      - Drove the datastore evaluation for the new Events API — built a complete
+        Firestore prototype in under a week and led load tests across MySQL,
+        Firestore, and Elasticsearch; the data reversed the planned choice
+        before it got expensive.
+      - As Engineering Lead of the Integrations squad, shaped the 2024 roadmap
+        with Product and shipped the Deel payroll integration, designing a
+        timesheet sync that worked around third-party API rate limits.
+      - Consolidated the Linear, Notion, Monday.com, and Trello browser
+        extensions into one Vite codebase building for Chrome, Edge, and Firefox.
+      - Self-assigned and completed a multi-year migration to ISO currency codes
+        across the Rails monolith — coordinated database migrations with SRE,
+        zero service disruption.
+      - Co-built Harvest Developer Tools, cutting new-engineer environment setup
+        to under 30 minutes.
+      - Modernized the frontend from Backbone/jQuery to React and Preact;
+        shipped Google Calendar and Outlook integrations, MFA, and critical
+        security fixes.
+      - Mentored six engineers, designed the team's technical interview
+        exercises, reviewed up to 193 PRs per half-year, and helped set
+        Harvest's direction for AI features in 2025.
+    quote:
+      text: >-
+        Piotr is a deeply experienced engineer with a pragmatic approach and an
+        exceptional ability to cut through complexity. … Any team would benefit
+        from Piotr's technical expertise, critical thinking, and collaborative
+        spirit.
+      name: Sherry Umlah
+      title: Engineering Manager, Harvest
+      source: https://www.linkedin.com/in/piotrusewicz/details/recommendations/
+
+  - role: Senior Software Engineer
+    company: Homestay.com
+    location: Dublin, Ireland
+    start: "Aug 2012"
+    end: "Dec 2014"
+    bullets:
+      - Designed and implemented core services of the vacation-rental platform
+        (Rails, MySQL) as the product scaled through public launch.
+
+  - role: Senior Software Engineer
+    company: Mixbook
+    location: Palo Alto, California
+    start: "Jan 2012"
+    end: "Jun 2012"
+    bullets:
+      - Shipped customer-facing Rails features on the photo products platform.
+
+  - role: Senior Ruby on Rails Developer
+    company: HouseTrip
+    location: London, UK
+    start: "Sep 2011"
+    end: "Dec 2011"
+    bullets:
+      - Helped build out the development team and engineering processes at a
+        fast-growing holiday-rental startup.
+    quote:
+      text: >-
+        A great Ruby/Rails developer, Piotr is a good communicator, easy to work
+        with and delivered high quality code in a challenging, high traffic app.
+      name: Matthew Hutchinson
+      title: teammate at HouseTrip, now Staff Engineer at Shopify
+      source: https://www.linkedin.com/in/piotrusewicz/details/recommendations/
+
+  - role: Application Developer
+    company: AOL
+    location: London, UK
+    start: "Jun 2011"
+    end: "Sep 2011"
+    bullets:
+      - Built scalable realtime applications in Node.js and Erlang.
+    quote:
+      text: >-
+        I've worked with Piotr twice and he was so good the first time I made
+        sure AOL got him when he was available again. … Hire him now, before
+        someone else does :)
+      name: Stephen Strudwick
+      title: Digital Architect, AOL
+      source: https://www.linkedin.com/in/piotrusewicz/details/recommendations/
+
+  - role: Application Developer
+    company: Mobile Interactive Group
+    location: London, UK
+    start: "Jan 2008"
+    end: "Jun 2011"
+    bullets:
+      - Kickstarted and led the ground-up rewrite of MIGPay, the group's mobile
+        payments platform (Ruby on Rails + Merb) — new integration tooling for
+        partners and a new mobile web experience for end users.
+      - Built distributed Erlang systems and SMS payment flows powering
+        digital-goods sales.
+    quote:
+      text: >-
+        Piotr has shown extraordinary dedication and expertise in recent work
+        for Mobile Interactive Group. His passion for innovation has allowed MIG
+        to participate in cutting edge development.
+      name: Marcus Kern
+      title: Founder, Mobile Interactive Group
+      source: https://www.linkedin.com/in/piotrusewicz/details/recommendations/
+
+  - role: Earlier roles
+    company:
+    location: Warsaw, Poland
+    start: "2004"
+    end: "2007"
+    bullets:
+      - Head developer at ITSS (PHP content management and e-commerce); led the
+        design and build of an ITIL-based ServiceDesk platform in Ruby on Rails
+        at Exorigo.
+
+open_source:
+  intro: >-
+    Writing open source since 2008 — gems downloaded ~97,000 times.
+    Everything at github.com/pusewicz.
+  projects:
+    - name: statique
+      url: https://github.com/pusewicz/statique
+      note: static site generator in Ruby, built on Roda
+    - name: cf-mcp
+      url: https://github.com/pusewicz/cf-mcp
+      note: MCP server giving LLM agents searchable Cute Framework docs
+    - name: vimpk
+      url: https://github.com/pusewicz/vimpk
+      note: Vim package manager in Ruby
+    - name: bielik2d
+      url: https://github.com/pusewicz/bielik2d
+      note: 2D game engine in Swift 6 on SDL3, native + WebAssembly
+
+skills:
+  - group: Primary
+    items: Ruby, Rails, MySQL/SQL, GraphQL, REST API design
+  - group: Frontend
+    items: JavaScript, TypeScript, React, Preact, Hotwire/Stimulus, Tailwind
+  - group: Also
+    items: C, Swift, mruby; production Erlang, Node.js and PHP in past lives
+  - group: Practices
+    items: TDD, code review, zero-downtime migrations, load testing, developer tooling, AI-assisted development
+
+languages: Polish (native) · English (fluent) · Spanish (intermediate)
