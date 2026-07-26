@@ -7,3 +7,5 @@ vendor
 node_modules/
 assets/css/tailwind.css
 /screenshot-*.png
+docs/resume/
+.superpowers/
