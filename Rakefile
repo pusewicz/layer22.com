@@ -1,5 +1,30 @@
 desc "Build the site for Cloudflare"
-task build: [:tailwind, :jekyll, :redirects]
+task build: [:tailwind, :jekyll, :redirects, :resume_freshness]
+
+RESUME_PDF = "piotr-usewicz-resume.pdf"
+
+desc "Warn if the committed resume PDF is older than its sources"
+task :resume_freshness do
+  sources = ["_data/resume.yml", "_layouts/resume_print.html"]
+  if File.exist?(RESUME_PDF)
+    stale = sources.select { |f| File.exist?(f) && File.mtime(f) > File.mtime(RESUME_PDF) }
+    warn "WARNING: #{RESUME_PDF} is older than #{stale.join(", ")} — run `rake resume:pdf`" if stale.any?
+  else
+    warn "WARNING: #{RESUME_PDF} missing — run `rake resume:pdf`"
+  end
+end
+
+namespace :resume do
+  desc "Regenerate the resume PDF with headless Chrome (local only)"
+  task pdf: :build do
+    chrome = ENV["CHROME_BIN"] || "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+    abort "Chrome not found at #{chrome} — set CHROME_BIN" unless File.exist?(chrome)
+    src = File.expand_path("_site/resume-print/index.html")
+    sh chrome, "--headless=new", "--disable-gpu", "--no-pdf-header-footer",
+       "--virtual-time-budget=5000", "--print-to-pdf=#{RESUME_PDF}", "file://#{src}"
+    puts "Wrote #{RESUME_PDF}"
+  end
+end
 
 desc "Install JS dependencies"
 task :bun_install do
