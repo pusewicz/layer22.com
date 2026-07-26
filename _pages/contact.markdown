@@ -8,7 +8,7 @@ permalink: /contact
 
 The best way to reach me is by email: [piotr@layer22.com](mailto:piotr@layer22.com). I typically reply within a few days.
 
-I'm open to consulting engagements, contract work, and interesting conversations about hard problems. Not currently looking for full-time positions.
+I'm open to senior engineering roles (remote), as well as consulting and contract work — here's my [resume](/resume). Always happy to talk about hard problems.
 
 ## Elsewhere
 

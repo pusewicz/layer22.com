@@ -24,4 +24,4 @@ Built with [Jekyll](https://jekyllrb.com), styled with [Tailwind CSS](https://ta
 
 ## Elsewhere
 
-I'm mostly on [GitHub](https://github.com/pusewicz) and [Mastodon](https://hellowelcome.club/@pusewicz). Also on [Bluesky](https://bsky.app/profile/pusewicz.bsky.social) and [LinkedIn](https://www.linkedin.com/in/piotrusewicz).
+I'm mostly on [GitHub](https://github.com/pusewicz) and [Mastodon](https://hellowelcome.club/@pusewicz). Also on [Bluesky](https://bsky.app/profile/pusewicz.bsky.social) and [LinkedIn](https://www.linkedin.com/in/piotrusewicz). If you're hiring, my [resume](/resume) is here.
