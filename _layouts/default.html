@@ -24,6 +24,7 @@
       {% endfor %}
     {% endif %}
     {% feed_meta %}
+    <link rel="alternate" type="application/rss+xml" title="{{ site.title | smartify | xml_escape }}" href="{{ '/rss.xml' | absolute_url }}" />
     {% seo title=false %}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
