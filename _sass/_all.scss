@@ -35,20 +35,6 @@ footer {
   a:hover {
     color: var(--accent-color);
   }
-
-  .rss-badge-dark {
-    display: none;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .rss-badge-light {
-      display: none;
-    }
-
-    .rss-badge-dark {
-      display: inline;
-    }
-  }
 }
 
 article.post {
