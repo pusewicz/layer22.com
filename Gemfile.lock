@@ -29,7 +29,7 @@ GEM
       prism
       zeitwerk
     rouge (4.7.0)
-    zeitwerk (2.7.5)
+    zeitwerk (2.8.3)
 
 PLATFORMS
   aarch64-linux
@@ -48,7 +48,7 @@ DEPENDENCIES
   rackup (~> 2.0)
   rake (~> 13.4)
   rouge (~> 4.0)
-  zeitwerk (~> 2.7)
+  zeitwerk (~> 2.8)
 
 BUNDLED WITH
   4.0.8
