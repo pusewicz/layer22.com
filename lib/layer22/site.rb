@@ -47,17 +47,25 @@ module Layer22
       self
     end
 
+    # Writes +content+ to the file that serves +url+ inside +output_dir+.
+    def write_page(url, content, output_dir:)
+      path = OutputPath.for(url, output_dir:)
+      FileUtils.mkdir_p(File.dirname(path))
+      File.write(path, content)
+      puts "Generated #{path}"
+    end
+
     private
 
     def write_home(output_dir)
       html = Components::Pages::HomePage.new(site: self).call
-      write_file("#{output_dir}/index.html", html)
+      write_page("/", html, output_dir:)
     end
 
     def write_posts(output_dir)
       @posts.each do |post|
         html = Components::Pages::PostPage.new(site: self, post:).call
-        write_file("#{output_dir}#{post.permalink}/index.html", html)
+        write_page(post.permalink, html, output_dir:)
       end
     end
 
@@ -67,7 +75,7 @@ module Layer22
         prev_til = i > 0 ? sorted[i - 1] : nil
         next_til = sorted[i + 1]
         html = Components::Pages::TilPage.new(site: self, til:, prev_til:, next_til:).call
-        write_file("#{output_dir}#{til.permalink}index.html", html)
+        write_page(til.permalink, html, output_dir:)
       end
     end
 
@@ -75,13 +83,13 @@ module Layer22
       @pages.each do |page|
         next unless page.permalink
         html = Components::Pages::StaticPage.new(site: self, page:).call
-        write_file("#{output_dir}#{page.permalink}/index.html", html)
+        write_page(page.permalink, html, output_dir:)
       end
     end
 
     def write_404(output_dir)
       html = Components::Pages::NotFoundPage.new(site: self).call
-      write_file("#{output_dir}/404.html", html)
+      write_page("/404.html", html, output_dir:)
     end
 
     def run_generators(output_dir, skip_webp:)
@@ -113,12 +121,6 @@ module Layer22
     def copy_redirects(output_dir)
       FileUtils.cp("_redirects", output_dir) if File.exist?("_redirects")
       puts "Copied _redirects"
-    end
-
-    def write_file(path, content)
-      FileUtils.mkdir_p(File.dirname(path))
-      File.write(path, content)
-      puts "Generated #{path}"
     end
   end
 end

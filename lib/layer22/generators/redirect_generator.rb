@@ -33,16 +33,7 @@ module Layer22
           </html>
         HTML
 
-        path = from_path.chomp("/")
-        # If path ends with .html, write directly; otherwise create dir/index.html
-        dest = if path.end_with?(".html")
-          File.join(output_dir, path)
-        else
-          File.join(output_dir, path, "index.html")
-        end
-        FileUtils.mkdir_p(File.dirname(dest))
-        File.write(dest, html)
-        puts "Generated redirect: #{path} → #{to_path}"
+        @site.write_page(from_path, html, output_dir:)
       end
     end
   end
