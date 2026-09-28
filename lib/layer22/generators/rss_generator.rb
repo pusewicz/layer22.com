@@ -80,7 +80,7 @@ module Layer22
           xml.tag! "dc:creator", @config.author_name
           xml.description Feeds.truncate(Feeds.plain_text(html), DESCRIPTION_LENGTH)
           xml.tag!("content:encoded") do
-            xml.cdata!(Feeds.cdata_safe(Feeds.absolutize(html, site_url: @config.site_url)))
+            xml.cdata!(Feeds.absolutize(html, site_url: @config.site_url))
           end
           item.tags.each { |tag| xml.category tag }
         end
