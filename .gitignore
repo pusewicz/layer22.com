@@ -1,8 +1,6 @@
 _site
 /.playwright-mcp/
 vendor
-node_modules/
 /screenshot-*.png
 docs/resume/
 .superpowers/
-/tmp/

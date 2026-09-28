@@ -13,7 +13,7 @@ module Layer22
         end
 
         def view_template
-          nav(class: "menu browse by-#{slugify(@taxonomy)} text-center", aria_label: @taxonomy) do
+          nav(class: "menu browse by-#{slugify(@taxonomy)}", aria_label: @taxonomy) do
             strong(aria_hidden: "true") { "Jump to:" }
             @groups.each_key do |name|
               whitespace

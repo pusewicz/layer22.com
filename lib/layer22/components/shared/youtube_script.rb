@@ -17,9 +17,8 @@ module Layer22
             iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(link.dataset.youtubeId)}?autoplay=1`;
             iframe.title = link.getAttribute("aria-label");
             iframe.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
-            iframe.className = "absolute inset-0 w-full h-full border-0";
             const player = document.createElement("div");
-            player.className = "relative block aspect-video bg-black";
+            player.className = "youtube-card-player";
             player.append(iframe);
             link.replaceWith(player);
           });
