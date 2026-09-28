@@ -63,7 +63,7 @@ module Layer22
         end
 
         def description
-          @description || config.description
+          @description.to_s.empty? ? config.description : @description
         end
 
         def canonical_url

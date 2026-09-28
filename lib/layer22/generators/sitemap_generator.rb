@@ -46,6 +46,7 @@ module Layer22
         [
           *@site.posts.map { |post| [post.permalink, post.last_modified_at] },
           *@site.tils.map { |til| [til.permalink, til.last_modified_at] },
+          *@site.notes.map { |note| [note.permalink, note.last_modified_at] },
           ["/", @site.posts.last&.date],
           *@site.pages.select { |page| listed?(page) }.map { |page| [page.permalink, page.last_modified_at] },
           *ArchivesGenerator.new(@site).archives.map { |archive| [archive.url, nil] },

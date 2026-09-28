@@ -9,12 +9,15 @@ module Layer22
           "&family=JetBrains+Mono:wght@400;500&display=swap"
 
         # +layout+ and +title+ name the body classes the site's CSS keys off, as
-        # Jekyll's layout name and slugified page title did. +seo+ describes the
-        # page for search engines and link previews (see Shared::SeoHead).
-        def initialize(site:, layout:, title: nil, seo: {}, extra_css: nil)
+        # Jekyll's layout name and slugified page title did. +html_title+ names
+        # the page in <title> when that differs from +title+, as for untitled
+        # notes. +seo+ describes the page for search engines and link previews
+        # (see Shared::SeoHead).
+        def initialize(site:, layout:, title: nil, html_title: title, seo: {}, extra_css: nil)
           super(site:)
           @layout = layout
           @title = title
+          @html_title = html_title
           @seo = seo
           @extra_css = extra_css
         end
@@ -37,6 +40,8 @@ module Layer22
 
               link(type: "application/atom+xml", rel: "alternate", href: absolute_url("/feed.xml"), title: config.title)
               link(rel: "alternate", type: "application/rss+xml", title: config.title, href: absolute_url("/rss.xml"))
+              link(rel: "alternate", type: "application/rss+xml", title: "#{config.title} · Notes",
+                   href: absolute_url("/notes/feed.xml"))
 
               render Shared::SeoHead.new(site:, title: @title, **@seo)
 
@@ -58,7 +63,7 @@ module Layer22
           if @title == "Home"
             "#{config.title} · #{config.tagline}"
           else
-            "#{@title} · #{config.title}".strip
+            "#{@html_title} · #{config.title}".strip
           end
         end
       end

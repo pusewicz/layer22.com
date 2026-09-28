@@ -4,23 +4,37 @@ require "builder"
 
 module Layer22
   module Generators
-    # Writes the RSS 2.0 feed at /rss.xml, for readers that don't take Atom.
+    # Writes an RSS 2.0 feed: the posts at /rss.xml, for readers that don't take
+    # Atom, and the notes at /notes/feed.xml.
     class RssGenerator
       LIMIT = 10
       DESCRIPTION_LENGTH = 400
 
-      def initialize(site)
+      # A feed: where it lives, how it describes itself, and its items, oldest first.
+      Channel = Data.define(:path, :title, :description, :link, :items)
+
+      # Returns the site's RSS channels.
+      def self.channels(site)
+        config = site.config
+        [
+          Channel.new(path: "/rss.xml", title: config.title, description: config.description, link: "/",
+                      items: site.posts),
+          Channel.new(path: "/notes/feed.xml", title: "#{config.title} · Notes",
+                      description: "Short notes and links from #{config.author_name}", link: "/notes/", items: site.notes)
+        ]
+      end
+
+      def initialize(site, channel)
         @site = site
         @config = site.config
+        @channel = channel
       end
 
       def generate(output_dir: "_site")
-        dest = File.join(output_dir, "rss.xml")
-        File.write(dest, build_feed)
-        puts "Generated #{dest}"
+        @site.write_page(@channel.path, build_feed, output_dir:)
       end
 
-      # Returns the RSS feed of the latest posts as an XML string.
+      # Returns the feed as an XML string.
       def build_feed
         output = +""
         xml = Builder::XmlMarkup.new(target: output, indent: 2)
@@ -41,32 +55,48 @@ module Layer22
       def channel(xml)
         now = Time.now.rfc822
         editor = "#{@config.email} (#{@config.author_name})"
-        xml.title Rendering::Smartify.call(@config.title)
-        xml.link "#{@config.site_url}/"
-        xml.tag! "atom:link", href: "#{@config.site_url}/rss.xml", rel: "self", type: "application/rss+xml"
-        xml.description @config.description
+        xml.title Rendering::Smartify.call(@channel.title)
+        xml.link "#{@config.site_url}#{@channel.link}"
+        xml.tag! "atom:link", href: "#{@config.site_url}#{@channel.path}", rel: "self", type: "application/rss+xml"
+        xml.description @channel.description
         xml.language "en-US"
         xml.lastBuildDate now
         xml.pubDate now
         xml.managingEditor editor
         xml.webMaster editor
-        @site.posts.last(LIMIT).reverse_each { |post| item(xml, post) }
+        @channel.items.last(LIMIT).reverse_each { |item| item(xml, item) }
       end
 
-      def item(xml, post)
-        url = "#{@config.site_url}#{post.permalink}"
+      # Writes one item. Untitled items (notes) leave out <title>, and an item
+      # with a link gets its link card (or YouTube card) appended to its content.
+      def item(xml, item)
+        url = "#{@config.site_url}#{item.permalink}"
+        html = content_html(item)
         xml.item do
-          xml.title Rendering::Smartify.call(post.title)
+          xml.title Rendering::Smartify.call(item.title) unless item.title.to_s.empty?
           xml.link url
           xml.guid url, isPermaLink: "true"
-          xml.pubDate post.date.rfc822
+          xml.pubDate item.date.rfc822
           xml.tag! "dc:creator", @config.author_name
-          xml.description Feeds.truncate(Feeds.plain_text(post.body_html), DESCRIPTION_LENGTH)
+          xml.description Feeds.truncate(Feeds.plain_text(html), DESCRIPTION_LENGTH)
           xml.tag!("content:encoded") do
-            xml.cdata!(Feeds.cdata_safe(Feeds.absolutize(post.body_html.strip, site_url: @config.site_url)))
+            xml.cdata!(Feeds.cdata_safe(Feeds.absolutize(html, site_url: @config.site_url)))
           end
-          post.tags.each { |tag| xml.category tag }
+          item.tags.each { |tag| xml.category tag }
         end
+      end
+
+      def content_html(item)
+        html = item.body_html.strip
+        link = item.link if item.respond_to?(:link)
+        return html unless link
+
+        card = if link.youtube
+          Components::Shared::YoutubeCard.new(site: @site, link:, feed: true)
+        else
+          Components::Shared::LinkCard.new(site: @site, link:)
+        end
+        html + card.call
       end
     end
   end
