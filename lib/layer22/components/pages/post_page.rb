@@ -83,7 +83,7 @@ module Layer22
               div(class: "post-footer-rule")
               div(class: "post-footer-row") do
                 span(class: "post-modified") do
-                  time(datetime: @post.last_modified_at.xmlschema) { "Last modified #{format_date(@post.date)}" }
+                  time(datetime: @post.last_modified_at.xmlschema) { "Last modified #{format_date(@post.last_modified_at)}" }
                 end
                 a(href: "#{config.github["repository_url"]}/edit/#{config.github["branch"]}/#{@post.relative_path}") do
                   "Edit on GitHub"
