@@ -16,5 +16,7 @@ gem "builder", "~> 3.3"
 gem "logger", "~> 1.7"
 
 group :development, :test do
+  gem "minitest", "~> 6.0"
+  gem "minitest-mock", "~> 5.27"
   gem "standard", "~> 1.53", require: false
 end
