@@ -1,5 +1,0 @@
----
-layout: null
-sitemap: false
----
-{% include feed/rss.xml title=site.title description=site.description link="/" feed="/rss.xml" items=site.posts %}
