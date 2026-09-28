@@ -9,7 +9,7 @@ task :bun_install do
 end
 
 desc "Build the site for Cloudflare Pages"
-task build: [:bun_install] do
+task build: [:bun_install, :resume_freshness] do
   site = Layer22::Site.new
   site.build
 end
