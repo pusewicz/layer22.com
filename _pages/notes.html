@@ -1,0 +1,23 @@
+---
+layout: default
+title: Notes
+permalink: /notes/
+---
+
+<div class="w-full bg-[#F5F3F0]">
+  <div class="h-feed max-w-[1080px] mx-auto px-6 pt-12 pb-8">
+    <div class="max-w-[640px]">
+      <div class="flex items-baseline justify-between border-b border-[#C8C4BE] pb-3">
+        <h1 class="p-name font-display text-[40px] font-bold tracking-[-0.02em] text-[#0F0E0D] leading-[1.15] m-0">Notes</h1>
+        <a href="{{ '/notes/feed.xml' | relative_url }}" class="text-[14px] text-[#C00000] underline hover:text-[#8A0000]">RSS</a>
+      </div>
+      {% assign notes = site.notes | reverse %}
+      <div class="divide-y divide-[#E2DFDB]">
+        {% for note in notes %}
+        {% include note/entry.html note=note body=note.content %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% include note/youtube-script.html %}

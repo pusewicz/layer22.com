@@ -84,6 +84,9 @@ collections:
   til:
     output: true
     permalink: /til/:year/:month/:day/:title/
+  notes:
+    output: true
+    permalink: /notes/:year/:month/:day/:title/
 
 social:
   name: Piotr Usewicz
@@ -104,6 +107,14 @@ defaults:
       type: "posts"
     values:
       layout: "post"
+      custom_css:
+        - syntax.css
+  - scope:
+      path: ""
+      type: "notes"
+    values:
+      layout: "note"
+      title: ""
       custom_css:
         - syntax.css
 
@@ -171,6 +182,7 @@ exclude:
   - tailwind.config.js
   - tailwind.input.css
   - TODO
+  - rakelib
 #   - .sass-cache/
 #   - .jekyll-cache/
 #   - gemfiles/

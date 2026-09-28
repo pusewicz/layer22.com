@@ -1,0 +1,15 @@
+{%- assign note = include.note -%}
+{%- assign body = include.body | strip -%}
+<article class="h-entry py-8">
+  <a class="u-url no-underline" href="{{ note.url | relative_url }}"><time class="dt-published font-display text-[13px] tracking-[0.06em] uppercase text-[#9B9895] hover:text-[#6B6968]" datetime="{{ note.date | date_to_xmlschema }}">{{ note.date | date: "%b %-d, %Y &middot; %H:%M" }}</time></a>
+  <div class="e-content mt-3">
+    {%- if body != "" %}
+    <div class="note-body">{{ body }}</div>
+    {%- endif %}
+    {%- if note.link.youtube %}
+    {% include note/youtube.html link=note.link %}
+    {%- elsif note.link %}
+    {% include note/link-card.html link=note.link %}
+    {%- endif %}
+  </div>
+</article>

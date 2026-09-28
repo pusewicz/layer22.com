@@ -1,0 +1,20 @@
+{%- comment -%}
+YouTube video for `include.link`, which has the video's `youtube` id. Shows
+YouTube's own thumbnail with a play button; note/youtube-script.html swaps in
+the youtube-nocookie player on click. Without JavaScript, or with
+`include.feed`, it is a plain link to the video.
+{%- endcomment -%}
+{%- assign link = include.link -%}
+{%- assign watch_url = "https://www.youtube.com/watch?v=" | append: link.youtube -%}
+<div class="mt-4 max-w-[640px] overflow-hidden rounded-lg border border-[#D4D0CB] bg-white/50">
+  <a href="{{ watch_url }}"{% unless include.feed %} data-youtube-id="{{ link.youtube | escape }}" aria-label="Play {{ link.title | default: 'video' | escape }}"{% endunless %} class="relative block aspect-video bg-black">
+    <img src="https://i.ytimg.com/vi/{{ link.youtube | escape }}/hqdefault.jpg" alt="" width="480" height="360" class="block w-full h-full object-cover m-0">
+    {%- unless include.feed %}
+    <svg aria-hidden="true" width="68" height="48" viewBox="0 0 68 48" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"><path d="M66.5 7.7c-.8-2.9-2.5-5.4-5.4-6.2C55.8.1 34 0 34 0S12.2.1 6.9 1.5C4 2.3 2.3 4.8 1.5 7.7 0 13 0 24 0 24s0 11 1.5 16.3c.8 2.9 2.5 5.4 5.4 6.2C12.2 47.9 34 48 34 48s21.8-.1 27.1-1.5c2.9-.8 4.6-3.3 5.4-6.2C68 35 68 24 68 24s0-11-1.5-16.3z" fill="#f00"/><path d="M45 24 27 14v20z" fill="#fff"/></svg>
+    {%- endunless %}
+  </a>
+  <a href="{{ watch_url }}" class="block px-4 py-3 no-underline">
+    <div class="font-display text-[13px] font-medium tracking-[0.06em] uppercase text-[#9B9895]">{{ link.site | default: "YouTube" | escape }}{% if link.author %} &middot; {{ link.author | escape }}{% endif %}</div>
+    <div class="mt-1 text-[17px] leading-6 text-[#0F0E0D]">{{ link.title | default: watch_url | escape }}</div>
+  </a>
+</div>

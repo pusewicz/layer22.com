@@ -6,6 +6,8 @@
     <title>
       {% if page.title == "Home" %}
         {{ site.title }}{% if site.tagline %} &middot; {{ site.tagline }}{% endif %}
+      {% elsif page.collection == "notes" %}
+        {% include note/title.html note=page %} &middot; {{ site.title }}
       {% else %}
         {{ page.title }} &middot; {{ site.title }}
       {% endif %}
@@ -25,12 +27,13 @@
     {% endif %}
     {% feed_meta %}
     <link rel="alternate" type="application/rss+xml" title="{{ site.title | smartify | xml_escape }}" href="{{ '/rss.xml' | absolute_url }}" />
+    <link rel="alternate" type="application/rss+xml" title="{{ site.title | smartify | xml_escape }} &middot; Notes" href="{{ '/notes/feed.xml' | absolute_url }}" />
     {% seo title=false %}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ "assets/css/tailwind.css" | relative_url }}" />
   </head>
-  <body data-instant-intensity="viewport" class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %} {{ page.title | slugify }}">
+  <body data-instant-intensity="viewport" class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %} {% if page.title != blank %}{{ page.title | slugify }}{% endif %}">
     {% include nav.html %}
     <main>{{ content }}</main>
     <footer class="w-full bg-[#F5F3F0] pt-12 pb-10">
