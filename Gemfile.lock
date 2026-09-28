@@ -5,7 +5,6 @@ GEM
     commonmarker (2.6.3-aarch64-linux)
     commonmarker (2.6.3-arm64-darwin)
     commonmarker (2.6.3-x86_64-linux)
-    fastimage (2.4.0)
     logger (1.7.0)
     nio4r (2.7.5)
     nokogiri (1.19.4-aarch64-linux-gnu)
@@ -39,7 +38,6 @@ PLATFORMS
 DEPENDENCIES
   builder (~> 3.3)
   commonmarker (~> 2.0)
-  fastimage (~> 2.3)
   logger (~> 1.7)
   nokogiri (~> 1.16)
   phlex (~> 2.0)
@@ -51,4 +49,4 @@ DEPENDENCIES
   zeitwerk (~> 2.7)
 
 BUNDLED WITH
-   4.0.8
+  4.0.8
