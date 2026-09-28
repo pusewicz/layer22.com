@@ -16,6 +16,8 @@ module Notes
   class Error < StandardError; end
 
   URL = %r{https?://[^\s<>]+}
+  LEADING_URL = /\A(#{URL})(?=\s|\z)/
+  TRAILING_URL = /(?<=\A|\s)(#{URL})\z/
   TRAILING_PUNCTUATION = /[.,;:!?'"]+\z/
   USER_AGENT = "Mozilla/5.0 (compatible; layer22-notes/1.0; +https://layer22.com/notes/)"
   YOUTUBE_HOSTS = %w[youtube.com www.youtube.com m.youtube.com music.youtube.com youtu.be].freeze
@@ -52,7 +54,7 @@ module Notes
     raise Error, "#{path} already exists" if File.exist?(path)
 
     front_matter = "date: #{time.strftime("%Y-%m-%d %H:%M:%S %z")}\n"
-    front_matter += { "link" => fetch_link(url, basename) }.to_yaml.delete_prefix("---\n") if url
+    front_matter += {"link" => fetch_link(url, basename)}.to_yaml.delete_prefix("---\n") if url
 
     FileUtils.mkdir_p(File.dirname(path))
     File.write(path, "---\n#{front_matter}---\n\n#{autolink(body)}\n")
@@ -65,9 +67,9 @@ module Notes
   # @return [Array(String, String), Array(String, nil)] the remaining body and the URL, if any
   def split_link(text)
     text = text.strip
-    if (match = text.match(/\A(#{URL})(?=\s|\z)/))
+    if (match = text.match(LEADING_URL))
       [match.post_match.strip, trim_url(match[1]).first]
-    elsif (match = text.match(/(?<=\A|\s)(#{URL})\z/))
+    elsif (match = text.match(TRAILING_URL))
       [match.pre_match.strip, trim_url(match[1]).first]
     else
       [text, nil]
@@ -115,7 +117,7 @@ module Notes
   # @param basename [String] file name, without extension, for the thumbnail
   # @return [Hash{String => String}] url, site, and when available youtube, title, author, description and image
   def fetch_link(url, basename)
-    link = { "url" => url, "site" => URI(url).host.delete_prefix("www.") }
+    link = {"url" => url, "site" => URI(url).host.delete_prefix("www.")}
     video = youtube_id(url)
     link["youtube"] = video if video
     metadata = youtube?(url) ? youtube_metadata(url) : page_metadata(url)
@@ -124,9 +126,9 @@ module Notes
     image = download_image(image_urls, basename) if image_urls&.any?
     link["image"] = image if image
     link
-  rescue StandardError => e
+  rescue => e
     warn "Could not fetch #{url}: #{e.message}"
-    link || { "url" => url }
+    link || {"url" => url}
   end
 
   # @param url [String]
@@ -213,7 +215,7 @@ module Notes
       FileUtils.mkdir_p(File.dirname(path))
       File.binwrite(path, body)
       return "/#{path}"
-    rescue StandardError => e
+    rescue => e
       "#{url}: #{e.message}"
     end
     warn "Could not download a thumbnail:", *failures.map { |failure| "  #{failure}" }

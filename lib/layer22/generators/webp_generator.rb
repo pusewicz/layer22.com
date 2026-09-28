@@ -2,6 +2,8 @@
 
 module Layer22
   module Generators
+    # Converts the images in the configured directories to WebP with cwebp,
+    # skipping any that already have a WebP file in the output.
     class WebpGenerator
       FORMATS = %w[.jpeg .jpg .png .tiff].freeze
 
@@ -11,32 +13,35 @@ module Layer22
       end
 
       def generate(output_dir: "_site")
-        img_dirs = @config.webp["img_dirs"] || ["images"]
         quality = @config.webp["quality"] || 75
 
-        img_dirs.each do |dir|
+        conversions(output_dir).each do |path, dest_path|
+          next if File.exist?(dest_path)
+
+          FileUtils.mkdir_p(File.dirname(dest_path))
+          case system("cwebp", "-quiet", "-q", quality.to_s, path, "-o", dest_path, err: File::NULL)
+          when true then puts "WebP: #{path} → #{dest_path}"
+          when false then warn "WebP: cwebp could not convert #{path}"
+          else
+            warn "WebP: cwebp not found, skipping WebP conversion"
+            break
+          end
+        end
+      end
+
+      private
+
+      # Returns [source, destination] for every convertible image, in order.
+      def conversions(output_dir)
+        (@config.webp["img_dirs"] || ["images"]).flat_map do |dir|
           source_dir = dir.sub(%r{^/}, "")
-          dest_dir = File.join(output_dir, dir.sub(%r{^/}, ""))
+          next [] unless Dir.exist?(source_dir)
 
-          next unless Dir.exist?(source_dir)
-
-          Dir.glob("#{source_dir}/**/*").each do |path|
+          Dir.glob("#{source_dir}/**/*").filter_map do |path|
             next unless FORMATS.include?(File.extname(path).downcase)
 
             relative = path.sub("#{source_dir}/", "")
-            dest_path = File.join(dest_dir, File.dirname(relative),
-                                  "#{File.basename(relative, ".*")}.webp")
-
-            next if File.exist?(dest_path)
-
-            FileUtils.mkdir_p(File.dirname(dest_path))
-            case system("cwebp", "-quiet", "-q", quality.to_s, path, "-o", dest_path, err: File::NULL)
-            when true then puts "WebP: #{path} → #{dest_path}"
-            when false then warn "WebP: cwebp could not convert #{path}"
-            else
-              warn "WebP: cwebp not found, skipping WebP conversion"
-              return
-            end
+            [path, File.join(output_dir, source_dir, File.dirname(relative), "#{File.basename(relative, ".*")}.webp")]
           end
         end
       end

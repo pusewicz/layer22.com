@@ -7,7 +7,7 @@ require "yaml"
 module Layer22
   module Content
     module FrontMatter
-      DELIMITER = /^---\s*$/.freeze
+      DELIMITER = /^---\s*$/
 
       def self.read(path)
         File.read(path, encoding: "UTF-8")

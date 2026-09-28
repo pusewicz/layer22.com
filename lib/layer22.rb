@@ -9,9 +9,7 @@ module Layer22
       @logger ||= Logger.new($stdout, formatter: method(:log_formatter))
     end
 
-    def logger=(logger)
-      @logger = logger
-    end
+    attr_writer :logger
 
     def loader
       @loader ||= begin
