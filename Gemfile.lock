@@ -177,7 +177,8 @@ DEPENDENCIES
   jekyll-sitemap (~> 1.4)
   jekyll-webp
   jemoji (~> 0.13.0)
+  nokogiri
   rake (~> 13.4)
 
 BUNDLED WITH
-   4.0.8
+  4.0.8

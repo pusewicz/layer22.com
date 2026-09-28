@@ -1,0 +1,11 @@
+{%- comment -%}
+Notes are untitled, so derive a plain-text title for <title> from the
+rendered body, falling back to the link title and then the date.
+{%- endcomment -%}
+{%- assign note = include.note -%}
+{%- assign summary = note.content | strip_html | normalize_whitespace | truncatewords: 10, "…" -%}
+{%- if note.title != blank -%}{{ note.title | escape }}
+{%- elsif summary != blank -%}{{ summary }}
+{%- elsif note.link.title -%}{{ note.link.title | escape }}
+{%- else -%}Note from {{ note.date | date: "%b %-d, %Y" }}
+{%- endif -%}
