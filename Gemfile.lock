@@ -2,9 +2,9 @@ GEM
   remote: https://rubygems.org/
   specs:
     builder (3.3.0)
-    commonmarker (2.6.3-aarch64-linux)
-    commonmarker (2.6.3-arm64-darwin)
-    commonmarker (2.6.3-x86_64-linux)
+    commonmarker (2.10.0-aarch64-linux)
+    commonmarker (2.10.0-arm64-darwin)
+    commonmarker (2.10.0-x86_64-linux)
     fastimage (2.4.1)
     logger (1.7.0)
     nio4r (2.7.5)
@@ -18,18 +18,20 @@ GEM
       refract (~> 1.0)
       zeitwerk (~> 2.7)
     prism (1.9.0)
-    puma (7.2.1)
+    puma (8.0.2)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (3.2.6)
+    rack (3.2.7)
     rackup (2.3.1)
       rack (>= 3)
     rake (13.4.2)
     refract (1.1.0)
       prism
       zeitwerk
-    rouge (4.7.0)
-    zeitwerk (2.7.5)
+    rouge (5.1.0)
+      strscan (~> 3.1)
+    strscan (3.1.8)
+    zeitwerk (2.8.3)
 
 PLATFORMS
   aarch64-linux
@@ -43,12 +45,12 @@ DEPENDENCIES
   logger (~> 1.7)
   nokogiri (~> 1.16)
   phlex (~> 2.0)
-  puma (~> 7.2)
+  puma (~> 8.0)
   rack (~> 3.2)
   rackup (~> 2.0)
   rake (~> 13.4)
-  rouge (~> 4.0)
+  rouge (~> 5.0)
   zeitwerk (~> 2.7)
 
 BUNDLED WITH
-  4.0.8
+  4.0.21
