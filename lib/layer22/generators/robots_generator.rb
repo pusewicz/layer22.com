@@ -11,6 +11,9 @@ module Layer22
       def generate(output_dir: "_site")
         content = <<~ROBOTS
           User-agent: *
+          Disallow: /cdn-cgi/
+
+          User-agent: *
           Allow: /
 
           Sitemap: #{@config.site_url}/sitemap.xml

@@ -1,8 +1,0 @@
----
-layout: null
-sitemap: false
-permalink: /notes/feed.xml
----
-{%- assign title = site.title | append: " · Notes" -%}
-{%- assign notes = site.notes | reverse -%}
-{% include feed/rss.xml title=title description="Short notes and links from Piotr Usewicz" link="/notes/" feed="/notes/feed.xml" items=notes %}

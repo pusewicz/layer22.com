@@ -25,8 +25,16 @@ module Layer22
         "#{minutes} min read"
       end
 
+      def slugify(string)
+        Slug.slugify(string)
+      end
+
+      def absolute_url(path)
+        "#{config.site_url}#{path}"
+      end
+
       def tag_url(tag)
-        "/tags/#{tag.downcase.gsub(/\s+/, "-")}/"
+        "/tags/#{slugify(tag)}"
       end
     end
   end

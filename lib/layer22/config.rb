@@ -56,9 +56,5 @@ module Layer22
     def github_url
       "https://github.com/#{github_username}"
     end
-
-    def twitter_url
-      "https://x.com/#{twitter["username"]}"
-    end
   end
 end

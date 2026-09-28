@@ -9,7 +9,7 @@ module Layer22
       end
 
       def self.load_base
-        File.read("styles/base.css")
+        [File.read("styles/normalize.css"), File.read("styles/base.css")].join("\n")
       end
 
       def self.load_tailwind(path: "tmp/tailwind.css")

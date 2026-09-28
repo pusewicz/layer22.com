@@ -3,24 +3,44 @@
 module Layer22
   module Components
     module Pages
+      # A page from _pages/ rendered in the "page" layout. A page whose front
+      # matter names a +listing+ (tils, tags or categories) gets that listing
+      # appended after its own content.
       class StaticPage < Base
+        LISTINGS = %w[tils tags categories].freeze
+
         def initialize(site:, page:)
           super(site:)
           @page = page
+          @listing = page.front_matter["listing"]
+          return if @listing.nil? || LISTINGS.include?(@listing)
+
+          raise ArgumentError, "#{page.relative_path}: unknown listing #{@listing.inspect}"
         end
 
         def view_template
           render Layouts::ApplicationLayout.new(
             site:,
-            page_title: @page.title,
-            url: @page.permalink
+            layout: "page",
+            title: @page.title,
+            seo: {url: @page.permalink, description: @page.description, modified_at: @page.last_modified_at}
           ) do
-            article(class: "max-w-[720px] mx-auto px-6 py-16 page") do
-              h1(class: "text-[42px] font-black tracking-[-0.03em] text-[#0F0E0D] leading-[1.1] mb-8 font-display uppercase") do
-                @page.title
+            article(class: "page w-full bg-[#F5F3F0]") do
+              div(class: "max-w-[1080px] mx-auto px-6 pt-12 pb-8 page-body") do
+                raw safe(@page.body_html)
+                listing
               end
-              div(class: "prose-content") { raw safe(@page.body_html) }
             end
+          end
+        end
+
+        private
+
+        def listing
+          case @listing
+          when "tils" then render Shared::PostList.new(site:, posts: site.tils, list_class: "posts")
+          when "tags" then render Shared::TaxonomyListing.new(site:, taxonomy: "Tags", groups: site.tags)
+          when "categories" then render Shared::TaxonomyListing.new(site:, taxonomy: "Categories", groups: site.categories)
           end
         end
       end

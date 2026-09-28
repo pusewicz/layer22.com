@@ -2,16 +2,7 @@
 layout: page
 title: Today I Learned
 permalink: /til
+listing: tils
 ---
 
 <h1>Archive of TILs</h1>
-
-{% assign tils = site["til"] %}
-
-<ul class="posts">
-  {% for post in tils %}
-    <li>
-      {% include post/post-list-item.html %}
-    </li>
-  {% endfor %}
-</ul>

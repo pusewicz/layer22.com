@@ -14,38 +14,24 @@ module Layer22
         def view_template
           render Layouts::ApplicationLayout.new(
             site:,
-            page_title: "TIL: #{@til.title}",
-            url: @til.permalink,
-            type: "article"
+            layout: "til",
+            title: @til.title,
+            seo: {
+              kind: :article,
+              url: @til.permalink,
+              description: @til.description,
+              published_at: @til.date,
+              modified_at: @til.last_modified_at
+            },
+            extra_css: site.syntax_css
           ) do
-            article(class: "max-w-[720px] mx-auto px-6 py-16") do
-              hgroup(class: "mb-12") do
-                p(class: "text-[13px] font-medium tracking-[0.12em] uppercase text-[#6B6968] mb-3 font-display") { "Today I Learned" }
-                h1(class: "text-[42px] font-black tracking-[-0.03em] text-[#0F0E0D] leading-[1.1] mb-6 font-display uppercase") do
-                  @til.title
-                end
-                render Shared::PostMeta.new(site:, post: @til)
-              end
-              div(class: "prose-content") { raw safe(@til.body_html) }
-            end
-            if @prev_til || @next_til
-              nav(class: "max-w-[720px] mx-auto px-6 py-8 flex justify-between border-t border-[#C8C4BE]") do
-                if @prev_til
-                  a(href: @prev_til.permalink, rel: "prev",
-                    class: "text-[14px] text-[#6B6968] hover:text-[#0F0E0D] font-display") do
-                    plain "← TIL: "
-                    plain @prev_til.title
-                  end
-                else
-                  span
-                end
-                if @next_til
-                  a(href: @next_til.permalink, rel: "next",
-                    class: "text-[14px] text-[#6B6968] hover:text-[#0F0E0D] font-display") do
-                    plain "TIL: "
-                    plain @next_til.title
-                    plain " →"
-                  end
+            article(class: "til") do
+              hgroup { h1 { "TIL: #{@til.title}" } }
+              section { raw safe(@til.body_html) }
+              nav(style: "display: flex; justify-content: space-between;") do
+                if @prev_til || @next_til
+                  div { a(href: @prev_til.permalink, rel: "prev") { "← TIL: #{@prev_til.title}" } if @prev_til }
+                  div { a(href: @next_til.permalink, rel: "next") { "TIL: #{@next_til.title} →" } if @next_til }
                 end
               end
             end
