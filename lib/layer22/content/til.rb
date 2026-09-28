@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "date"
-
 module Layer22
   module Content
     TIL = Data.define(
@@ -24,7 +22,7 @@ module Layer22
 
         body_html = Rendering::Markdown.render(body)
         filename = File.basename(path, ".*")
-        date = parse_date(front_matter["date"]) || parse_date_from_filename(filename)
+        date = Timestamp.parse(front_matter["date"] || filename[/\A\d{4}-\d{2}-\d{2}/], source: path) || Time.now
 
         slug = filename.gsub(/^\d{4}-\d{2}-\d{2}-/, "")
         year = date.strftime("%Y")
@@ -42,19 +40,7 @@ module Layer22
         )
       end
 
-      def self.parse_date(value)
-        case value
-        when Date, Time then value.to_date
-        when String then Date.parse(value) rescue nil
-        end
-      end
-
-      def self.parse_date_from_filename(filename)
-        match = filename.match(/^(\d{4}-\d{2}-\d{2})/)
-        match ? Date.parse(match[1]) : Date.today
-      end
-
-      private_class_method :load_from_file, :parse_date, :parse_date_from_filename
+      private_class_method :load_from_file
 
       def url
         permalink

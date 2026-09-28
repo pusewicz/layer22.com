@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "date"
-
 module Layer22
   module Content
     Post = Data.define(
@@ -32,7 +30,7 @@ module Layer22
         reading_time = (words / words_per_minute).ceil
 
         slug = front_matter["slug"] || File.basename(path, ".*").gsub(/^\d{4}-\d{2}-\d{2}-/, "")
-        date = parse_date(front_matter["date"])
+        date = Timestamp.parse(front_matter["date"] || File.basename(path)[/\A\d{4}-\d{2}-\d{2}/], source: path)
 
         new(
           title: front_matter["title"] || slug,
@@ -44,20 +42,13 @@ module Layer22
           reading_time: reading_time,
           redirect_from: Array(front_matter["redirect_from"]),
           meta_keywords: front_matter["meta_keywords"],
-          last_modified_at: parse_date(front_matter["last_modified_at"]) || date,
+          last_modified_at: Timestamp.parse(front_matter["last_modified_at"], source: path) || date,
           relative_path: path,
           permalink: "/#{slug}"
         )
       end
 
-      def self.parse_date(value)
-        case value
-        when Date, Time then value.to_date
-        when String then Date.parse(value) rescue nil
-        end
-      end
-
-      private_class_method :load_from_file, :parse_date
+      private_class_method :load_from_file
 
       def url
         permalink

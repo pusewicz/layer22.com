@@ -6,8 +6,11 @@ module Layer22
   class Site
     attr_reader :config, :posts, :tils, :pages, :css, :syntax_css
 
+    # Loads the site config and, like Jekyll, makes its timezone the process-wide
+    # local zone so every date renders in it.
     def initialize(config_path: "site.yml")
       @config = Config.load(config_path)
+      ENV["TZ"] = @config.timezone
     end
 
     def load_content(words_per_minute: nil)
