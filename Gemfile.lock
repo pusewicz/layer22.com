@@ -28,7 +28,9 @@ GEM
     refract (1.1.0)
       prism
       zeitwerk
-    rouge (4.7.0)
+    rouge (5.1.0)
+      strscan (~> 3.1)
+    strscan (3.1.8)
     zeitwerk (2.7.5)
 
 PLATFORMS
@@ -47,7 +49,7 @@ DEPENDENCIES
   rack (~> 3.2)
   rackup (~> 2.0)
   rake (~> 13.4)
-  rouge (~> 4.0)
+  rouge (~> 5.1)
   zeitwerk (~> 2.7)
 
 BUNDLED WITH
