@@ -31,7 +31,7 @@ module Layer22
           xml.link href: "#{@config.site_url}/feed.xml", rel: "self"
           xml.link href: @config.site_url
           xml.id @config.site_url
-          xml.updated posts.first&.date&.strftime("%Y-%m-%dT00:00:00Z") || Time.now.utc.iso8601
+          xml.updated posts.first&.date&.xmlschema || Time.now.utc.iso8601
           xml.author do
             xml.name @config.author_name
             xml.email @config.email
@@ -42,8 +42,8 @@ module Layer22
               xml.title post.title
               xml.link rel: "alternate", href: "#{@config.site_url}#{post.permalink}"
               xml.id "#{@config.site_url}#{post.permalink}"
-              xml.published post.date.strftime("%Y-%m-%dT00:00:00Z")
-              xml.updated post.last_modified_at.strftime("%Y-%m-%dT00:00:00Z")
+              xml.published post.date.xmlschema
+              xml.updated post.last_modified_at.xmlschema
               xml.author { xml.name @config.author_name }
               xml.content(post.body_html, type: "html")
               post.tags.each { |tag| xml.category(term: tag) }
