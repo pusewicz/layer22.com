@@ -25,8 +25,8 @@ module Layer22
             title: @page.title,
             seo: {url: @page.permalink, description: @page.description, modified_at: @page.last_modified_at}
           ) do
-            article(class: "page w-full bg-[#F5F3F0]") do
-              div(class: "max-w-[1080px] mx-auto px-6 pt-12 pb-8 page-body") do
+            article(class: "page") do
+              div(class: "site-width page-content page-body") do
                 raw safe(@page.body_html)
                 listing
               end

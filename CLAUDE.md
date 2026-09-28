@@ -5,7 +5,7 @@ Personal blog/portfolio for Piotr Usewicz — a static site built by a small cus
 ## Build Commands
 
 ```bash
-rake dev                          # Dev server on http://localhost:4000, re-renders each request, Tailwind in watch mode
+rake dev                          # Dev server on http://localhost:4000, re-renders each request
 rake build                        # Production build into _site/ (includes WebP conversion)
 rake build:fast                   # Build without WebP conversion
 rake til["Title of TIL"]          # Create a new TIL post
@@ -14,7 +14,7 @@ rake note                         # Create a note from the clipboard (or: pbpast
 rake resume:pdf                   # Regenerate piotr-usewicz-resume.pdf with headless Chrome (local only)
 ```
 
-Ruby version comes from `.ruby-version`; JS dependencies (Tailwind) are installed with `bun`.
+Ruby version comes from `.ruby-version`. There is no JavaScript toolchain.
 
 ## Architecture
 
@@ -36,9 +36,11 @@ Ruby version comes from `.ruby-version`; JS dependencies (Tailwind) are installe
 - `rakelib/` — Rake tasks (Rake loads them automatically)
 
 ### Styles
-- `styles/normalize.css`, `styles/base.css` — Site CSS (oklch palette, post and page typography), inlined into every page
-- `styles/tailwind.input.css` + `tailwind.config.js` — Tailwind utilities, scanned from `lib/**/*.rb` and content; compiled to `tmp/tailwind.css`
+Plain CSS, no build step. `Rendering::CSS` concatenates the site stylesheets and every page inlines them.
+- `styles/normalize.css`, `styles/base.css` — Palette custom properties, elements, and the typography of rendered Markdown (post, page and note bodies)
+- `styles/components.css` — One section per Phlex component, plus shared layout and type classes (`site-width`, `page-content`, `reading-width`, `page-title`, `display-label`, `display-caption`, `section-kicker`)
 - `styles/syntax.css` — Rouge highlighting, added on post and note pages
+- `<body>` carries each page's slugified title (and each tag archive its tag) as a class, as Jekyll did, so name component classes with more than one word to keep them from colliding
 
 ## Deployment
 

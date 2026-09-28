@@ -12,13 +12,13 @@ module Layer22
         end
 
         def view_template
-          article(class: "h-entry py-8") do
-            a(class: "u-url no-underline", href: @note.permalink) do
-              time(class: "dt-published font-display text-[13px] tracking-[0.06em] uppercase text-[#9B9895] " \
-                          "hover:text-[#6B6968]",
-                   datetime: @note.date.xmlschema) { format_date(@note.date, "%b %-d, %Y · %H:%M") }
+          article(class: "h-entry note-entry") do
+            a(class: "u-url note-entry-permalink", href: @note.permalink) do
+              time(class: "dt-published display-caption", datetime: @note.date.xmlschema) do
+                format_date(@note.date, "%b %-d, %Y · %H:%M")
+              end
             end
-            div(class: "e-content mt-3") do
+            div(class: "e-content note-entry-content") do
               div(class: "note-body") { raw safe(@note.body_html) } unless @note.body_html.empty?
               if @note.link&.youtube
                 render YoutubeCard.new(site:, link: @note.link)
