@@ -45,6 +45,8 @@ module Layer22
       case path
       when "/feed.xml"
         [200, {"content-type" => "application/atom+xml"}, [Generators::FeedGenerator.new(site).build_feed]]
+      when "/rss.xml"
+        [200, {"content-type" => "application/rss+xml"}, [Generators::RssGenerator.new(site).build_feed]]
       when "/sitemap.xml"
         [200, {"content-type" => "application/xml"}, [Generators::SitemapGenerator.new(site).build_sitemap]]
       end

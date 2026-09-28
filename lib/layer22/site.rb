@@ -124,6 +124,7 @@ module Layer22
 
     def run_generators(output_dir, skip_webp:)
       Generators::FeedGenerator.new(self).generate(output_dir:)
+      Generators::RssGenerator.new(self).generate(output_dir:)
       Generators::SitemapGenerator.new(self).generate(output_dir:)
       Generators::WebfingerGenerator.new(self).generate(output_dir:)
       Generators::RobotsGenerator.new(self).generate(output_dir:)
