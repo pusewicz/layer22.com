@@ -42,12 +42,12 @@ module Layer22
     end
 
     def feed(site, path)
-      case path
-      when "/feed.xml"
+      rss = Generators::RssGenerator.channels(site).find { |channel| channel.path == path }
+      if rss
+        [200, {"content-type" => "application/rss+xml"}, [Generators::RssGenerator.new(site, rss).build_feed]]
+      elsif path == "/feed.xml"
         [200, {"content-type" => "application/atom+xml"}, [Generators::FeedGenerator.new(site).build_feed]]
-      when "/rss.xml"
-        [200, {"content-type" => "application/rss+xml"}, [Generators::RssGenerator.new(site).build_feed]]
-      when "/sitemap.xml"
+      elsif path == "/sitemap.xml"
         [200, {"content-type" => "application/xml"}, [Generators::SitemapGenerator.new(site).build_sitemap]]
       end
     end

@@ -6,7 +6,9 @@ module Layer22
       class Nav < Base
         LINK_CLASS = "font-display text-[14px] font-medium tracking-[0.12em] uppercase text-[#6B6968] " \
           "hover:text-[#0F0E0D] no-underline"
-        LINKS = {"Writing" => "/archive", "About" => "/about", "Resume" => "/resume", "Contact" => "/contact"}.freeze
+        LINKS = {
+          "Writing" => "/archive", "Notes" => "/notes/", "About" => "/about", "Resume" => "/resume", "Contact" => "/contact"
+        }.freeze
 
         def view_template
           nav(class: "w-full bg-[#F5F3F0]") do

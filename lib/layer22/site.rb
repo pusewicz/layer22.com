@@ -11,7 +11,7 @@ module Layer22
     ].freeze
     STATIC_DIRS = %w[images assets/fonts].freeze
 
-    attr_reader :config, :posts, :tils, :pages, :data, :css, :syntax_css
+    attr_reader :config, :posts, :tils, :notes, :pages, :data, :css, :syntax_css
 
     # Loads the site config and, like Jekyll, makes its timezone the process-wide
     # local zone so every date renders in it.
@@ -24,6 +24,7 @@ module Layer22
       wpm = words_per_minute || @config.words_per_minute
       @posts = Content::Post.load_all("_posts", words_per_minute: wpm).sort_by(&:date)
       @tils = Content::TIL.load_all("_til", words_per_minute: wpm).sort_by(&:date)
+      @notes = Content::Note.load_all("_notes").sort_by(&:date)
       @pages = Content::Page.load_all("_pages")
       @data = Content::DataFiles.load_all("_data")
       self
@@ -71,6 +72,11 @@ module Layer22
         next_til = @tils[i + 1]
         add.call(til.permalink, -> { Components::Pages::TilPage.new(site: self, til:, prev_til:, next_til:).call })
       end
+      @notes.each_with_index do |note, i|
+        prev_note = @notes[i - 1] if i > 0
+        next_note = @notes[i + 1]
+        add.call(note.permalink, -> { Components::Pages::NotePage.new(site: self, note:, prev_note:, next_note:).call })
+      end
       @pages.each { |page| add.call(page.permalink, -> { render_page(page) }) }
       add.call("/404.html", -> { Components::Pages::NotFoundPage.new(site: self).call })
       Generators::ArchivesGenerator.new(self).archives.each { |archive| add.call(archive.url, -> { archive.page.call }) }
@@ -110,6 +116,7 @@ module Layer22
       case page.layout
       when "page" then Components::Pages::StaticPage.new(site: self, page:).call
       when "archive" then Components::Pages::ArchivePage.new(site: self, page:).call
+      when "notes" then Components::Pages::NotesPage.new(site: self, page:).call
       when "resume" then Components::Pages::ResumePage.new(site: self, page:).call
       when "resume_print" then Components::Pages::ResumePrintPage.new(resume: data.fetch("resume")).call
       else raise ArgumentError, "#{page.relative_path}: unknown layout #{page.layout.inspect}"
@@ -124,7 +131,7 @@ module Layer22
 
     def run_generators(output_dir, skip_webp:)
       Generators::FeedGenerator.new(self).generate(output_dir:)
-      Generators::RssGenerator.new(self).generate(output_dir:)
+      Generators::RssGenerator.channels(self).each { |channel| Generators::RssGenerator.new(self, channel).generate(output_dir:) }
       Generators::SitemapGenerator.new(self).generate(output_dir:)
       Generators::WebfingerGenerator.new(self).generate(output_dir:)
       Generators::RobotsGenerator.new(self).generate(output_dir:)
