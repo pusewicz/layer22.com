@@ -92,7 +92,7 @@ module Layer22
               div(class: "w-full h-[1px] bg-[#D4D0CB] mb-3")
               div(class: "flex items-center justify-between") do
                 span(class: "text-[13px] text-[#7A7774]") do
-                  time(datetime: @post.last_modified_at.xmlschema) { "Last modified #{format_date(@post.date)}" }
+                  time(datetime: @post.last_modified_at.xmlschema) { "Last modified #{format_date(@post.last_modified_at)}" }
                 end
                 a(href: "#{config.github["repository_url"]}/edit/#{config.github["branch"]}/#{@post.relative_path}",
                   class: "text-[13px] text-[#C00000] underline hover:text-[#8A0000]") { "Edit on GitHub" }
