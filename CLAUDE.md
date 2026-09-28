@@ -42,8 +42,9 @@ Ruby version comes from `.ruby-version`; JS dependencies (Tailwind) are installe
 
 ## Deployment
 
-- **Platform**: Cloudflare Pages
-- **Build command**: `rake build` (outputs to `_site/`)
+- **Platform**: Cloudflare Pages project `www-layer22-com`, deployed by GitHub Actions (`.github/workflows/deploy.yml`), not Cloudflare's Git builds (those compile Ruby from source on every build unless `.ruby-version` matches their preinstalled default)
+- **Build command**: `rake build` (outputs to `_site/`), then `wrangler pages deploy _site`; `main` deploys to production, other branches to previews
+- **Secrets**: `CLOUDFLARE_API_TOKEN` (Account › Cloudflare Pages › Edit) and `CLOUDFLARE_ACCOUNT_ID`, set for both Actions and Dependabot
 - **Redirects**: `_redirects` is copied to `_site/`
 
 ## Key Conventions
