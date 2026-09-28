@@ -23,12 +23,6 @@ module Layer22
         @site
       end
 
-      def write_page(path, html)
-        FileUtils.mkdir_p(File.dirname(path))
-        File.write(path, html)
-        puts "Generated #{path}"
-      end
-
       def generate_all_archive(output_dir)
         posts = site.posts.sort_by(&:date).reverse
         html = Components::Pages::ArchivePage.new(
@@ -37,31 +31,33 @@ module Layer22
           posts:,
           url: "/archive"
         ).call
-        write_page("#{output_dir}/archive/index.html", html)
+        site.write_page("/archive", html, output_dir:)
       end
 
       def generate_year_archives(output_dir)
         site.posts.group_by { |p| p.date.year }.each do |year, posts|
+          url = "/#{year}/"
           html = Components::Pages::ArchivePage.new(
             site:,
             title: year.to_s,
             posts: posts.sort_by(&:date).reverse,
-            url: "/#{year}/"
+            url:
           ).call
-          write_page("#{output_dir}/#{year}/index.html", html)
+          site.write_page(url, html, output_dir:)
         end
       end
 
       def generate_month_archives(output_dir)
         site.posts.group_by { |p| [p.date.year, p.date.month] }.each do |(year, month), posts|
           month_str = format("%02d", month)
+          url = "/#{year}/#{month_str}/"
           html = Components::Pages::ArchivePage.new(
             site:,
             title: "#{year}/#{month_str}",
             posts: posts.sort_by(&:date).reverse,
-            url: "/#{year}/#{month_str}/"
+            url:
           ).call
-          write_page("#{output_dir}/#{year}/#{month_str}/index.html", html)
+          site.write_page(url, html, output_dir:)
         end
       end
 
@@ -69,13 +65,14 @@ module Layer22
         site.posts.group_by { |p| [p.date.year, p.date.month, p.date.day] }.each do |(year, month, day), posts|
           month_str = format("%02d", month)
           day_str = format("%02d", day)
+          url = "/#{year}/#{month_str}/#{day_str}/"
           html = Components::Pages::ArchivePage.new(
             site:,
             title: "#{year}/#{month_str}/#{day_str}",
             posts: posts.sort_by(&:date).reverse,
-            url: "/#{year}/#{month_str}/#{day_str}/"
+            url:
           ).call
-          write_page("#{output_dir}/#{year}/#{month_str}/#{day_str}/index.html", html)
+          site.write_page(url, html, output_dir:)
         end
       end
 
@@ -92,7 +89,7 @@ module Layer22
             tag:,
             posts: posts.sort_by(&:date).reverse
           ).call
-          write_page("#{output_dir}/tags/#{slug}/index.html", html)
+          site.write_page("/tags/#{slug}/", html, output_dir:)
         end
       end
 
@@ -102,7 +99,7 @@ module Layer22
         sorted_tags = tags.sort_by { |tag, posts| [-posts.size, tag] }
 
         html = Components::Pages::TagsIndexPage.new(site:, tags: sorted_tags).call
-        write_page("#{output_dir}/tags/index.html", html)
+        site.write_page("/tags", html, output_dir:)
       end
 
       def generate_til_listing(output_dir)
@@ -113,7 +110,7 @@ module Layer22
           posts: tils,
           url: "/til"
         ).call
-        write_page("#{output_dir}/til/index.html", html)
+        site.write_page("/til", html, output_dir:)
       end
     end
   end
