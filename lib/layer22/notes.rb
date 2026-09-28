@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "cgi"
+require "cgi/escape"
 require "fileutils"
 require "json"
 require "net/http"
@@ -20,6 +20,8 @@ module Layer22
     LEADING_URL = /\A(#{URL})(?=\s|\z)/
     TRAILING_URL = /(?<=\A|\s)(#{URL})\z/
     TRAILING_PUNCTUATION = /[.,;:!?'"]+\z/
+    TEXT_TYPE = %r{\Atext/|[/+](?:xml|json)\z}
+    CLOSING_BRACKETS = {")" => "(", "]" => "["}.freeze
     USER_AGENT = "Mozilla/5.0 (compatible; layer22-notes/1.0; +https://layer22.com/notes/)"
     YOUTUBE_HOSTS = %w[youtube.com www.youtube.com m.youtube.com music.youtube.com youtu.be].freeze
     YOUTUBE_ID = /\A[\w-]{11}\z/
@@ -32,10 +34,11 @@ module Layer22
     }.freeze
     MAX_IMAGE_BYTES = 5 * 1024 * 1024
     DESCRIPTION_LENGTH = 200
-    # Skips fenced code blocks and code spans so only bare URLs in prose match.
+    # Skips fenced code blocks, code spans and Markdown links, so only bare URLs in prose match.
     AUTOLINK = /
       ^(?<fence>`{3,}|~{3,})[^\n]*\n.*?^\k<fence>[ \t]*$
       | (?<ticks>`+).+?\k<ticks>
+      | !?\[[^\]\n]*\]\([^)\n]*\)
       | (?<!\]\(|[<"'=])(?<url>#{URL})
     /mx
 
@@ -91,7 +94,8 @@ module Layer22
       end
     end
 
-    # Separates punctuation that ends a sentence from the URL it follows.
+    # Separates punctuation that ends a sentence, and any closing bracket its
+    # URL did not open, from the URL.
     #
     # @param url [String]
     # @return [Array(String, String)] the URL and the trailing punctuation
@@ -101,8 +105,8 @@ module Layer22
         if (match = url.match(TRAILING_PUNCTUATION))
           rest.prepend(match[0])
           url = match.pre_match
-        elsif url.end_with?(")") && url.count(")") > url.count("(")
-          rest.prepend(")")
+        elsif (opener = CLOSING_BRACKETS[url[-1]]) && url.count(url[-1]) > url.count(opener)
+          rest.prepend(url[-1])
           url = url.chop
         else
           return [url, rest]
@@ -135,7 +139,7 @@ module Layer22
     # @param url [String]
     # @return [Boolean]
     def youtube?(url)
-      YOUTUBE_HOSTS.include?(URI(url).host)
+      YOUTUBE_HOSTS.include?(URI(url).host&.downcase)
     end
 
     # Returns the video id of a YouTube watch, youtu.be, Shorts, live or embed URL.
@@ -146,7 +150,7 @@ module Layer22
       return unless youtube?(url)
 
       uri = URI(url)
-      id = if uri.host == "youtu.be"
+      id = if uri.host.downcase == "youtu.be"
         uri.path.split("/")[1]
       elsif uri.path == "/watch"
         URI.decode_www_form(uri.query.to_s).assoc("v")&.last
@@ -236,7 +240,7 @@ module Layer22
 
       case response
       when Net::HTTPSuccess
-        [response.body, url, response.content_type]
+        [decode(response), url, response.content_type]
       when Net::HTTPRedirection
         raise "too many redirects" if redirects.zero?
 
@@ -244,6 +248,24 @@ module Layer22
       else
         raise "#{response.code} #{response.message}"
       end
+    end
+
+    # Returns the body of +response+ tagged with the charset the server declared,
+    # so text is parsed as that and not as bytes, with any bytes invalid in it
+    # replaced. Images and other binary bodies are left as they are, whatever
+    # charset the server labels them with.
+    #
+    # @param response [Net::HTTPResponse]
+    # @return [String, nil]
+    def decode(response)
+      body = response.body
+      charset = response.type_params["charset"]
+      return body unless body && charset && response.content_type.to_s.match?(TEXT_TYPE)
+
+      text = body.dup.force_encoding(charset.delete('"'))
+      text.valid_encoding? ? text : text.scrub
+    rescue ArgumentError
+      body
     end
 
     # Shortens +text+ to at most +length+ characters, breaking between words.

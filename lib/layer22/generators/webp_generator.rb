@@ -40,8 +40,7 @@ module Layer22
           Dir.glob("#{source_dir}/**/*").filter_map do |path|
             next unless FORMATS.include?(File.extname(path).downcase)
 
-            relative = path.sub("#{source_dir}/", "")
-            [path, File.join(output_dir, source_dir, File.dirname(relative), "#{File.basename(relative, ".*")}.webp")]
+            [path, File.join(output_dir, "#{path.delete_suffix(File.extname(path))}.webp")]
           end
         end
       end

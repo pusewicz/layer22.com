@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "phlex"
+
 module Layer22
   module Components
     module Shared
