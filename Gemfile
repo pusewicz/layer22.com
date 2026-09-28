@@ -14,3 +14,7 @@ gem "zeitwerk", "~> 2.7"
 gem "rake", "~> 13.4"
 gem "builder", "~> 3.3"
 gem "logger", "~> 1.7"
+
+group :development, :test do
+  gem "standard", "~> 1.53", require: false
+end

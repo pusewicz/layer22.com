@@ -16,7 +16,7 @@ module Layer22
           a(href: @link.url, class: "link-card") do
             if wide_image?
               img(src: @link.image, alt: "", width: @link.image_width.to_s, height: @link.image_height.to_s,
-                  class: "link-card-image", loading: "lazy")
+                class: "link-card-image", loading: "lazy")
             end
             div(class: "link-card-body") do
               div(class: "link-card-text") do

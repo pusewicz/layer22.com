@@ -48,7 +48,7 @@ module Layer22
           xml.published post.date.xmlschema
           xml.updated post.last_modified_at.xmlschema
           xml.id url
-          xml.content(type: "html", "xml:base" => url) { xml.cdata!(Feeds.cdata_safe(post.body_html.strip)) }
+          xml.content("type" => "html", "xml:base" => url) { xml.cdata!(Feeds.cdata_safe(post.body_html.strip)) }
           author(xml)
           (post.categories + post.tags).each { |term| xml.category term: }
           xml.summary(type: "html") { xml.cdata!(Feeds.cdata_safe(post.description)) } unless post.description.empty?

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "nokogiri"
-require "set"
 
 module Layer22
   module Generators

@@ -13,7 +13,7 @@ module Layer22
         # +kind+ is :home for the front page, :article for posts and TILs, and
         # :page for everything else.
         def initialize(site:, title: nil, description: nil, url: "/", kind: :page,
-                       published_at: nil, modified_at: nil)
+          published_at: nil, modified_at: nil)
           super(site:)
           raise ArgumentError, "unknown SEO kind #{kind.inspect}" unless KINDS.include?(kind)
 
