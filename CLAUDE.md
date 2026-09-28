@@ -12,6 +12,9 @@ rake til["Title of TIL"]          # Create a new TIL post
 rake post["Title"]                # Create a new blog post
 rake note                         # Create a note from the clipboard (or: pbpaste | rake note)
 rake resume:pdf                   # Regenerate piotr-usewicz-resume.pdf with headless Chrome (local only)
+rake test                         # Run the Minitest suite (TEST=test/layer22/slug_test.rb for one file)
+rake standard                     # Lint with Standard (rake standard:fix to autofix)
+rake                              # Lint, then test
 ```
 
 Ruby version comes from `.ruby-version`. There is no JavaScript toolchain.
@@ -52,7 +55,8 @@ Plain CSS, no build step. `Rendering::CSS` concatenates the site stylesheets and
 ## Key Conventions
 
 - **TIL posts**: stored in `_til/:year/:month/YYYY-MM-DD-title.md`, use `rake til["Title"]` to scaffold
-- **Notes**: `rake note` (`rakelib/notes.rake`) moves a URL at the start or end of the pasted text into `link:` front matter and fetches its title/site/thumbnail once, saving the image to `images/notes/`; builds never hit the network. YouTube videos instead keep only their id (`link.youtube`) and show YouTube's thumbnail, which swaps in the youtube-nocookie player on click. Notes are untitled, so their `<title>` comes from their first words
+- **Notes**: `rake note` (`Layer22::Notes` in `lib/layer22/notes.rb`) moves a URL at the start or end of the pasted text into `link:` front matter and fetches its title/site/thumbnail once, saving the image to `images/notes/`; builds never hit the network. YouTube videos instead keep only their id (`link.youtube`) and show YouTube's thumbnail, which swaps in the youtube-nocookie player on click. Notes are untitled, so their `<title>` comes from their first words
 - **Resume**: edit `_data/resume.yml`, then run `rake resume:pdf` and commit the PDF; `rake build` warns when the PDF is stale
 - **WebP conversion**: images in the `webp.img_dirs` of `site.yml`
-- No test suite
+- **Tests**: Minitest, in `test/`, mirroring `lib/`. `test/test_helper.rb` gives `Layer22::TestCase` with `fixture_site` (a small site in `test/fixtures/site/`, deliberately full of edge cases) and `with_site` (a throwaway site in a temp dir). Timezone is pinned to Europe/Madrid; loaders read the working directory, so use `in_fixture_site`/`with_site` (never nested) and don't run tests in parallel. Warnings from project files fail the run (`test/warning_filter.rb`). `test/smoke_test.rb` renders the real content
+- **CI**: `.github/workflows/test.yml` runs `rake standard` and `rake test` on every push, independently of the deploy workflow
