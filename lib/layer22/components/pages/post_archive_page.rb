@@ -19,16 +19,10 @@ module Layer22
 
         def view_template
           render Layouts::ApplicationLayout.new(site:, layout: @layout, title: @title, seo: {url: @url}) do
-            div(class: "w-full bg-[#F5F3F0]") do
-              div(class: "max-w-[1080px] mx-auto px-6 pt-12 pb-8") do
-                a(href: "/archive",
-                  class: "font-display text-[14px] font-medium tracking-[0.12em] uppercase text-[#C00000] no-underline " \
-                         "hover:text-[#8A0000] mb-4 block") { "Writing" }
-                h1(class: "font-display text-[40px] font-bold tracking-[-0.02em] text-[#0F0E0D] leading-[1.15] m-0") do
-                  @heading
-                end
-                div(class: "mt-8") { @posts.each { |post| entry(post) } }
-              end
+            div(class: "site-width page-content") do
+              a(href: "/archive", class: "section-kicker") { "Writing" }
+              h1(class: "page-title") { @heading }
+              div(class: "post-group") { @posts.each { |post| entry(post) } }
             end
           end
         end
@@ -36,13 +30,9 @@ module Layer22
         private
 
         def entry(post)
-          div(class: "flex items-baseline justify-between py-[10px] border-b border-[#E2DFDB]") do
-            a(href: post.permalink, class: "text-[17px] text-[#0F0E0D] no-underline hover:text-[#C00000] leading-6") do
-              post.title
-            end
-            span(class: "font-display text-[13px] tracking-[0.06em] uppercase text-[#9B9895] shrink-0 ml-10") do
-              format_date(post.date, @date_format)
-            end
+          div(class: "post-row") do
+            a(href: post.permalink) { post.title }
+            span(class: "display-caption post-row-date") { format_date(post.date, @date_format) }
           end
         end
       end

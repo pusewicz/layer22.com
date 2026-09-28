@@ -3,25 +3,16 @@
 module Layer22
   module Rendering
     module CSS
-      def self.compile_tailwind(input: "styles/tailwind.input.css", output: "tmp/tailwind.css")
-        FileUtils.mkdir_p("tmp")
-        system("bunx tailwindcss -i #{input} -o #{output} --minify", exception: true)
+      SITE_STYLESHEETS = %w[styles/normalize.css styles/base.css styles/components.css].freeze
+
+      # Returns the stylesheets every page inlines, in cascade order.
+      def self.combined_css
+        SITE_STYLESHEETS.map { |path| File.read(path) }.join("\n")
       end
 
-      def self.load_base
-        [File.read("styles/normalize.css"), File.read("styles/base.css")].join("\n")
-      end
-
-      def self.load_tailwind(path: "tmp/tailwind.css")
-        File.exist?(path) ? File.read(path) : ""
-      end
-
+      # Returns the Rouge highlighting styles, which only pages with code inline.
       def self.load_syntax
         File.read("styles/syntax.css")
-      end
-
-      def self.combined_css
-        [load_base, load_tailwind].join("\n")
       end
     end
   end

@@ -20,7 +20,7 @@ Ruby and Rails have been my primary tools for almost twenty years. On the fronte
 
 ## This site
 
-Built with [Jekyll](https://jekyllrb.com), styled with [Tailwind CSS](https://tailwindcss.com), typeset in [Barlow Condensed](https://fonts.google.com/specimen/Barlow+Condensed). Deployed to [Cloudflare Pages](https://pages.cloudflare.com). Source on [GitHub](https://github.com/pusewicz/layer22.com).
+Built with a small Ruby generator and [Phlex](https://www.phlex.fun), styled with plain CSS, typeset in [Barlow Condensed](https://fonts.google.com/specimen/Barlow+Condensed). Deployed to [Cloudflare Pages](https://pages.cloudflare.com). Source on [GitHub](https://github.com/pusewicz/layer22.com).
 
 ## Elsewhere
 

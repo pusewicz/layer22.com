@@ -28,7 +28,7 @@ module Layer22
             article(class: "til") do
               hgroup { h1 { "TIL: #{@til.title}" } }
               section { raw safe(@til.body_html) }
-              nav(style: "display: flex; justify-content: space-between;") do
+              nav(class: "prev-next") do
                 if @prev_til || @next_til
                   div { a(href: @prev_til.permalink, rel: "prev") { "← TIL: #{@prev_til.title}" } if @prev_til }
                   div { a(href: @next_til.permalink, rel: "next") { "TIL: #{@next_til.title} →" } if @next_til }

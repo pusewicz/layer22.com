@@ -25,12 +25,8 @@ jobs:
         with:
           bundler-cache: true
 
-      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
-
       - name: Install cwebp
         run: sudo apt-get update && sudo apt-get install -y --no-install-recommends webp
-
-      - run: bun install --frozen-lockfile
 
       - run: bundle exec rake build
 
