@@ -3,12 +3,14 @@
 ## Development
 
 ```
-bundle exec jekyll serve
+rake dev
 ```
+
+Serves the site on http://localhost:4000, rendering each page from source on request.
 
 ### Build and Deploy
 
-Using Cloudflare. The `build` task will build and copy the `_redirects` fils to the `_site` output directory, so that the Cloudflare build system can pick this up.
+Using Cloudflare Pages. The `build` task renders the site into `_site/` and copies the `_redirects` file there, so that the Cloudflare build system can pick it up.
 
 ```
 rake build

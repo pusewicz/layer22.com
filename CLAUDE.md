@@ -1,60 +1,52 @@
 # layer22.com
 
-Personal blog/portfolio for Piotr Usewicz — Jekyll 4.4.1 static site deployed to Cloudflare Pages.
+Personal blog/portfolio for Piotr Usewicz — a static site built by a small custom Ruby generator (Phlex components, Zeitwerk) and deployed to Cloudflare Pages. It replaced Jekyll and reproduces the Jekyll site's output, so keep that parity in mind when changing markup or URLs.
 
 ## Build Commands
 
 ```bash
-bundle exec jekyll serve          # Local dev server
-rake build                        # Production build (runs jekyll + copies _redirects)
+rake dev                          # Dev server on http://localhost:4000, re-renders each request, Tailwind in watch mode
+rake build                        # Production build into _site/ (includes WebP conversion)
+rake build:fast                   # Build without WebP conversion
 rake til["Title of TIL"]          # Create a new TIL post
-rake note                         # Create a note from the clipboard (or: pbpaste | rake note)
+rake post["Title"]                # Create a new blog post
+rake resume:pdf                   # Regenerate piotr-usewicz-resume.pdf with headless Chrome (local only)
 ```
+
+Ruby version comes from `.ruby-version`; JS dependencies (Tailwind) are installed with `bun`.
 
 ## Architecture
 
-### Collections & Content
-- `_posts/` — Blog posts (layout: `post`, permalink: `/:slug`)
-- `_til/` — Today I Learned collection (layout: `til`, permalink: `/til/:year/:month/:day/:title/`)
-- `_notes/` — Short untitled notes, Tumblr-style (layout: `note`, permalink: `/notes/:year/:month/:day/:title/`), streamed at `/notes/` with an RSS feed at `/notes/feed.xml`
-- `_pages/` — Static pages (included via `include: [_pages]` in config)
+### Content
+- `_posts/` — Blog posts, served at `/:slug`
+- `_til/` — Today I Learned, served at `/til/:year/:month/:day/:title/`
+- `_pages/` — Pages; front matter `layout` picks the component (`page`, `archive`, `resume`, `resume_print`), `redirect_to` makes a redirect, and `listing: tils|tags|categories` appends a listing
+- `_data/*.yml` — Data files (`resume.yml` feeds the resume pages)
+- `site.yml` — Site config (title, author, social links, `timezone`, WebP settings)
 
-### Layouts (layout inheritance)
-- `default.html` — Base layout (HTML shell, head, nav, footer)
-- `home.html`, `page.html`, `post.html`, `til.html`, `note.html` — extend `default.html`
-- `archive.html`, `archive_year.html`, `archive_month.html`, `archive_day.html`, `archive_tags.html` — archive pages via `jekyll-archives`
-
-### Includes
-- `_includes/post/` — Post partials: `post-date.html`, `post-meta.html`, `post-tags.html`, `post-categories.html`, `post-list-item.html`, `word-count.html`
-- `_includes/archives/` — Archive partials: `by-taxonomy.html`, `by-year.html`
-- `_includes/note/` — Note partials: `entry.html` (stream item and permalink body), `link-card.html` (link preview), `youtube.html` + `youtube-script.html` (click-to-play YouTube video), `title.html` (derived `<title>` for untitled notes)
-- `_includes/feed/rss.xml` — RSS 2.0 channel shared by `rss.xml` (posts) and the notes feed
-- `_includes/nav.html`, `scripts.html`
+### Code (`lib/layer22/`)
+- `site.rb` — Loads content and holds the route table (`Site#routes`, URL → renderer) used by both the build and the dev server
+- `output_path.rb` — Maps URLs to files like Jekyll: `/about` → `about.html`, `/2015/` → `2015/index.html`
+- `content/` — Post, TIL and Page models, front matter parsing, dates (local time in `site.yml`'s timezone), git-based last-modified times, data files
+- `components/` — Phlex views: `layouts/application_layout.rb` (HTML shell), `pages/` (one per page type), `shared/` (nav, footer, SEO head, post lists)
+- `rendering/` — Markdown (commonmarker, configured to emit kramdown's markup), CSS assembly, word counts, excerpts, smart punctuation
+- `generators/` — Files outside the route table: Atom `feed.xml`, RSS `rss.xml`, `sitemap.xml`, `robots.txt`, WebFinger, WebP images; `archives_generator.rb` supplies the tag and date archive pages
+- `rakelib/` — Rake tasks (Rake loads them automatically)
 
 ### Styles
-- `_sass/` — SCSS with **oklch color system** (`_base.scss` defines brand/background/link palettes)
-- `_sass/_all.scss` — Main entry point importing all partials
-- `_sass/_prose.scss` — `text` mixin for body copy shared by posts, pages and notes
-- No JS build pipeline; assets are in `assets/`
-
-### Jekyll Plugins (11 active)
-`jekyll-archives`, `jekyll-feed`, `jekyll-image-size`, `jekyll-last-modified-at`, `jekyll-loading-lazy`, `jekyll-redirect-from`, `jekyll-seo-tag`, `jekyll-sitemap`, `jekyll-webp`, `jekyll/mastodon_webfinger`, `jemoji`
-
-Also in Gemfile: `jekyll-compose` (not in `_config.yml` plugins list).
+- `styles/normalize.css`, `styles/base.css` — Site CSS (oklch palette, post and page typography), inlined into every page
+- `styles/tailwind.input.css` + `tailwind.config.js` — Tailwind utilities, scanned from `lib/**/*.rb` and content; compiled to `tmp/tailwind.css`
+- `styles/syntax.css` — Rouge highlighting, added on post pages
 
 ## Deployment
 
 - **Platform**: Cloudflare Pages
 - **Build command**: `rake build` (outputs to `_site/`)
-- **Redirects**: `_redirects` file is copied to `_site/` by `rake redirects`
+- **Redirects**: `_redirects` is copied to `_site/`
 
 ## Key Conventions
 
-- **Front matter defaults** in `_config.yml`: posts get `layout: post` and `custom_css: [syntax.css]` automatically
-- **Permalink**: `/:slug` for posts (slug defined in front matter)
-- **Notes**: `rake note` (`rakelib/notes.rake`) moves a URL at the start or end of the pasted text into `link:` front matter and fetches its title/site/thumbnail once, saving the image to `images/notes/`; builds never hit the network. YouTube videos instead keep only their id (`link.youtube`) and show YouTube's thumbnail with a click-to-play youtube-nocookie player (`_includes/note/youtube.html`). Notes default to `title: ""`, so they render without a heading
 - **TIL posts**: stored in `_til/:year/:month/YYYY-MM-DD-title.md`, use `rake til["Title"]` to scaffold
-- **SASS style**: compressed in production, sourcemap in development
-- **WebP conversion**: automatic for images in `/images`, `/images/articles`, `/images/articles/mov2gif`
-- No JavaScript build pipeline, no test suite
-- `timezone: Europe/Madrid` in config
+- **Resume**: edit `_data/resume.yml`, then run `rake resume:pdf` and commit the PDF; `rake build` warns when the PDF is stale
+- **WebP conversion**: images in the `webp.img_dirs` of `site.yml`
+- No test suite
