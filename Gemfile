@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 
 gem "phlex", "~> 2.0"
-gem "commonmarker", "~> 2.0"
+gem "commonmarker", "~> 2.10"
 gem "rouge", "~> 4.0"
 gem "nokogiri", "~> 1.16"
 gem "fastimage", "~> 2.3"

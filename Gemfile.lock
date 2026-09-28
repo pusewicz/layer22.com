@@ -2,9 +2,9 @@ GEM
   remote: https://rubygems.org/
   specs:
     builder (3.3.0)
-    commonmarker (2.6.3-aarch64-linux)
-    commonmarker (2.6.3-arm64-darwin)
-    commonmarker (2.6.3-x86_64-linux)
+    commonmarker (2.10.0-aarch64-linux)
+    commonmarker (2.10.0-arm64-darwin)
+    commonmarker (2.10.0-x86_64-linux)
     fastimage (2.4.1)
     logger (1.7.0)
     nio4r (2.7.5)
@@ -38,7 +38,7 @@ PLATFORMS
 
 DEPENDENCIES
   builder (~> 3.3)
-  commonmarker (~> 2.0)
+  commonmarker (~> 2.10)
   fastimage (~> 2.3)
   logger (~> 1.7)
   nokogiri (~> 1.16)
