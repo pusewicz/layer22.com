@@ -30,10 +30,8 @@ module Layer22
       self
     end
 
-    def compile_css(tailwind: true)
-      if tailwind
-        Rendering::CSS.compile_tailwind
-      end
+    # Reads the stylesheets that pages inline.
+    def load_css
       @css = Rendering::CSS.combined_css
       @syntax_css = Rendering::CSS.load_syntax
       self
@@ -43,7 +41,7 @@ module Layer22
       FileUtils.mkdir_p(output_dir)
 
       load_content
-      compile_css
+      load_css
 
       routes.each { |url, render| write_page(url, render.call, output_dir:) }
       run_generators(output_dir, skip_webp:)

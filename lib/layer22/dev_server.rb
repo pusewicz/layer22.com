@@ -34,11 +34,7 @@ module Layer22
     private
 
     def build_site
-      site = Site.new(config_path: @config_path)
-      site.load_content
-      site.instance_variable_set(:@css, Rendering::CSS.combined_css)
-      site.instance_variable_set(:@syntax_css, Rendering::CSS.load_syntax)
-      site
+      Site.new(config_path: @config_path).load_content.load_css
     end
 
     def feed(site, path)
