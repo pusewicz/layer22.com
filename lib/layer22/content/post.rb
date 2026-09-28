@@ -7,11 +7,12 @@ module Layer22
       :slug,
       :date,
       :tags,
+      :categories,
+      :description,
       :body_html,
       :word_count,
       :reading_time,
       :redirect_from,
-      :meta_keywords,
       :last_modified_at,
       :relative_path,
       :permalink
@@ -26,37 +27,30 @@ module Layer22
         front_matter, body = FrontMatter.parse(content)
 
         body_html = Rendering::Markdown.render(body)
-        words = body.split.size
+        words = Rendering::WordCount.count(body_html)
         reading_time = (words / words_per_minute).ceil
 
         slug = front_matter["slug"] || File.basename(path, ".*").gsub(/^\d{4}-\d{2}-\d{2}-/, "")
         date = Timestamp.parse(front_matter["date"] || File.basename(path)[/\A\d{4}-\d{2}-\d{2}/], source: path)
 
         new(
-          title: front_matter["title"] || slug,
+          title: FrontMatter.text(front_matter["title"]) || slug,
           slug: slug,
           date: date,
-          tags: Array(front_matter["tags"]),
+          tags: FrontMatter.list(front_matter, "tag", "tags"),
+          categories: FrontMatter.list(front_matter, "category", "categories"),
+          description: front_matter["description"] || Rendering::Excerpt.from_markdown(body),
           body_html: body_html,
           word_count: words,
           reading_time: reading_time,
           redirect_from: Array(front_matter["redirect_from"]),
-          meta_keywords: front_matter["meta_keywords"],
-          last_modified_at: Timestamp.parse(front_matter["last_modified_at"], source: path) || date,
+          last_modified_at: Timestamp.parse(front_matter["last_modified_at"], source: path) || LastModified.for(path),
           relative_path: path,
           permalink: "/#{slug}"
         )
       end
 
       private_class_method :load_from_file
-
-      def url
-        permalink
-      end
-
-      def formatted_date(fmt = "%B %-d, %Y")
-        date.strftime(fmt)
-      end
     end
   end
 end

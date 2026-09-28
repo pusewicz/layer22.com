@@ -12,16 +12,14 @@ module Layer22
       end
 
       def generate(output_dir: "_site")
-        posts = @site.posts.sort_by(&:date).reverse.first(20)
-        xml = build_feed(posts)
         dest = File.join(output_dir, "feed.xml")
-        File.write(dest, xml)
+        File.write(dest, build_feed)
         puts "Generated #{dest}"
       end
 
-      private
-
-      def build_feed(posts)
+      # Returns the Atom feed of the latest posts as an XML string.
+      def build_feed
+        posts = @site.posts.reverse.first(20)
         output = +""
         xml = Builder::XmlMarkup.new(target: output, indent: 2)
         xml.instruct! :xml, version: "1.0", encoding: "UTF-8"

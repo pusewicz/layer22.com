@@ -3,30 +3,25 @@
 module Layer22
   module Components
     module Shared
+      # A post's date and reading time, as shown in post listings. Dates from the
+      # current year leave the year out.
       class PostMeta < Base
-        def initialize(site:, post:, show_tags: true)
+        def initialize(site:, post:)
           super(site:)
           @post = post
-          @show_tags = show_tags
         end
 
         def view_template
-          div(class: "flex flex-wrap items-center gap-4 text-[13px] text-[#6B6968] font-display tracking-[0.04em]") do
-            time(datetime: @post.date.iso8601, class: "uppercase") do
-              format_date(@post.date, "%B %-d, %Y")
+          small(class: "post-meta") do
+            time(class: "post-date", datetime: @post.date.xmlschema,
+                 aria_label: "posted on #{format_date(@post.date, "%A, %e of %B, %Y")}") do
+              format_date(@post.date, (@post.date.year == Time.now.year) ? "%b %-d" : "%b %-d %Y")
             end
-            if @post.respond_to?(:reading_time) && @post.reading_time
-              span { "·" }
-              span { reading_time_label(@post.reading_time) }
-            end
-            if @show_tags && @post.tags.any?
-              span { "·" }
-              div(class: "flex flex-wrap gap-2") do
-                @post.tags.each do |tag|
-                  a(href: tag_url(tag),
-                    class: "text-[#6B6968] hover:text-[#0F0E0D] no-underline uppercase tracking-widest text-[11px]") { tag }
-                end
-              end
+            whitespace
+            span(aria_hidden: "true") { " · " }
+            span(class: "word-count", title: "#{@post.word_count} words",
+                 aria_label: "#{@post.reading_time} minutes to read this post") do
+              reading_time_label(@post.reading_time)
             end
           end
         end

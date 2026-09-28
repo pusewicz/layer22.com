@@ -4,20 +4,28 @@ module Layer22
   module Components
     module Pages
       class NotFoundPage < Base
+        STYLES = <<~CSS
+          .container {
+            margin: 10px auto;
+            max-width: 600px;
+            text-align: center;
+          }
+          h1 {
+            margin: 30px 0;
+            font-size: 4em;
+            line-height: 1;
+            letter-spacing: -1px;
+          }
+        CSS
+
         def view_template
-          render Layouts::ApplicationLayout.new(site:, page_title: "404 — Page Not Found") do
-            div(class: "max-w-[720px] mx-auto px-6 py-32 text-center font-display") do
-              p(class: "text-[13px] font-medium tracking-[0.12em] uppercase text-[#6B6968] mb-4") { "404" }
-              h1(class: "text-[72px] font-black tracking-[-0.03em] uppercase text-[#0F0E0D] leading-none mb-8") do
-                "Page Not Found"
-              end
-              p(class: "text-[20px] font-light text-[#6B6968] mb-12") do
-                "The page you're looking for doesn't exist or has moved."
-              end
-              a(href: "/",
-                class: "inline-flex items-center justify-center py-[18px] px-12 bg-[#C00000] text-[16px] font-bold tracking-[0.12em] uppercase text-[#E8E6E3] no-underline hover:opacity-90") do
-                "Go Home"
-              end
+          render Layouts::ApplicationLayout.new(site:, layout: "default", seo: {url: "/404.html"}) do
+            style(type: "text/css", media: "screen") { raw safe(STYLES) }
+            div(class: "container") do
+              h1 { "404" }
+              p { strong { "Page not found :(" } }
+              p { "The requested page could not be found." }
+              p { a(href: "/") { "Go Back Home" } }
             end
           end
         end

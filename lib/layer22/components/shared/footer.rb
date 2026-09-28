@@ -4,37 +4,25 @@ module Layer22
   module Components
     module Shared
       class Footer < Base
+        LINK_CLASS = "text-[13px] text-[#6B6968] hover:text-[#0F0E0D] no-underline"
+
         def view_template
-          footer(class: "w-full bg-[#ECEAE6] pt-16 pb-12") do
+          footer(class: "w-full bg-[#F5F3F0] pt-12 pb-10") do
             div(class: "max-w-[1080px] mx-auto px-6") do
-              div(class: "flex items-center justify-between mb-8") do
-                span(class: "font-display text-[16px] font-semibold tracking-[0.08em] uppercase") do
-                  span(class: "text-[#0F0E0D]") { "layer" }
-                  span(class: "text-[#C00000]") { "|" }
-                  span(class: "text-[#0F0E0D]") { "twenty" }
-                  span(class: "text-[#C00000]") { "|" }
-                  span(class: "text-[#0F0E0D]") { "two" }
-                end
-                div(class: "flex gap-8") do
-                  a(href: config.github_url,
-                    class: "font-display text-[14px] font-medium tracking-widest uppercase text-[#6B6968] hover:text-[#0F0E0D] no-underline") { "GitHub" }
-                  a(href: config.mastodon_url, rel: "me",
-                    class: "font-display text-[14px] font-medium tracking-widest uppercase text-[#6B6968] hover:text-[#0F0E0D] no-underline") { "Mastodon" }
-                  a(href: "https://bsky.app/profile/pusewicz.bsky.social",
-                    class: "font-display text-[14px] font-medium tracking-widest uppercase text-[#6B6968] hover:text-[#0F0E0D] no-underline") { "Bluesky" }
-                  a(href: config.twitter_url,
-                    class: "font-display text-[14px] font-medium tracking-widest uppercase text-[#6B6968] hover:text-[#0F0E0D] no-underline") { "X" }
+              div(class: "w-full h-[1px] bg-[#D4D0CB] mb-4")
+              div(class: "flex flex-col gap-3 md:flex-row md:items-center md:justify-between") do
+                p(class: "text-[13px] text-[#9B9895] m-0") { "© #{Time.now.year} #{config.author_name}" }
+                div(class: "flex gap-6") do
+                  a(rel: "me", href: config.github_url, class: LINK_CLASS) { "GitHub" }
+                  a(rel: "me", href: config.mastodon_url, class: LINK_CLASS) { "Mastodon" }
+                  a(rel: "me atproto", href: "https://bsky.app/profile/pusewicz.bsky.social", class: LINK_CLASS) { "Bluesky" }
+                  a(href: "https://iheartrss.com/", class: LINK_CLASS) { "I ♥ RSS" }
                 end
               end
-              div(class: "w-full h-px bg-[#C8C4BE] mb-8")
-              div(class: "flex items-center justify-between") do
-                p(class: "font-display text-[14px] tracking-[0.06em] text-[#6B6968] m-0") do
-                  plain "© 2004–"
-                  time(datetime: Time.now.year.to_s) { Time.now.year.to_s }
-                  plain " "
-                  a(href: "/about", class: "text-[#6B6968] hover:text-[#0F0E0D]") { "Piotr Usewicz" }
-                end
-                span(class: "font-display text-[14px] tracking-[0.06em] uppercase text-[#6B6968]") { "Benicàrlo, Spain" }
+              p(class: "text-[12px] text-[#9B9895] text-center mt-4 mb-0") do
+                plain "Pssst—I also run a "
+                a(href: "https://layer22.games/", class: "text-[#6B6968] no-underline hover:text-[#0F0E0D]") { "game studio" }
+                plain "."
               end
             end
           end

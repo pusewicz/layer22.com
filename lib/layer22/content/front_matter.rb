@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "date"
+require "nokogiri"
 require "yaml"
 
 module Layer22
@@ -30,6 +31,26 @@ module Layer22
 
         front_matter = YAML.safe_load(yaml_str, permitted_classes: [Date, Time], symbolize_names: false) || {}
         [front_matter, body]
+      end
+
+      # Returns a front matter string such as a title as plain text. Jekyll printed
+      # titles as raw HTML, so some use entities like "&mdash;".
+      def self.text(value)
+        Nokogiri::HTML5.fragment(value.to_s).text unless value.nil?
+      end
+
+      # Reads a list such as tags the way Jekyll does: the singular key holds one
+      # value, the plural key a list or a whitespace-separated string.
+      def self.list(front_matter, singular, plural)
+        if front_matter.key?(singular)
+          Array(front_matter[singular]).compact.map(&:to_s)
+        else
+          case (value = front_matter[plural])
+          when String then value.split
+          when Array then value.compact.map(&:to_s)
+          else []
+          end
+        end
       end
     end
   end
