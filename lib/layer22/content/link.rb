@@ -6,8 +6,9 @@ module Layer22
   module Content
     # The link a note points at, with the preview metadata `rake note` saved:
     # site, title, author, description and a local thumbnail, or for a YouTube
-    # video its id.
-    Link = Data.define(:url, :site, :youtube, :title, :author, :description, :image, :image_width, :image_height) do
+    # video its id, for a Bluesky post the post itself, or for an Instagram post its
+    # kind ("reel" or "post").
+    Link = Data.define(:url, :site, :youtube, :bluesky, :instagram, :title, :author, :description, :image, :image_width, :image_height) do
       # Builds a link from a note's `link` front matter; nil when there is none.
       # Image dimensions are read from the thumbnail under +root+, if present.
       def self.from_front_matter(data, root: ".")
@@ -19,6 +20,8 @@ module Layer22
           url: data.fetch("url"),
           site: data["site"],
           youtube: data["youtube"],
+          bluesky: BlueskyPost.from_front_matter(data["bluesky"]),
+          instagram: data["instagram"],
           title: data["title"],
           author: data["author"],
           description: data["description"],
@@ -26,6 +29,11 @@ module Layer22
           image_width: width,
           image_height: height
         )
+      end
+
+      # Whether the Instagram post is a video.
+      def instagram_video?
+        instagram == "reel"
       end
 
       # The URL's host without a leading "www.", shown when the site name is unknown.

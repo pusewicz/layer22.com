@@ -8,7 +8,7 @@ module Layer22
       class LinkCardTest < TestCase
         def link(**overrides)
           Content::Link.new(
-            url: "https://www.example.org/page", site: nil, youtube: nil, title: nil, author: nil, description: nil,
+            url: "https://www.example.org/page", site: nil, youtube: nil, bluesky: nil, instagram: nil, title: nil, author: nil, description: nil,
             image: nil, image_width: nil, image_height: nil, **overrides
           )
         end

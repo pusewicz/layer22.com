@@ -36,6 +36,7 @@ module Layer22
         assert_equal "https://example.com/", link.url
         assert_nil link.site
         assert_nil link.youtube
+        assert_nil link.bluesky
         assert_nil link.title
         assert_nil link.author
         assert_nil link.description
@@ -48,6 +49,25 @@ module Layer22
         error = assert_raises(KeyError) { Link.from_front_matter({"title" => "No url"}) }
 
         assert_includes error.message, "url"
+      end
+
+      def test_from_front_matter_reads_a_bluesky_post
+        link = Link.from_front_matter({"url" => "https://bsky.app/profile/a.test/post/1", "bluesky" => {"handle" => "a.test", "text" => "Hi"}})
+
+        assert_equal BlueskyPost.new(handle: "a.test", text: "Hi", date: nil, lang: nil, alt: nil, facets: []), link.bluesky
+      end
+
+      def test_from_front_matter_reads_the_kind_of_an_instagram_post
+        link = Link.from_front_matter({"url" => "https://www.instagram.com/reel/a/", "instagram" => "reel"})
+
+        assert_equal "reel", link.instagram
+        assert_nil Link.from_front_matter({"url" => "https://a.test/"}).instagram
+      end
+
+      def test_instagram_video_is_true_for_a_reel_only
+        assert_predicate link(instagram: "reel"), :instagram_video?
+        refute_predicate link(instagram: "post"), :instagram_video?
+        refute_predicate link, :instagram_video?
       end
 
       def test_from_front_matter_reads_the_thumbnail_dimensions
@@ -136,8 +156,8 @@ module Layer22
 
       private
 
-      def link(url: "https://example.test/", width: nil, height: nil)
-        Link.new(url:, site: nil, youtube: nil, title: nil, author: nil, description: nil, image: "/x.png", image_width: width, image_height: height)
+      def link(url: "https://example.test/", width: nil, height: nil, instagram: nil)
+        Link.new(url:, site: nil, youtube: nil, bluesky: nil, instagram:, title: nil, author: nil, description: nil, image: "/x.png", image_width: width, image_height: height)
       end
     end
   end

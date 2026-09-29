@@ -79,7 +79,7 @@ module Layer22
 
     def test_the_post_and_note_rss_feeds_are_served
       serving_fixture_site do |server|
-        {"/rss.xml" => 3, "/notes/feed.xml" => 6}.each do |path, items|
+        {"/rss.xml" => 3, "/notes/feed.xml" => 8}.each do |path, items|
           response = server.get(path)
 
           assert_equal 200, response.status, path

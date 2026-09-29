@@ -386,10 +386,11 @@
   font-size: 14px;
 }
 
-/* Link and YouTube cards */
+/* Link, YouTube, Bluesky and Instagram cards */
 
 .link-card,
-.youtube-card {
+.youtube-card,
+.bluesky-card {
   display: block;
   max-width: 640px;
   margin-top: 1rem;
@@ -490,6 +491,64 @@
   display: block;
   padding: 0.75rem 1rem;
   text-decoration: none;
+}
+
+.instagram-card-media {
+  position: relative;
+  background-color: #000;
+}
+.instagram-card-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 32rem;
+  margin: 0;
+  object-fit: contain;
+}
+.instagram-card .link-card-description {
+  -webkit-line-clamp: 3;
+}
+
+.instagram-card-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.bluesky-card-media {
+  display: block;
+}
+.bluesky-card-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 28rem;
+  margin: 0;
+  object-fit: cover;
+}
+
+.bluesky-card-body {
+  padding: 0.75rem 1rem;
+}
+
+.bluesky-card-source,
+.bluesky-card-date {
+  display: block;
+  text-decoration: none;
+}
+
+.bluesky-card-text {
+  margin-top: 0.25rem;
+  font-size: 17px;
+  line-height: 1.5rem;
+  color: var(--ink-color);
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.bluesky-card-date {
+  margin-top: 0.5rem;
 }
 
 /* Resume */

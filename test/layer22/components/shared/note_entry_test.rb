@@ -69,6 +69,24 @@ module Layer22
           assert_includes entry.text, "A video"
         end
 
+        def test_renders_an_instagram_card_for_an_instagram_post
+          entry = render_entry(note(7))
+
+          assert_includes entry.text, "Watch this reel."
+          assert_equal "https://www.instagram.com/reel/AbC-123xyz_/", entry.at_css("a.instagram-card")["href"]
+          assert_includes entry.at_css("a.instagram-card").text, "A short caption for the reel."
+          assert_nil entry.at_css(".bluesky-card, .youtube-card, [data-youtube-id]")
+        end
+
+        def test_renders_a_bluesky_card_for_a_bluesky_post
+          entry = render_entry(note(6))
+
+          assert_includes entry.text, "A post worth reading."
+          assert_includes entry.at_css(".bluesky-card").text, "Café ☕ notes at example.com #lisp"
+          assert_equal "https://example.com/", entry.at_css(".bluesky-card-text a")["href"]
+          assert_nil entry.at_css(".link-card, .youtube-card, [data-youtube-id]")
+        end
+
         def test_a_link_only_note_has_no_body
           entry = render_entry(note(4))
           content = entry.at_css(".e-content")
