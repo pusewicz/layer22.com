@@ -62,6 +62,20 @@ module Layer22
           assert_equal [Shared::YoutubeScript::SCRIPT], scripts
         end
 
+        def test_renders_an_instagram_post
+          doc = render_note(note(7))
+
+          assert_equal "Instagram · @ada.example", doc.at_css("main a.instagram-card .card-source").text
+          assert_empty doc.css("[data-youtube-id]")
+        end
+
+        def test_renders_a_bluesky_post
+          doc = render_note(note(6))
+
+          assert_equal "Bluesky · Ada · @ada.example.com", doc.at_css("main .bluesky-card a.card-source").text
+          assert_empty doc.css("[data-youtube-id]")
+        end
+
         def test_a_note_without_neighbours_has_no_pager
           doc = render_note(note(0))
 

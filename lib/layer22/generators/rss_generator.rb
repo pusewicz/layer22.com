@@ -68,7 +68,7 @@ module Layer22
       end
 
       # Writes one item. Untitled items (notes) leave out <title>, and an item
-      # with a link gets its link card (or YouTube card) appended to its content.
+      # with a link gets its link card (or YouTube, Bluesky or Instagram card) appended to its content.
       def item(xml, item)
         url = "#{@config.site_url}#{item.permalink}"
         html = content_html(item)
@@ -93,6 +93,10 @@ module Layer22
 
         card = if link.youtube
           Components::Shared::YoutubeCard.new(site: @site, link:, feed: true)
+        elsif link.bluesky
+          Components::Shared::BlueskyCard.new(site: @site, link:)
+        elsif link.instagram
+          Components::Shared::InstagramCard.new(site: @site, link:)
         else
           Components::Shared::LinkCard.new(site: @site, link:)
         end

@@ -13,7 +13,7 @@ module Layer22
       end
 
       def test_load_all_reads_the_fixture_notes_in_path_order
-        assert_equal %w[093000 101500 121000 080000 200000 070000], fixture_notes.keys
+        assert_equal %w[093000 101500 121000 080000 200000 070000 090000 100000], fixture_notes.keys
       end
 
       def test_plain_note_is_untitled_and_takes_its_slug_from_the_time_in_the_filename
@@ -70,6 +70,16 @@ module Layer22
         assert_nil link.image_width
       end
 
+      def test_bluesky_note_keeps_the_post_and_its_thumbnail
+        link = fixture_notes.fetch("090000").link
+
+        assert_nil link.youtube
+        assert_equal "ada.example.com", link.bluesky.handle
+        assert_equal "Café ☕ notes at example.com #lisp\nSecond line", link.bluesky.text
+        assert_equal "/images/notes/wide.png", link.image
+        assert_predicate link, :wide_image?
+      end
+
       def test_link_only_note_has_an_empty_body_and_no_description
         note = fixture_notes.fetch("200000")
 
@@ -89,6 +99,71 @@ module Layer22
 
       def test_label_falls_back_to_the_link_title_for_an_empty_body
         assert_equal "Only a link", fixture_notes.fetch("200000").label
+      end
+
+      def test_label_falls_back_to_the_first_words_of_a_bluesky_post_for_an_empty_body
+        front_matter = <<~MD
+          ---
+          link:
+            url: https://bsky.app/profile/ada.example.com/post/3kabc
+            bluesky:
+              handle: ada.example.com
+              text: "\\nOne two three four five six seven eight nine ten eleven"
+          ---
+        MD
+
+        assert_equal "One two three four five six seven eight nine ten…", load_note("2021-05-07-x.md", front_matter).label
+      end
+
+      def test_label_prefers_the_body_to_a_bluesky_post
+        note = fixture_notes.fetch("090000")
+
+        assert_equal "A post worth reading.", note.label
+      end
+
+      def test_label_falls_back_to_the_link_title_for_a_bluesky_post_without_text
+        front_matter = <<~MD
+          ---
+          link:
+            url: https://bsky.app/profile/ada.example.com/post/3kabc
+            title: Ada's post
+            bluesky:
+              handle: ada.example.com
+          ---
+        MD
+
+        assert_equal "Ada's post", load_note("2021-05-07-x.md", front_matter).label
+      end
+
+      def test_label_falls_back_to_the_first_words_of_an_instagram_caption_for_an_empty_body
+        front_matter = <<~MD
+          ---
+          link:
+            url: https://www.instagram.com/reel/a/
+            instagram: reel
+            description: One two three four five six seven eight nine ten eleven
+          ---
+        MD
+
+        assert_equal "One two three four five six seven eight nine ten…", load_note("2021-05-07-x.md", front_matter).label
+      end
+
+      def test_label_falls_back_to_the_date_for_an_instagram_post_without_a_caption
+        front_matter = "---\nlink:\n  url: https://www.instagram.com/reel/a/\n  instagram: reel\n---\n"
+
+        assert_equal "Note from May 7, 2021", load_note("2021-05-07-x.md", front_matter).label
+      end
+
+      def test_label_prefers_the_body_to_an_instagram_caption
+        assert_equal "Watch this reel.", fixture_notes.fetch("100000").label
+      end
+
+      def test_instagram_note_keeps_the_kind_and_caption
+        link = fixture_notes.fetch("100000").link
+
+        assert_equal "reel", link.instagram
+        assert_equal "A short caption for the reel.", link.description
+        assert_equal "/images/notes/square.png", link.image
       end
 
       def test_label_prefers_the_title

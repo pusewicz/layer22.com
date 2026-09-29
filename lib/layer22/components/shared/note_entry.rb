@@ -4,7 +4,8 @@ module Layer22
   module Components
     module Shared
       # A note as an h-entry: its time, linking to its page, its text and its
-      # link card, or player for a YouTube video.
+      # link card, or player for a YouTube video, or post for a Bluesky one, or
+      # preview for an Instagram one.
       class NoteEntry < Base
         def initialize(site:, note:)
           super(site:)
@@ -22,6 +23,10 @@ module Layer22
               div(class: "note-body") { raw safe(@note.body_html) } unless @note.body_html.empty?
               if @note.link&.youtube
                 render YoutubeCard.new(site:, link: @note.link)
+              elsif @note.link&.bluesky
+                render BlueskyCard.new(site:, link: @note.link)
+              elsif @note.link&.instagram
+                render InstagramCard.new(site:, link: @note.link)
               elsif @note.link
                 render LinkCard.new(site:, link: @note.link)
               end

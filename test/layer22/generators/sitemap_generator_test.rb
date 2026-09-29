@@ -11,7 +11,7 @@ module Layer22
         /hello-world /review /cafe
         /til/2021/03/05/first-til/ /til/2021/03/20/second-til/ /til/2022/01/10/third-til/
         /notes/2021/05/01/093000/ /notes/2021/05/02/101500/ /notes/2021/05/03/121000/
-        /notes/2021/05/04/080000/ /notes/2021/05/05/200000/ /notes/2021/05/06/070000/
+        /notes/2021/05/04/080000/ /notes/2021/05/05/200000/ /notes/2021/05/06/070000/ /notes/2021/05/07/090000/ /notes/2021/05/08/100000/
         /
         /about /archive /categories /colophon /notes/ /tags /til
         /tags/ruby/ /tags/rails/ /tags/café/

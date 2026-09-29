@@ -45,11 +45,13 @@ module Layer22
       private_class_method :load_from_file
 
       # A plain-text name for the note, as notes rarely have titles: its title,
-      # else its first ten words, else its link's title, else its date.
+      # else its first ten words, else the first ten words of the Bluesky post or
+      # Instagram caption it links to, else its link's title, else its date.
       def label
         return title unless title.empty?
 
         words = Nokogiri::HTML5.fragment(body_html).text.split
+        words = (link&.bluesky&.text || (link.description if link&.instagram)).to_s.split if words.empty?
         return words.first(10).join(" ") + ((words.size > 10) ? "…" : "") if words.any?
 
         link&.title || "Note from #{date.strftime("%b %-d, %Y")}"

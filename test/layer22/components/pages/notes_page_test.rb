@@ -59,7 +59,7 @@ module Layer22
           entries = render_notes_page.css("main article.h-entry")
 
           assert_equal fixture_site.notes.reverse.map(&:permalink), entries.map { |entry| entry.at_css("a.u-url")["href"] }
-          assert_equal 6, entries.size
+          assert_equal 8, entries.size
         end
 
         def test_renders_note_bodies_and_link_previews

@@ -148,14 +148,14 @@ module Layer22
       def test_untitled_notes_have_no_title_element
         items = feed(:notes).xpath("/rss/channel/item")
 
-        assert_equal 6, items.size
+        assert_equal 8, items.size
         assert(items.none? { |item| item.at_xpath("title") })
       end
 
       def test_note_items_are_newest_first
         links = feed(:notes).xpath("/rss/channel/item/link").map(&:text)
 
-        assert_equal %w[070000 200000 080000 121000 101500 093000], links.map { |link| link[%r{/(\d{6})/\z}, 1] }
+        assert_equal %w[100000 090000 070000 200000 080000 121000 101500 093000], links.map { |link| link[%r{/(\d{6})/\z}, 1] }
       end
 
       def test_note_item_publication_dates_keep_the_offset
@@ -208,6 +208,43 @@ module Layer22
         assert_nil html.at_css("iframe")
       end
 
+      def test_bluesky_note_content_gets_the_bluesky_card
+        content = content_of(item_for(:notes, "notes/2021/05/07/090000"))
+
+        html = parse_html(content)
+        assert content.start_with?("<p>A post worth reading.</p>")
+        assert_equal "https://example.test/images/notes/wide.png", html.at_css(".bluesky-card img")["src"]
+        assert_equal "https://bsky.app/profile/ada.example.com/post/3kabc", html.at_css(".bluesky-card a.card-source")["href"]
+        assert_equal %w[https://example.com/ https://bsky.app/hashtag/lisp], html.css(".bluesky-card-text a").map { |a| a["href"] }
+        assert_nil html.at_css(".link-card, .youtube-card")
+      end
+
+      def test_instagram_note_content_gets_the_instagram_card
+        content = content_of(item_for(:notes, "notes/2021/05/08/100000"))
+
+        html = parse_html(content)
+        assert content.start_with?("<p>Watch this reel.</p>")
+        card = html.at_css("a.instagram-card")
+        assert_equal "https://www.instagram.com/reel/AbC-123xyz_/", card["href"]
+        assert_equal "https://example.test/images/notes/square.png", card.at_css("img")["src"]
+        assert_includes card.text, "Instagram · @ada.example"
+        assert_includes card.text, "A short caption for the reel."
+      end
+
+      def test_instagram_note_description_includes_the_caption
+        description = item_for(:notes, "notes/2021/05/08/100000").at_xpath("description").text
+
+        assert_includes description, "Watch this reel."
+        assert_includes description, "A short caption for the reel."
+      end
+
+      def test_bluesky_note_description_includes_the_post_text
+        description = item_for(:notes, "notes/2021/05/07/090000").at_xpath("description").text
+
+        assert_includes description, "A post worth reading."
+        assert_includes description, "Café ☕ notes at example.com #lisp"
+      end
+
       def test_link_note_description_includes_the_card_text
         description = item_for(:notes, "notes/2021/05/04/080000").at_xpath("description").text
 
@@ -236,7 +273,7 @@ module Layer22
           assert_includes out, "Generated #{File.join(dir, "rss.xml")}"
           assert_includes out, "Generated #{File.join(dir, "notes", "feed.xml")}"
           assert_equal 3, parse_xml(File.read(File.join(dir, "rss.xml"))).xpath("/rss/channel/item").size
-          assert_equal 6, parse_xml(File.read(File.join(dir, "notes", "feed.xml"))).xpath("/rss/channel/item").size
+          assert_equal 8, parse_xml(File.read(File.join(dir, "notes", "feed.xml"))).xpath("/rss/channel/item").size
         end
       end
 

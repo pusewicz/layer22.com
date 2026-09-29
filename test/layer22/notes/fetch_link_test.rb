@@ -303,5 +303,129 @@ module Layer22
         Notes.stub(:get, fake) { yield }
       end
     end
+
+    class FetchLinkBlueskyTest < TestCase
+      POST_URL = "https://bsky.app/profile/ada.example.com/post/3kabc"
+      THUMB = "https://cdn.bsky.app/img/feed_thumbnail/plain/did:plc:abc/bafkrei"
+      THREAD = {
+        "$type" => "app.bsky.feed.defs#threadViewPost",
+        "post" => {
+          "author" => {"handle" => "ada.example.com", "displayName" => "Ada"},
+          "record" => {"text" => "Hello world", "createdAt" => "2021-05-06T22:30:00.000Z", "langs" => ["en"]},
+          "embed" => {"$type" => "app.bsky.embed.images#view", "images" => [{"thumb" => THUMB, "alt" => "A pic"}]}
+        }
+      }.freeze
+
+      def test_records_the_post_and_downloads_its_first_image
+        link = with_site { with_bluesky { Notes.fetch_link(POST_URL, "2026-09-29-101530") } }
+
+        assert_equal(
+          {
+            "url" => POST_URL,
+            "site" => "Bluesky",
+            "author" => "Ada",
+            "bluesky" => {
+              "handle" => "ada.example.com",
+              "date" => "2021-05-06T22:30:00Z",
+              "lang" => "en",
+              "text" => "Hello world",
+              "alt" => "A pic"
+            },
+            "image" => "/images/notes/2026-09-29-101530.png"
+          },
+          link
+        )
+        assert_equal %w[url site author bluesky image], link.keys
+      end
+
+      def test_saves_the_image
+        with_site do
+          with_bluesky { Notes.fetch_link(POST_URL, "note") }
+
+          assert_equal png, File.binread("images/notes/note.png")
+        end
+      end
+
+      def test_a_post_without_pictures_downloads_nothing
+        thread = THREAD.merge("post" => THREAD["post"].except("embed"))
+
+        with_site do
+          link = with_bluesky(thread) { Notes.fetch_link(POST_URL, "note") }
+
+          refute link.key?("image")
+          refute Dir.exist?("images")
+        end
+      end
+
+      def test_a_post_without_a_display_name_has_no_author
+        author = {"handle" => "ada.example.com"}
+        thread = THREAD.merge("post" => THREAD["post"].merge("author" => author))
+
+        link = with_site { with_bluesky(thread) { Notes.fetch_link(POST_URL, "note") } }
+
+        refute link.key?("author")
+      end
+
+      def test_keeps_the_post_when_the_image_cannot_be_downloaded
+        fake = lambda do |url, **|
+          raise "404 Not Found" if url == THUMB
+
+          [JSON.generate({"thread" => THREAD}).b, url, "application/json"]
+        end
+
+        link = nil
+        _, stderr = capture_io { with_site { link = Notes.stub(:get, fake) { Notes.fetch_link(POST_URL, "note") } } }
+
+        assert_equal "Hello world", link["bluesky"]["text"]
+        refute link.key?("image")
+        assert_equal "Could not download a thumbnail:\n  #{THUMB}: 404 Not Found\n", stderr
+      end
+
+      def test_a_post_that_cannot_be_read_gives_the_bare_link_and_a_warning
+        failing = ->(_url, **) { raise "400 Bad Request" }
+
+        link = nil
+        _, stderr = capture_io { link = Notes.stub(:get, failing) { Notes.fetch_link(POST_URL, "note") } }
+
+        assert_equal({"url" => POST_URL, "site" => "bsky.app"}, link)
+        assert_equal "Could not fetch #{POST_URL}: 400 Bad Request\n", stderr
+      end
+
+      def test_a_post_that_is_gone_gives_the_bare_link_and_a_warning
+        thread = {"$type" => "app.bsky.feed.defs#notFoundPost", "uri" => "at://x", "notFound" => true}
+
+        link = nil
+        _, stderr = capture_io { link = with_bluesky(thread) { Notes.fetch_link(POST_URL, "note") } }
+
+        assert_equal({"url" => POST_URL, "site" => "bsky.app"}, link)
+        assert_equal "Could not fetch #{POST_URL}: the post is not available (app.bsky.feed.defs#notFoundPost)\n", stderr
+      end
+
+      def test_other_bsky_app_pages_are_read_as_pages
+        pages = []
+        page = lambda do |url|
+          pages << url
+          {"title" => "Ada (@ada.example.com)"}
+        end
+        bluesky = ->(_url) { flunk "should not ask the API" }
+
+        link = Notes.stub(:page_metadata, page) do
+          Notes.stub(:bluesky_metadata, bluesky) { Notes.fetch_link("https://bsky.app/profile/ada.example.com", "note") }
+        end
+
+        assert_equal ["https://bsky.app/profile/ada.example.com"], pages
+        assert_equal({"url" => "https://bsky.app/profile/ada.example.com", "site" => "bsky.app", "title" => "Ada (@ada.example.com)"}, link)
+      end
+
+      private
+
+      # Runs the block with Notes.get answering the API with +thread+ and the image with a PNG.
+      def with_bluesky(thread = THREAD, &)
+        fake = lambda do |url, **|
+          (url == THUMB) ? [png, url, "image/png"] : [JSON.generate({"thread" => thread}).b, url, "application/json"]
+        end
+        Notes.stub(:get, fake, &)
+      end
+    end
   end
 end

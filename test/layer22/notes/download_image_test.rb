@@ -218,6 +218,55 @@ module Layer22
           assert_equal %w[2026-09-28-101530.png 2026-09-28-101531.png], Dir.children("images/notes").sort
         end
       end
+
+      def test_identifies_an_image_served_as_octet_stream_from_its_bytes
+        @server.serve("/thumbnail.jpg", png, type: "application/octet-stream")
+
+        with_site do
+          assert_equal "/images/notes/note.png", Notes.download_image([@server.url("/thumbnail.jpg")], "note")
+          assert_equal png, File.binread("images/notes/note.png")
+        end
+      end
+
+      def test_identifies_every_supported_format_from_its_bytes
+        {
+          ".jpg" => "\xFF\xD8\xFF\xE0".b + "\0".b * 20,
+          ".gif" => "GIF89a".b + "\0".b * 20,
+          ".webp" => "RIFF".b + "\0".b * 4 + "WEBPVP8 ".b + "\0".b * 20
+        }.each do |extension, bytes|
+          @server.serve("/image#{extension}", bytes, type: "application/octet-stream")
+        end
+
+        with_site do
+          %w[.jpg .gif .webp].each do |extension|
+            assert_equal "/images/notes/note#{extension}", Notes.download_image([@server.url("/image#{extension}")], "note")
+          end
+        end
+      end
+
+      def test_skips_octet_stream_that_is_not_an_image
+        @server.serve("/blob", "<svg/>", type: "application/octet-stream")
+
+        with_site do
+          result = nil
+          _, stderr = capture_io { result = Notes.download_image([@server.url("/blob")], "note") }
+
+          assert_nil result
+          assert_includes stderr, "  #{@server.url("/blob")}: application/octet-stream is not a supported image\n"
+          refute Dir.exist?("images")
+        end
+      end
+
+      def test_does_not_identify_other_content_types_from_their_bytes
+        @server.serve("/page", png, type: "text/html")
+
+        with_site do
+          result = nil
+          capture_io { result = Notes.download_image([@server.url("/page")], "note") }
+
+          assert_nil result
+        end
+      end
     end
   end
 end

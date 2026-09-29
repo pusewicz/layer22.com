@@ -10,7 +10,7 @@ module Layer22
       /hello-world /review /cafe
       /til/2021/03/05/first-til/ /til/2021/03/20/second-til/ /til/2022/01/10/third-til/
       /notes/2021/05/01/093000/ /notes/2021/05/02/101500/ /notes/2021/05/03/121000/
-      /notes/2021/05/04/080000/ /notes/2021/05/05/200000/ /notes/2021/05/06/070000/
+      /notes/2021/05/04/080000/ /notes/2021/05/05/200000/ /notes/2021/05/06/070000/ /notes/2021/05/07/090000/ /notes/2021/05/08/100000/
       /about /archive /categories /colophon /hidden /moved /notes/ /tags /til
       /404.html
       /tags/ruby/ /tags/rails/ /tags/café/
@@ -88,7 +88,9 @@ module Layer22
     def test_note_routes_link_to_their_neighbours_without_wrapping_around
       assert_equal({"prev" => nil, "next" => "/notes/2021/05/02/101500/"}, neighbour_links("/notes/2021/05/01/093000/"))
       assert_equal({"prev" => "/notes/2021/05/02/101500/", "next" => "/notes/2021/05/04/080000/"}, neighbour_links("/notes/2021/05/03/121000/"))
-      assert_equal({"prev" => "/notes/2021/05/05/200000/", "next" => nil}, neighbour_links("/notes/2021/05/06/070000/"))
+      assert_equal({"prev" => "/notes/2021/05/05/200000/", "next" => "/notes/2021/05/07/090000/"}, neighbour_links("/notes/2021/05/06/070000/"))
+      assert_equal({"prev" => "/notes/2021/05/06/070000/", "next" => "/notes/2021/05/08/100000/"}, neighbour_links("/notes/2021/05/07/090000/"))
+      assert_equal({"prev" => "/notes/2021/05/07/090000/", "next" => nil}, neighbour_links("/notes/2021/05/08/100000/"))
     end
 
     def test_a_site_with_a_single_til_has_no_neighbour_links
@@ -268,7 +270,7 @@ module Layer22
         assert_same site, result
         assert_equal %w[hello-world review cafe], site.posts.map(&:slug)
         assert_equal %w[first-til second-til third-til], site.tils.map(&:slug)
-        assert_equal 6, site.notes.size
+        assert_equal 8, site.notes.size
         assert_equal %w[/about /archive /categories /colophon /hidden /moved /notes/ /tags /til], site.pages.map(&:permalink)
         assert_equal ["links"], site.data.keys
       end
@@ -383,7 +385,7 @@ module Layer22
       build_fixture_site do |dir, _out|
         assert_equal 3, parse_xml(File.read(File.join(dir, "feed.xml"))).xpath("//xmlns:entry").size
         assert_equal 3, parse_xml(File.read(File.join(dir, "rss.xml"))).xpath("//item").size
-        assert_equal 6, parse_xml(File.read(File.join(dir, "notes", "feed.xml"))).xpath("//item").size
+        assert_equal 8, parse_xml(File.read(File.join(dir, "notes", "feed.xml"))).xpath("//item").size
         assert_includes parse_xml(File.read(File.join(dir, "sitemap.xml"))).remove_namespaces!.xpath("//loc").map(&:text), "https://example.test/about"
         assert_includes File.read(File.join(dir, "robots.txt")), "Sitemap: https://example.test/sitemap.xml"
         assert_equal "acct:ada@social.example.test", JSON.parse(File.read(File.join(dir, ".well-known", "webfinger")))["subject"]
