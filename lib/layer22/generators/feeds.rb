@@ -1,17 +1,11 @@
 # frozen_string_literal: true
 
 require "nokogiri"
-require "set"
 
 module Layer22
   module Generators
     # Text helpers shared by the Atom and RSS feeds.
     module Feeds
-      # Returns +text+ safe to wrap in CDATA, splitting any "]]>" it contains.
-      def self.cdata_safe(text)
-        text.gsub("]]>", "]]]]><![CDATA[>")
-      end
-
       # Returns +html+ with root-relative links and images made absolute, so feed
       # readers resolve them against the site rather than themselves.
       def self.absolutize(html, site_url:)

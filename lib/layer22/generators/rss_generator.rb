@@ -18,9 +18,9 @@ module Layer22
         config = site.config
         [
           Channel.new(path: "/rss.xml", title: config.title, description: config.description, link: "/",
-                      items: site.posts),
+            items: site.posts),
           Channel.new(path: "/notes/feed.xml", title: "#{config.title} · Notes",
-                      description: "Short notes and links from #{config.author_name}", link: "/notes/", items: site.notes)
+            description: "Short notes and links from #{config.author_name}", link: "/notes/", items: site.notes)
         ]
       end
 
@@ -40,7 +40,7 @@ module Layer22
         xml = Builder::XmlMarkup.new(target: output, indent: 2)
         xml.instruct! :xml, version: "1.0", encoding: "UTF-8"
         xml.rss(
-          version: "2.0",
+          "version" => "2.0",
           "xmlns:atom" => "http://www.w3.org/2005/Atom",
           "xmlns:content" => "http://purl.org/rss/1.0/modules/content/",
           "xmlns:dc" => "http://purl.org/dc/elements/1.1/"
@@ -80,7 +80,7 @@ module Layer22
           xml.tag! "dc:creator", @config.author_name
           xml.description Feeds.truncate(Feeds.plain_text(html), DESCRIPTION_LENGTH)
           xml.tag!("content:encoded") do
-            xml.cdata!(Feeds.cdata_safe(Feeds.absolutize(html, site_url: @config.site_url)))
+            xml.cdata!(Feeds.absolutize(html, site_url: @config.site_url))
           end
           item.tags.each { |tag| xml.category tag }
         end

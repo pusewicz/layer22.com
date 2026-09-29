@@ -15,7 +15,6 @@ module Layer22
 
         username = @config.mastodon["username"]
         instance = @config.mastodon["instance"]
-        email = @config.email
 
         data = {
           subject: "acct:#{username}@#{instance}",

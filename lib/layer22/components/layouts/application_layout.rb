@@ -41,7 +41,7 @@ module Layer22
               link(type: "application/atom+xml", rel: "alternate", href: absolute_url("/feed.xml"), title: config.title)
               link(rel: "alternate", type: "application/rss+xml", title: config.title, href: absolute_url("/rss.xml"))
               link(rel: "alternate", type: "application/rss+xml", title: "#{config.title} · Notes",
-                   href: absolute_url("/notes/feed.xml"))
+                href: absolute_url("/notes/feed.xml"))
 
               render Shared::SeoHead.new(site:, title: @title, **@seo)
 

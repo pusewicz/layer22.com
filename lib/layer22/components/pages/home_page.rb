@@ -26,7 +26,7 @@ module Layer22
             div(class: "h-card site-width") do
               div(class: "home-identity") do
                 img(src: AVATAR_URL, width: "176", height: "176", alt: config.author_name,
-                    class: "u-photo author-photo", loading: "lazy")
+                  class: "u-photo author-photo", loading: "lazy")
                 div do
                   h1(class: "p-name home-name") { config.author_name }
                   a(class: "u-url u-uid home-url", rel: "me", href: absolute_url("/")) { "layer22.com" }

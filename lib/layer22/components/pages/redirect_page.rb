@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-require "cgi"
+require "cgi/escape"
 require "json"
+require "phlex"
 
 module Layer22
   module Components

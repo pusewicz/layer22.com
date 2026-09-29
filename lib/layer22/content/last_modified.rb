@@ -31,7 +31,7 @@ module Layer22
       end
 
       def self.git(*args)
-        output = IO.popen(["git", *args], err: File::NULL, &:read)
+        output = IO.popen(["git", *args], err: File::NULL, external_encoding: Encoding::UTF_8, &:read)
         output if $?.success?
       rescue Errno::ENOENT
         nil

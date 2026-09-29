@@ -1,0 +1,36 @@
+title: "fixture|site"
+tagline: "A fixture tagline"
+description: "Fixture description"
+url: "https://example.test"
+email: "ada@example.test"
+
+author:
+  name: "Ada Author"
+  twitter: "ada"
+
+github_username: "ada"
+github:
+  repository_url: "https://github.com/ada/fixture"
+  branch: "main"
+
+twitter:
+  username: "fixturesite"
+
+mastodon:
+  username: "ada"
+  instance: "social.example.test"
+
+social:
+  name: "Ada Author"
+  links:
+    - "https://github.com/ada"
+    - "https://social.example.test/@ada"
+
+logo: "/images/logo.png"
+timezone: "Europe/Madrid"
+words_per_minute: 100
+
+webp:
+  quality: 80
+  img_dirs:
+    - "images"

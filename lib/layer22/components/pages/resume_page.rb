@@ -41,7 +41,7 @@ module Layer22
         def introduction
           header(class: "h-card resume-header") do
             img(src: AVATAR_URL, width: "176", height: "176", alt: config.author_name,
-                class: "u-photo author-photo", loading: "lazy")
+              class: "u-photo author-photo", loading: "lazy")
             div(class: "resume-identity") do
               h1(class: "p-name resume-name") { basics["name"] }
               p(class: "p-job-title resume-headline") { basics["headline"] }

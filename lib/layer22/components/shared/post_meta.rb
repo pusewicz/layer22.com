@@ -14,13 +14,13 @@ module Layer22
         def view_template
           small(class: "post-meta") do
             time(class: "post-date", datetime: @post.date.xmlschema,
-                 aria_label: "posted on #{format_date(@post.date, "%A, %e of %B, %Y")}") do
+              aria_label: "posted on #{format_date(@post.date, "%A, %e of %B, %Y")}") do
               format_date(@post.date, (@post.date.year == Time.now.year) ? "%b %-d" : "%b %-d %Y")
             end
             whitespace
             span(aria_hidden: "true") { " · " }
             span(class: "word-count", title: "#{@post.word_count} words",
-                 aria_label: "#{@post.reading_time} minutes to read this post") do
+              aria_label: "#{@post.reading_time} minutes to read this post") do
               reading_time_label(@post.reading_time)
             end
           end
