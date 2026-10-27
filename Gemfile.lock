@@ -7,7 +7,7 @@ GEM
     commonmarker (2.10.0-arm64-darwin)
     commonmarker (2.10.0-x86_64-linux)
     drb (2.2.3)
-    fastimage (2.4.1)
+    fastimage (2.4.3)
     json (2.21.2)
     language_server-protocol (3.17.0.6)
     lint_roller (1.1.0)
@@ -90,7 +90,7 @@ PLATFORMS
 DEPENDENCIES
   builder (~> 3.3)
   commonmarker (~> 2.0)
-  fastimage (~> 2.3)
+  fastimage (~> 2.4)
   logger (~> 1.7)
   minitest (~> 6.0)
   minitest-mock (~> 5.27)
