@@ -30,6 +30,7 @@ GEM
     phlex (2.4.1)
       refract (~> 1.0)
       zeitwerk (~> 2.7)
+    prism (2.1.0)
     prism (2.1.0-aarch64-linux-gnu)
     prism (2.1.0-arm64-darwin)
     prism (2.1.0-x86_64-linux-gnu)
