@@ -157,7 +157,7 @@ module Layer22
           site = loaded_site
           entry = atom(site).at_xpath("/a:feed/a:entry", ATOM)
 
-          assert_includes site.posts.first.body_html, "]]>"
+          assert_includes site.posts.first.body_html, "]]&gt;"
           assert_equal site.posts.first.body_html.strip, entry.at_xpath("a:content", ATOM).text
           assert_equal "one ]]> two ]]> three", entry.at_xpath("a:summary", ATOM).text
         end
