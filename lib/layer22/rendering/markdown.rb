@@ -23,7 +23,7 @@ module Layer22
         mark_inline_code(fragment)
         add_heading_ids(fragment)
         add_lazy_loading(fragment)
-        fragment.to_html
+        fragment.to_html.gsub("]]&gt;", "]]>")
       end
 
       # Wraps fenced and indented code in kramdown's Rouge markup; code in a
