@@ -5,18 +5,18 @@ source "https://rubygems.org"
 gem "phlex", "~> 2.0"
 gem "commonmarker", "~> 2.10"
 gem "rouge", "~> 5.0"
-gem "nokogiri", "~> 1.16"
+gem "nokogiri", "~> 1.19"
 gem "fastimage", "~> 2.4"
 gem "rack", "~> 3.2"
 gem "rackup", "~> 2.0"
-gem "puma", "~> 8.0"
+gem "puma", "~> 8.1"
 gem "zeitwerk", "~> 2.7"
 gem "rake", "~> 13.4"
 gem "builder", "~> 3.3"
 gem "logger", "~> 1.7"
 
 group :development, :test do
-  gem "minitest", "~> 6.0"
+  gem "minitest", "~> 6.1"
   gem "minitest-mock", "~> 5.27"
   gem "standard", "~> 1.57", require: false
 end
