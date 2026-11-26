@@ -139,6 +139,7 @@ module Layer22
         }) do
           site = loaded_site
 
+          assert_match(/\]\](>|&gt;)/, site.posts.first.body_html)
           assert_equal site.posts.first.body_html.strip, content_of(feed_for(:posts, site).at_xpath("/rss/channel/item"))
           assert_equal site.notes.first.body_html.strip, content_of(feed_for(:notes, site).at_xpath("/rss/channel/item"))
         end
